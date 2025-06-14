@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf0hovtqbrhx3"]
+
+[ext_resource type="Texture2D" uid="uid://dx4jq0fmi08cc" path="res://assets/umbrella.png" id="1_013dy"]
+
+[node name="Umbrella" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_013dy")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-95.5, -149.5)
+polygon = PackedVector2Array(-11.5, -34.5, 70.5, -58.5, 92.5, -91.5, 123.5, -57.5, 198.5, -35.5, 261.5, 8.5, 318.5, 75.5, 341.5, 169.5, -146.5, 171.5, -139.5, 95.5, -113.5, 53.5, -69.5, 6.5)

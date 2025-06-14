@@ -2,6 +2,7 @@ extends Node2D
 
 
 @export var mob_scene: PackedScene
+@export var umbrella_scene: PackedScene
 @export var bird: CharacterBody2D
 
 func _on_timer_timeout() -> void:
@@ -14,4 +15,10 @@ func _on_timer_timeout() -> void:
 	# Create a new instance of the Mob scene.
 	var enemy = mob_scene.instantiate()
 	enemy.position = Vector2(spawn_position,500)
+	
+	
+
+
 	add_child(enemy)
+	
+	
