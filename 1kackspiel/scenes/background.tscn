@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnp0jtbeoph08"]
+
+[ext_resource type="Texture2D" uid="uid://baxx1vpyavn1k" path="res://assets/landscape_bench.png" id="1_bkp1e"]
+
+[node name="Background" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 500)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_bkp1e")

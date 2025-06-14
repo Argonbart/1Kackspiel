@@ -1,7 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://cm4xec5ngycft"]
+[gd_scene load_steps=12 format=3 uid="uid://cm4xec5ngycft"]
 
 [ext_resource type="Script" uid="uid://cf3yhgot6dmyf" path="res://scripts/bird.gd" id="1_3po83"]
-[ext_resource type="Texture2D" uid="uid://b3qqm72k53syp" path="res://assets/icon.svg" id="1_kqhkv"]
+[ext_resource type="Texture2D" uid="uid://501y3kru52u2" path="res://assets/bird_spritesheet.png" id="2_3po83"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hq4t0"]
+atlas = ExtResource("2_3po83")
+region = Rect2(0, 0, 1084, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twsrt"]
+atlas = ExtResource("2_3po83")
+region = Rect2(1084, 0, 1084, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7mtg"]
+atlas = ExtResource("2_3po83")
+region = Rect2(2168, 0, 1084, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdh3x"]
+atlas = ExtResource("2_3po83")
+region = Rect2(3252, 0, 1084, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jggmu"]
+atlas = ExtResource("2_3po83")
+region = Rect2(4336, 0, 1084, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrcfq"]
+atlas = ExtResource("2_3po83")
+region = Rect2(5420, 0, 1084, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehebh"]
+atlas = ExtResource("2_3po83")
+region = Rect2(6504, 0, 1084, 1110)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qavic"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hq4t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twsrt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7mtg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdh3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jggmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrcfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehebh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3po83"]
 size = Vector2(128, 127)
@@ -11,9 +68,12 @@ script = ExtResource("1_3po83")
 bird_sprite = NodePath("Sprite")
 camera = NodePath("Camera")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -214)
-texture = ExtResource("1_kqhkv")
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -214.5)
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_qavic")
+autoplay = "default"
+frame_progress = 0.876447
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -214.5)

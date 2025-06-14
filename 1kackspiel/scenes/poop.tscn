@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c25xab4l8sob6"]
 
-[ext_resource type="Texture2D" uid="uid://d7ccj6l01dwt" path="res://assets/kacki.png" id="1_634gh"]
+[ext_resource type="Texture2D" uid="uid://bop7sv3ajsy1p" path="res://assets/poop_munition_outline.png" id="2_l3xhj"]
 [ext_resource type="Script" uid="uid://wxgakxl7g3u3" path="res://scripts/poop.gd" id="2_pkbnx"]
-[ext_resource type="Texture2D" uid="uid://b3qqm72k53syp" path="res://assets/icon.svg" id="3_l3xhj"]
+[ext_resource type="Texture2D" uid="uid://dlm8sgwh3kl1y" path="res://assets/poop_munition_shape.png" id="3_l3xhj"]
 
 [node name="Poop" type="Node2D" node_paths=PackedStringArray("poop_body", "poop_area")]
 script = ExtResource("2_pkbnx")
@@ -14,29 +14,21 @@ position = Vector2(0, 100)
 collision_layer = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PoopBody"]
-polygon = PackedVector2Array(1, -34, 14, -10, 21, 2, 27, 18, 24, 25, -20, 28, -30, 20, -29, 11, -21, -3, -15, -14, -7, -24, -1, -34)
+polygon = PackedVector2Array(6, -28, 21, -17, 24, -8, 24, -2, 33, 0, 38, 7, 37, 12, 40, 17, 41, 23, 38, 28, 29, 33, 14, 34, -3, 33, -16, 31, -21, 26, -23, 21, -22, 18, -17, 15, -18, 11, -18, 5, -14, 2, -8, 1, -5, -2, -3, -7, 3, -13, 6, -16, 7, -20, 6, -24, 5, -27)
+
+[node name="PoopSprite2" type="Sprite2D" parent="PoopBody"]
+modulate = Color(1, 1, 1, 0.392157)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("3_l3xhj")
 
 [node name="PoopSprite" type="Sprite2D" parent="PoopBody"]
 scale = Vector2(0.04, 0.04)
-texture = ExtResource("1_634gh")
-
-[node name="PoopParticles" type="CPUParticles2D" parent="PoopBody/PoopSprite"]
-visible = false
-scale = Vector2(25, 25)
-amount = 100
-texture = ExtResource("3_l3xhj")
-preprocess = 10.0
-emission_shape = 3
-emission_rect_extents = Vector2(400, 400)
-gravity = Vector2(0, 0)
-scale_amount_min = 0.2
-scale_amount_max = 0.2
-color = Color(1, 0, 0, 1)
+texture = ExtResource("2_l3xhj")
 
 [node name="PoopArea" type="Area2D" parent="PoopBody"]
 collision_layer = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PoopBody/PoopArea"]
-polygon = PackedVector2Array(1, -34, 14, -10, 21, 2, 29, 18, 23, 32, -22, 31, -33, 20, -29, 11, -21, -3, -15, -14, -7, -24, -1, -34)
+polygon = PackedVector2Array(6, -28, 21, -17, 24, -8, 24, -2, 33, 0, 38, 7, 37, 12, 40, 17, 41, 23, 38, 28, 29, 33, 14, 34, -3, 33, -16, 31, -21, 26, -23, 21, -22, 18, -17, 15, -18, 11, -18, 5, -14, 2, -8, 1, -5, -2, -3, -7, 3, -13, 6, -16, 7, -20, 6, -24, 5, -27)
 
 [connection signal="area_entered" from="PoopBody/PoopArea" to="." method="_on_poop_area_area_entered"]

@@ -14,7 +14,7 @@ signal button_released
 @onready var _POOP_SCENE = preload("res://scenes/poop.tscn")
 
 # exports
-@export var bird_sprite: Sprite2D
+@export var bird_sprite: AnimatedSprite2D
 @export var camera: Camera2D
 
 # button variables
@@ -110,6 +110,7 @@ func stop_dive():
 
 func change_direction():
 	Globals.invert_direction = !Globals.invert_direction
+	bird_sprite.flip_h = !bird_sprite.flip_h
 	currently_executing_command = false
 
 
