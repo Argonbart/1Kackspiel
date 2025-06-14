@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdu7noianwm86"
-path="res://.godot/imported/landscape_tree.png-ac0a6a46c8aecb8b765da0137b831ab4.ctex"
+path="res://.godot/imported/landscape_bush.png-e506f7636f0989fcc621a6ffa4971c23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/landscape_tree.png"
-dest_files=["res://.godot/imported/landscape_tree.png-ac0a6a46c8aecb8b765da0137b831ab4.ctex"]
+source_file="res://assets/landscape_bush.png"
+dest_files=["res://.godot/imported/landscape_bush.png-e506f7636f0989fcc621a6ffa4971c23.ctex"]
 
 [params]
 
