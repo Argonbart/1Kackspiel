@@ -2,11 +2,13 @@ extends Node
 
 
 @export var pick_up_resource: PickUp
-@onready var pick_up_sprite: Sprite2D = $Sprite
+@export var pick_up_sprite: Sprite2D
+@export var pick_up_sprite_background: Sprite2D 
 
 
 func _ready():
 	pick_up_sprite.texture = pick_up_resource.icon
+	pick_up_sprite_background.texture = pick_up_resource.icon_background
 	pick_up_sprite.scale = pick_up_resource.icon_scaling
 	pick_up_sprite.self_modulate = pick_up_resource.color
 

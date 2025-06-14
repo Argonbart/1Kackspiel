@@ -15,9 +15,5 @@ func update_color_container(container_idx: int, new_color: Color):
 
 func item_collected(item_type: Globals.PICK_UP):
 	match item_type:
-		Globals.PICK_UP.NORMAL:
-			update_color_container(1, Color.GREEN)
-		Globals.PICK_UP.FIRE:
+		Globals.PICK_UP.BERRIES:
 			update_color_container(0, Color.RED)
-		Globals.PICK_UP.NEW_TYPE:
-			update_color_container(2, Color.YELLOW)

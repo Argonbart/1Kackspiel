@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://coce66ftult4a"]
 
 [ext_resource type="Script" uid="uid://df1i34s0jw5la" path="res://scripts/pick_up.gd" id="1_adew5"]
-[ext_resource type="Resource" uid="uid://dmnthy551hfos" path="res://resources/fire.tres" id="2_c87fy"]
+[ext_resource type="Resource" uid="uid://cinw1onlvb74u" path="res://resources/berries.tres" id="2_a7jki"]
 [ext_resource type="Texture2D" uid="uid://8m2t6cjcgxer" path="res://assets/pickup_berry_background.png" id="3_c87fy"]
 [ext_resource type="Shader" uid="uid://b48g1knbq0xjw" path="res://shader/hovering.gdshader" id="4_a7jki"]
 [ext_resource type="Texture2D" uid="uid://b3qqm72k53syp" path="res://assets/icon.svg" id="4_c87fy"]
@@ -15,12 +15,14 @@ shader = ExtResource("4_a7jki")
 [sub_resource type="CircleShape2D" id="CircleShape2D_c468w"]
 radius = 22.0
 
-[node name="PickUp" type="Node2D"]
+[node name="PickUp" type="Node2D" node_paths=PackedStringArray("pick_up_sprite", "pick_up_sprite_background")]
 script = ExtResource("1_adew5")
-pick_up_resource = ExtResource("2_c87fy")
+pick_up_resource = ExtResource("2_a7jki")
+pick_up_sprite = NodePath("Sprite")
+pick_up_sprite_background = NodePath("SpriteBackground")
 
-[node name="BackgoundColor" type="Sprite2D" parent="."]
-self_modulate = Color(0, 1, 0, 0.217)
+[node name="SpriteBackground" type="Sprite2D" parent="."]
+self_modulate = Color(0.337255, 1, 0, 0.215686)
 material = SubResource("ShaderMaterial_a7jki")
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_c87fy")

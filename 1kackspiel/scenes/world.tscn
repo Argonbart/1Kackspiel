@@ -3,11 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://b6vfholf7ebit" path="res://assets/background_canvas.png" id="1_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://cyrdjg7ty8oja" path="res://scenes/background.tscn" id="1_i7141"]
 [ext_resource type="PackedScene" uid="uid://cm4xec5ngycft" path="res://scenes/bird.tscn" id="1_nnsk1"]
-[ext_resource type="Texture2D" uid="uid://b3qqm72k53syp" path="res://assets/icon.svg" id="2_rwgxs"]
 [ext_resource type="Shape2D" uid="uid://c66lqgv2eaf30" path="res://shapes/ground_shape.tres" id="3_4wyf3"]
 [ext_resource type="Script" uid="uid://cosk1k0wef2rc" path="res://scripts/human_spawner.gd" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://bfipa14gkf06n" path="res://scenes/basic_human.tscn" id="5_71j4m"]
-[ext_resource type="PackedScene" uid="uid://dmk2m7h7o711h" path="res://scenes/ui.tscn" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://5kpma8i70u3" path="res://scenes/ui.tscn" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://coce66ftult4a" path="res://scenes/pick_up.tscn" id="8_4mrxx"]
 
 [node name="World" type="Node2D"]
 
@@ -19,12 +19,9 @@ repeat_times = 20
 position = Vector2(-15, 2)
 texture = ExtResource("1_4mrxx")
 
-[node name="Ground" type="Sprite2D" parent="Parallax"]
-position = Vector2(578, 609.5)
-scale = Vector2(9.01562, 0.648438)
-texture = ExtResource("2_rwgxs")
+[node name="BackgroundSprites" parent="." instance=ExtResource("1_i7141")]
 
-[node name="Background" parent="." instance=ExtResource("1_i7141")]
+[node name="Background2" parent="." instance=ExtResource("1_i7141")]
 
 [node name="Bird" parent="." instance=ExtResource("1_nnsk1")]
 position = Vector2(0, 324)
@@ -57,5 +54,8 @@ wait_time = 1.985
 autostart = true
 
 [node name="UI" parent="." instance=ExtResource("6_qfnet")]
+
+[node name="PickUp" parent="." instance=ExtResource("8_4mrxx")]
+position = Vector2(723, 100)
 
 [connection signal="timeout" from="Human Spawner/Timer" to="Human Spawner" method="_on_timer_timeout"]

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://chbteuiuj2ftc" path="res://assets/landscape_tree01.png" id="3_cbsqf"]
 [ext_resource type="Texture2D" uid="uid://deofb4aj24iyv" path="res://assets/landscape_tree02.png" id="4_wisxt"]
 
-[node name="Background" type="Node2D"]
+[node name="BackgroundSprites" type="Node2D"]
 
 [node name="Bench" type="Sprite2D" parent="."]
 position = Vector2(0, 500)
