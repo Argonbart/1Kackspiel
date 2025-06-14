@@ -6,7 +6,7 @@
 [ext_resource type="Shape2D" uid="uid://c66lqgv2eaf30" path="res://shapes/ground_shape.tres" id="3_4wyf3"]
 [ext_resource type="Script" uid="uid://cosk1k0wef2rc" path="res://scripts/human_spawner.gd" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://bfipa14gkf06n" path="res://scenes/basic_human.tscn" id="5_71j4m"]
-[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://5kpma8i70u3" path="res://scenes/ui.tscn" id="6_qfnet"]
 [ext_resource type="PackedScene" uid="uid://coce66ftult4a" path="res://scenes/pick_up.tscn" id="8_4mrxx"]
 
 [node name="World" type="Node2D"]
