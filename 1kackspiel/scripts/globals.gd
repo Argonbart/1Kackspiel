@@ -13,6 +13,8 @@ var invert_direction: bool = false # 0 = nach rechts ; 1 = nach links
 # dict
 enum PICK_UP {
 	BERRIES,
+	HOTDOG,
+	ICECREME
 }
 
 

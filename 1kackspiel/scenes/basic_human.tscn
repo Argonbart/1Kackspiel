@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfipa14gkf06n"]
+[gd_scene load_steps=13 format=3 uid="uid://bfipa14gkf06n"]
 
 [ext_resource type="Script" uid="uid://cq22hu7adpbap" path="res://scripts/basic_human.gd" id="1_x2wwd"]
 [ext_resource type="PackedScene" uid="uid://bf0hovtqbrhx3" path="res://scenes/umbrella.tscn" id="2_smnjy"]
 [ext_resource type="Texture2D" uid="uid://b003ppykcktrv" path="res://assets/human.png" id="3_smnjy"]
-[ext_resource type="PackedScene" uid="uid://dq1limn55dx7j" path="res://scenes/hotdog.tscn" id="3_xydof"]
+[ext_resource type="Script" uid="uid://dfcfw6bulxxl4" path="res://scripts/pick_up_resource.gd" id="4_np2id"]
+[ext_resource type="Resource" uid="uid://h0b2rwicfxt0" path="res://resources/hotdog.tres" id="6_c3l26"]
+[ext_resource type="Resource" uid="uid://clive6y0udkoa" path="res://resources/icecream.tres" id="6_wvdd5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xydof"]
 atlas = ExtResource("3_smnjy")
@@ -44,12 +46,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2wwd"]
 size = Vector2(135, 140)
 
-[node name="Basic Human" type="CharacterBody2D"]
+[node name="Basic Human" type="CharacterBody2D" node_paths=PackedStringArray("human_sprite", "left_hand_point", "right_hand_point")]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_x2wwd")
+human_sprite = NodePath("AnimatedSprite2D")
+left_hand_point = NodePath("LeftHandPoint")
+right_hand_point = NodePath("RightHandPoint")
 umbrella_scene = ExtResource("2_smnjy")
-hotdog_scene = ExtResource("3_xydof")
+pick_up_list = Array[ExtResource("4_np2id")]([ExtResource("6_c3l26"), ExtResource("6_wvdd5")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)

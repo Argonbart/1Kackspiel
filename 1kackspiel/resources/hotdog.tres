@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PickUp" load_steps=4 format=3 uid="uid://h0b2rwicfxt0"]
+
+[ext_resource type="Texture2D" uid="uid://cyxekmtvxo0po" path="res://assets/Fire_Hotdog.png" id="1_xcco6"]
+[ext_resource type="Texture2D" uid="uid://brboakuou00dx" path="res://assets/pickup_hotdog_background.png" id="2_pma0m"]
+[ext_resource type="Script" uid="uid://dfcfw6bulxxl4" path="res://scripts/pick_up_resource.gd" id="3_2ls4k"]
+
+[resource]
+script = ExtResource("3_2ls4k")
+type = 1
+color = Color(0.992635, 0.51249, 3.85046e-07, 1)
+icon = ExtResource("1_xcco6")
+icon_background = ExtResource("2_pma0m")
+icon_scaling = Vector2(0.06, 0.06)

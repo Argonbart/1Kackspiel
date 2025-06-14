@@ -53,7 +53,9 @@ autostart = true
 
 [node name="UI" parent="." instance=ExtResource("6_qfnet")]
 
-[node name="PickUp" parent="." instance=ExtResource("8_4mrxx")]
-position = Vector2(501, 437)
+[node name="PickUps" type="Node2D" parent="."]
+
+[node name="PickUp" parent="PickUps" instance=ExtResource("8_4mrxx")]
+position = Vector2(786, 129)
 
 [connection signal="timeout" from="Human Spawner/Timer" to="Human Spawner" method="_on_timer_timeout"]
