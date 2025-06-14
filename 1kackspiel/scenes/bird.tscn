@@ -6,17 +6,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3po83"]
 size = Vector2(128, 127)
 
-[node name="Bird" type="CharacterBody2D"]
+[node name="Bird" type="CharacterBody2D" node_paths=PackedStringArray("bird_sprite", "camera")]
 script = ExtResource("1_3po83")
-flying_speed = null
-holding_threshold = null
-double_press_threshold = null
+bird_sprite = NodePath("Sprite")
+camera = NodePath("Camera")
 
-[node name="GodotIcon" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -214)
 texture = ExtResource("1_kqhkv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -214.5)
 shape = SubResource("RectangleShape2D_3po83")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
