@@ -5,7 +5,6 @@ extends CharacterBody2D
 @export var life = 1;
 @export var umbrella_scene: PackedScene
 
-
 var movement_direction: bool = true
 var random_number:int = randi_range(-5, 5) % 100
 var umbrella
@@ -14,9 +13,6 @@ func _ready() -> void:
 	
 	if randf() < 1:
 		spawn_umbrella()
-
-
-
 
 func _physics_process(_delta) -> void: 
 	
@@ -37,11 +33,9 @@ func _on_timer_change_direction_timeout() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print(area.name)
 	if area.name == "PoopArea":
 		if life > 0:
 			life -= 1
-			print("Leben verloren")
 			if life <= 0:
 				queue_free()
 		
