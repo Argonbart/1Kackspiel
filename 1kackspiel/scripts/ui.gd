@@ -1,24 +1,23 @@
 extends CanvasLayer
 
 
-#@export_category("Poop Color")
-#@export_color_no_alpha var color_1 = Color.BLACK
-#@export_color_no_alpha var color_2 = Color.BLACK
-#@export_color_no_alpha var color_3 = Color.BLACK
-#@export_color_no_alpha var color_4 = Color.BLACK
-#@export_color_no_alpha var color_5 = Color.BLACK
-#
-#@export_category("Poop Container")
-#@export var poop_container_1: TextureRect
-#@export var poop_container_2: TextureRect
-#@export var poop_container_3: TextureRect
-#@export var poop_container_4: TextureRect
-#@export var poop_container_5: TextureRect
-#
-#
-#func _process(delta):
-	#poop_container_1.modulate = color_1
-	#poop_container_2.modulate = color_2
-	#poop_container_3.modulate = color_3
-	#poop_container_4.modulate = color_4
-	#poop_container_5.modulate = color_5
+@export var color_containers: Array[TextureRect]
+
+
+func _ready():
+	Globals.connect("set_container_color", update_color_container)
+	Globals.connect("item_collected", item_collected)
+
+
+func update_color_container(container_idx: int, new_color: Color):
+	color_containers[container_idx].self_modulate = new_color
+
+
+func item_collected(item_type: Globals.PICK_UP):
+	match item_type:
+		Globals.PICK_UP.NORMAL:
+			update_color_container(1, Color.GREEN)
+		Globals.PICK_UP.FIRE:
+			update_color_container(0, Color.RED)
+		Globals.PICK_UP.NEW_TYPE:
+			update_color_container(2, Color.YELLOW)

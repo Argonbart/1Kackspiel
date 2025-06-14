@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PickUp" load_steps=3 format=3 uid="uid://dmnthy551hfos"]
+
+[ext_resource type="Texture2D" uid="uid://cpfwki7sir61w" path="res://assets/pickup_berry.png" id="1_vo2rr"]
+[ext_resource type="Script" uid="uid://dfcfw6bulxxl4" path="res://scripts/pick_up_resource.gd" id="2_3xn0s"]
+
+[resource]
+script = ExtResource("2_3xn0s")
+type = 1
+color = Color(1, 0, 0, 1)
+icon = ExtResource("1_vo2rr")
+icon_scaling = Vector2(0.1, 0.1)

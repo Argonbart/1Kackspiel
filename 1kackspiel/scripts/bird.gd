@@ -97,11 +97,11 @@ func eat() -> void:
 
 
 func dive_down():
-	diving = 200.0
+	diving = 400.0
 
 
 func dive_up():
-	diving = -200.0
+	diving = -400.0
 
 
 func stop_dive():

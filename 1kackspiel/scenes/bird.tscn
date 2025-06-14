@@ -80,3 +80,9 @@ position = Vector2(0, -214.5)
 shape = SubResource("RectangleShape2D_3po83")
 
 [node name="Camera" type="Camera2D" parent="."]
+
+[node name="BirdArea" type="Area2D" parent="." groups=["bird"]]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="BirdArea"]
+position = Vector2(0, -214.5)
+shape = SubResource("RectangleShape2D_3po83")

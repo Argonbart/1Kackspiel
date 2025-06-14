@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbo1vrbffajtm"]
+
+[ext_resource type="Script" uid="uid://0sclwy6xqu7n" path="res://tools/pickup_creator/pick_up_creator.gd" id="1_fg31k"]
+[ext_resource type="Texture2D" uid="uid://b3qqm72k53syp" path="res://assets/icon.svg" id="2_jb7rd"]
+
+[node name="PickUpCreator" type="Node"]
+script = ExtResource("1_fg31k")
+power_up_name = "new_pickup"
+type = 2
+color = Color(1, 0, 0, 1)
+icon = ExtResource("2_jb7rd")

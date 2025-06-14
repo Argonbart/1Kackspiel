@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnp0jtbeoph08"]
+[gd_scene load_steps=3 format=3 uid="uid://bnp0jtbeoph08"]
 
 [ext_resource type="Texture2D" uid="uid://baxx1vpyavn1k" path="res://assets/landscape_bench.png" id="1_bkp1e"]
+[ext_resource type="Texture2D" uid="uid://bdu7noianwm86" path="res://assets/landscape_tree.png" id="2_y0upk"]
 
 [node name="Background" type="Node2D"]
 
@@ -8,3 +9,8 @@
 position = Vector2(0, 500)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("1_bkp1e")
+
+[node name="LandscapeTree" type="Sprite2D" parent="."]
+position = Vector2(240, 496)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_y0upk")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PickUp" load_steps=3 format=3 uid="uid://di5v103htluso"]
+
+[ext_resource type="Texture2D" uid="uid://b3qqm72k53syp" path="res://assets/icon.svg" id="1_7p6ml"]
+[ext_resource type="Script" uid="uid://dfcfw6bulxxl4" path="res://scripts/pick_up_resource.gd" id="2_5j0pf"]
+
+[resource]
+script = ExtResource("2_5j0pf")
+type = 2
+color = Color(1, 0, 0, 1)
+icon = ExtResource("1_7p6ml")
+icon_scaling = Vector2(0.5, 0.5)
