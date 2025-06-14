@@ -27,3 +27,12 @@ var pick_up_list = {
 func _ready():
 	set_container_color.get_name()
 	item_collected.get_name()
+
+
+## Collision Layers:
+# 1 - Ground
+# 2 - Bird
+# 3 - Poop
+# 4 - Enemy
+# 5 - Umbrella, Net
+# 6 - Pick Ups

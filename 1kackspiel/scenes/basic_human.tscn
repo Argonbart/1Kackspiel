@@ -48,8 +48,7 @@ animations = [{
 size = Vector2(135, 140)
 
 [node name="Basic Human" type="CharacterBody2D" node_paths=PackedStringArray("human_sprite", "left_hand_point", "right_hand_point")]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 8
 script = ExtResource("1_x2wwd")
 human_sprite = NodePath("AnimatedSprite2D")
 left_hand_point = NodePath("LeftHandPoint")
@@ -74,8 +73,8 @@ wait_time = 2.0
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 3
+collision_layer = 8
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.5, 0)

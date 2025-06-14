@@ -89,9 +89,9 @@ func button_just_released():
 
 func eat() -> void:
 	dive_down()
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.9).timeout
 	dive_up()
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.9).timeout
 	stop_dive()
 	currently_executing_command = false
 
