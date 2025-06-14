@@ -14,10 +14,10 @@ func _physics_process(delta: float) -> void:
 	
 	#move_and_slide()
 	if random_number > 0:
-		collision = move_and_collide(Vector2(-2, 0))
+		move_and_collide(Vector2(-2, 0))
 		
 	else:
-		collision = move_and_collide(Vector2(2, 0))
+		move_and_collide(Vector2(2, 0))
 	
 
 		
@@ -28,6 +28,15 @@ func _physics_process(delta: float) -> void:
 			#life -= 1;
 		#if life <=0:
 			#queue_free()
+			
+			
+			#print(area.name)
+	#print("Leben: ", life)
+	#if area.name == "PoopArea":
+		#if life <= 0:
+			#queue_free()
+		#else:
+			#life -= 1
 	
 
 
@@ -38,3 +47,10 @@ func _on_timer_change_direction_timeout() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print(area.name)
+	if area.name == "PoopArea":
+		if life > 0:
+			life -= 1
+			print("Leben verloren")
+			if life <= 0:
+				queue_free()
+		
