@@ -1,6 +1,5 @@
 extends Area2D
 
-
 # variables for hovering
 var time_passed: float = 0.0
 var hovering_amplitude: float = 10.0

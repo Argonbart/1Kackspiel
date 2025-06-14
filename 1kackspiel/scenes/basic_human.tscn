@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfipa14gkf06n"]
+[gd_scene load_steps=14 format=3 uid="uid://bfipa14gkf06n"]
 
 [ext_resource type="Script" uid="uid://cq22hu7adpbap" path="res://scripts/basic_human.gd" id="1_x2wwd"]
 [ext_resource type="PackedScene" uid="uid://bf0hovtqbrhx3" path="res://scenes/umbrella.tscn" id="2_smnjy"]
+[ext_resource type="PackedScene" uid="uid://byn4td0vgnl0q" path="res://scenes/net.tscn" id="3_np2id"]
 [ext_resource type="Texture2D" uid="uid://b003ppykcktrv" path="res://assets/human.png" id="3_smnjy"]
 [ext_resource type="Script" uid="uid://dfcfw6bulxxl4" path="res://scripts/pick_up_resource.gd" id="4_np2id"]
 [ext_resource type="Resource" uid="uid://h0b2rwicfxt0" path="res://resources/hotdog.tres" id="6_c3l26"]
@@ -54,6 +55,7 @@ human_sprite = NodePath("AnimatedSprite2D")
 left_hand_point = NodePath("LeftHandPoint")
 right_hand_point = NodePath("RightHandPoint")
 umbrella_scene = ExtResource("2_smnjy")
+net_scene = ExtResource("3_np2id")
 pick_up_list = Array[ExtResource("4_np2id")]([ExtResource("6_c3l26"), ExtResource("6_wvdd5")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

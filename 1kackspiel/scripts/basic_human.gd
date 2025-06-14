@@ -11,7 +11,7 @@ const _PICK_UP_SCENE = preload("res://scenes/pick_up.tscn")
 
 # external scenes (left hand)
 @export var umbrella_scene: PackedScene
-## TODO: kescher
+@export var net_scene: PackedScene
 
 # balance variables
 @export var life_points: int = 1;
@@ -33,7 +33,7 @@ func _ready() -> void:
 	if umbrella_condition():
 		spawn_lefthand(umbrella_scene)
 	if net_condition():
-		pass ## TODO: spawn kescher
+		spawn_lefthand(net_scene)
 
 
 func umbrella_condition():
@@ -41,7 +41,7 @@ func umbrella_condition():
 
 
 func net_condition():
-	return randf() < 0.1
+	return randf() < 1
 
 
 func _physics_process(_delta) -> void: 
@@ -54,8 +54,9 @@ func _physics_process(_delta) -> void:
 	
 	# flip left hand
 	if lefthand_item:
+		lefthand_item.scale.x = 0.2 * pow(-1, int(human_sprite.flip_h)) # mirror on x-axis
 		left_hand_point.position.x = 40 - int(human_sprite.flip_h) * 100
-	
+		
 	# flip right hand
 	if righthand_item:
 		right_hand_point.position.x = 40 - int(human_sprite.flip_h) * 100
