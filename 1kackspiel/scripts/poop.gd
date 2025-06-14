@@ -19,10 +19,7 @@ var hit_ground: bool = false
 
 # movement
 func _physics_process(delta):
-	if hit_ground:
-		position.x -= 300.0 * delta * pow(-1, Globals.invert_direction)
-		position.y += 0.0
-	else:
+	if !hit_ground:
 		position += Vector2(falling_force_x * pow(-1, fall_direction), falling_force_y)
 		falling_force_x -= falling_force_dropoff_x
 		if falling_force_x < 0.0:
