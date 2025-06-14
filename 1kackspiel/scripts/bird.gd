@@ -114,5 +114,7 @@ func change_direction():
 
 
 func poop():
-	bird_sprite.add_child(_POOP_SCENE.instantiate())
+	var new_poop = _POOP_SCENE.instantiate()
+	new_poop.global_position = bird_sprite.global_position
+	get_parent().add_child(new_poop)
 	currently_executing_command = false

@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c25xab4l8sob6"]
+[gd_scene load_steps=4 format=3 uid="uid://c25xab4l8sob6"]
 
 [ext_resource type="Texture2D" uid="uid://d7ccj6l01dwt" path="res://assets/kacki.png" id="1_634gh"]
-[ext_resource type="Shape2D" uid="uid://bw2mkd7sar2ja" path="res://shapes/poop_shape.tres" id="2_aj47t"]
 [ext_resource type="Script" uid="uid://wxgakxl7g3u3" path="res://scripts/poop.gd" id="2_pkbnx"]
 [ext_resource type="Texture2D" uid="uid://b3qqm72k53syp" path="res://assets/icon.svg" id="3_l3xhj"]
 
@@ -14,8 +13,8 @@ poop_area = NodePath("PoopBody/PoopArea")
 position = Vector2(0, 100)
 collision_layer = 2
 
-[node name="PoopBodyCollision" type="CollisionShape2D" parent="PoopBody"]
-shape = ExtResource("2_aj47t")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PoopBody"]
+polygon = PackedVector2Array(1, -34, 14, -10, 21, 2, 27, 18, 24, 25, -20, 28, -30, 20, -29, 11, -21, -3, -15, -14, -7, -24, -1, -34)
 
 [node name="PoopSprite" type="Sprite2D" parent="PoopBody"]
 scale = Vector2(0.04, 0.04)
@@ -37,7 +36,7 @@ color = Color(1, 0, 0, 1)
 [node name="PoopArea" type="Area2D" parent="PoopBody"]
 collision_layer = 2
 
-[node name="PoopAreaCollision" type="CollisionShape2D" parent="PoopBody/PoopArea"]
-shape = ExtResource("2_aj47t")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PoopBody/PoopArea"]
+polygon = PackedVector2Array(1, -34, 14, -10, 21, 2, 27, 18, 24, 25, -20, 28, -30, 20, -29, 11, -21, -3, -15, -14, -7, -24, -1, -34)
 
 [connection signal="area_entered" from="PoopBody/PoopArea" to="." method="_on_poop_area_area_entered"]
