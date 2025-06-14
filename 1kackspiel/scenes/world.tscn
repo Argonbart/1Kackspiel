@@ -1,22 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://b87flovmmqdy6"]
+[gd_scene load_steps=4 format=3 uid="uid://b87flovmmqdy6"]
 
 [ext_resource type="PackedScene" uid="uid://cm4xec5ngycft" path="res://scenes/bird.tscn" id="1_nnsk1"]
 [ext_resource type="Texture2D" uid="uid://b3qqm72k53syp" path="res://assets/icon.svg" id="2_rwgxs"]
+[ext_resource type="Shape2D" uid="uid://c66lqgv2eaf30" path="res://shapes/ground_shape.tres" id="3_4wyf3"]
 
 [node name="World" type="Node2D"]
 
-[node name="Parallax2D" type="Parallax2D" parent="."]
+[node name="Parallax" type="Parallax2D" parent="."]
 repeat_size = Vector2(1152, 0)
 
-[node name="Background" type="Sprite2D" parent="Parallax2D"]
+[node name="Background" type="Sprite2D" parent="Parallax"]
 position = Vector2(578, 324)
 scale = Vector2(9.01562, 5.10938)
 texture = ExtResource("2_rwgxs")
 
-[node name="Ground" type="Sprite2D" parent="Parallax2D"]
+[node name="Ground" type="Sprite2D" parent="Parallax"]
 position = Vector2(578, 609.5)
 scale = Vector2(9.01562, 0.648438)
 texture = ExtResource("2_rwgxs")
 
 [node name="Bird" parent="." instance=ExtResource("1_nnsk1")]
 position = Vector2(0, 324)
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="GroundBody" type="StaticBody2D" parent="Ground" groups=["ground"]]
+collision_mask = 3
+
+[node name="GroundBodyCollision" type="CollisionShape2D" parent="Ground/GroundBody"]
+position = Vector2(578, 609.5)
+scale = Vector2(4606.3, 46.063)
+shape = ExtResource("3_4wyf3")
+
+[node name="GroundArea" type="Area2D" parent="Ground/GroundBody"]
+collision_mask = 3
+
+[node name="GroundAreaCollision" type="CollisionShape2D" parent="Ground/GroundBody/GroundArea"]
+position = Vector2(578, 609.5)
+scale = Vector2(4606.3, 46.063)
+shape = ExtResource("3_4wyf3")

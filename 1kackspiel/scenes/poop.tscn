@@ -1,24 +1,29 @@
 [gd_scene load_steps=5 format=3 uid="uid://c25xab4l8sob6"]
 
 [ext_resource type="Texture2D" uid="uid://d7ccj6l01dwt" path="res://assets/kacki.png" id="1_634gh"]
+[ext_resource type="Shape2D" uid="uid://bw2mkd7sar2ja" path="res://shapes/poop_shape.tres" id="2_aj47t"]
 [ext_resource type="Script" uid="uid://wxgakxl7g3u3" path="res://scripts/poop.gd" id="2_pkbnx"]
 [ext_resource type="Texture2D" uid="uid://b3qqm72k53syp" path="res://assets/icon.svg" id="3_l3xhj"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_634gh"]
-radius = 916.856
+[node name="Poop" type="Node2D" node_paths=PackedStringArray("poop_body", "poop_area")]
+script = ExtResource("2_pkbnx")
+poop_body = NodePath("PoopBody")
+poop_area = NodePath("PoopBody/PoopArea")
 
-[node name="Poop" type="Sprite2D"]
+[node name="PoopBody" type="StaticBody2D" parent="."]
+position = Vector2(0, 100)
+collision_layer = 2
+
+[node name="PoopBodyCollision" type="CollisionShape2D" parent="PoopBody"]
+shape = ExtResource("2_aj47t")
+
+[node name="PoopSprite" type="Sprite2D" parent="PoopBody"]
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("1_634gh")
-script = ExtResource("2_pkbnx")
 
-[node name="PoopArea" type="Area2D" parent="."]
-
-[node name="PoopCollisionShape" type="CollisionShape2D" parent="PoopArea"]
-shape = SubResource("CircleShape2D_634gh")
-
-[node name="CPUParticles" type="CPUParticles2D" parent="."]
+[node name="PoopParticles" type="CPUParticles2D" parent="PoopBody/PoopSprite"]
 visible = false
+scale = Vector2(25, 25)
 amount = 100
 texture = ExtResource("3_l3xhj")
 preprocess = 10.0
@@ -28,3 +33,11 @@ gravity = Vector2(0, 0)
 scale_amount_min = 0.2
 scale_amount_max = 0.2
 color = Color(1, 0, 0, 1)
+
+[node name="PoopArea" type="Area2D" parent="PoopBody"]
+collision_layer = 2
+
+[node name="PoopAreaCollision" type="CollisionShape2D" parent="PoopBody/PoopArea"]
+shape = ExtResource("2_aj47t")
+
+[connection signal="area_entered" from="PoopBody/PoopArea" to="." method="_on_poop_area_area_entered"]

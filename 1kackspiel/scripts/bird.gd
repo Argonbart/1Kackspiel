@@ -17,9 +17,6 @@ signal button_released
 @export var bird_sprite: Sprite2D
 @export var camera: Camera2D
 
-# movement variables
-var flying_direction: bool = true
-
 # button variables
 var time_when_button_was_pressed: float = 0.0
 var time_of_first_short_button_press: float = -1.0
@@ -41,10 +38,7 @@ func _ready():
 
 # Set direction and move
 func _process(delta):
-	if flying_direction:
-		position.x += FLYING_SPEED * delta
-	else:
-		position.x -= FLYING_SPEED * delta
+	position.x += FLYING_SPEED * delta * pow(-1, Globals.invert_direction)
 	position.y += diving * delta
 	camera.position.y += -diving * delta
 	move_and_slide()
@@ -115,7 +109,7 @@ func stop_dive():
 
 
 func change_direction():
-	flying_direction = !flying_direction
+	Globals.invert_direction = !Globals.invert_direction
 	currently_executing_command = false
 
 
