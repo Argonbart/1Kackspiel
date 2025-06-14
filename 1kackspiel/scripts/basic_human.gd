@@ -1,12 +1,21 @@
 extends CharacterBody2D
 
+@onready var umbrella_point := $UmbrellaPoint
 
 @export var life = 1;
+@export var umbrella_scene: PackedScene
 
 
 var movement_direction: bool = true
 var random_number:int = randi_range(-5, 5) % 100
-var collision
+
+
+func _ready() -> void:
+	if randf() < 1:
+		spawn_umbrella()
+
+
+
 
 func _physics_process(_delta) -> void: 
 	
@@ -31,3 +40,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			if life <= 0:
 				queue_free()
 		
+		
+func spawn_umbrella():
+	var umbrella = umbrella_scene.instantiate()
+	umbrella.scale = Vector2(0.2, 0.2)
+	umbrella.position = Vector2.ZERO
+	umbrella_point.add_child(umbrella)

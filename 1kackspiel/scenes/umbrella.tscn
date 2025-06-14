@@ -1,12 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bf0hovtqbrhx3"]
+[gd_scene load_steps=3 format=3 uid="uid://bf0hovtqbrhx3"]
 
+[ext_resource type="Script" uid="uid://dewh3pwmqjbpy" path="res://scripts/umbrella.gd" id="1_6qus1"]
 [ext_resource type="Texture2D" uid="uid://dx4jq0fmi08cc" path="res://assets/umbrella.png" id="1_013dy"]
 
-[node name="Umbrella" type="StaticBody2D"]
+[node name="Umbrella" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_6qus1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_013dy")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-95.5, -149.5)
-polygon = PackedVector2Array(-11.5, -34.5, 70.5, -58.5, 92.5, -91.5, 123.5, -57.5, 198.5, -35.5, 261.5, 8.5, 318.5, 75.5, 341.5, 169.5, -146.5, 171.5, -139.5, 95.5, -113.5, 53.5, -69.5, 6.5)
+polygon = PackedVector2Array(71.5, -133.5, 132.5, -143.5, 228.5, -140.5, 279.5, -129.5, 386.5, -95.5, 494.5, -28.5, 591.5, 82.5, 649.5, 209.5, 198.5, 227.5, -264.5, 184.5, -217.5, 68.5, -133.5, -35.5, 15.5, -111.5)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

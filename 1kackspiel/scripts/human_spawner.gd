@@ -2,7 +2,7 @@ extends Node2D
 
 
 @export var mob_scene: PackedScene
-@export var umbrella_scene: PackedScene
+
 @export var bird: CharacterBody2D
 
 func _on_timer_timeout() -> void:
