@@ -106,7 +106,7 @@ func dive():
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN_OUT)
 	var dive_tween2 = create_tween()
-	dive_tween2.tween_property(bird_sprite, "rotation_degrees", 45.0, 0.3)\
+	dive_tween2.tween_property(bird_sprite, "rotation_degrees", pow(-1, Globals.invert_direction) * 45.0, 0.3)\
 		.set_trans(Tween.TRANS_CUBIC)\
 		.set_ease(Tween.EASE_OUT)
 	await get_tree().create_timer(0.5).timeout
@@ -122,7 +122,7 @@ func dive():
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN_OUT)
 	var dive_tween5 = create_tween()
-	dive_tween5.tween_property(bird_sprite, "rotation_degrees", -45.0, 0.1)\
+	dive_tween5.tween_property(bird_sprite, "rotation_degrees", pow(-1, Globals.invert_direction) * -45.0, 0.1)\
 		.set_trans(Tween.TRANS_CUBIC)\
 		.set_ease(Tween.EASE_OUT)
 	await get_tree().create_timer(0.5).timeout

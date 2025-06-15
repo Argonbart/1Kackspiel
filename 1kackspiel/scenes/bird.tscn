@@ -102,7 +102,6 @@ scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_qavic")
 animation = &"dive_down"
 autoplay = "default"
-frame_progress = 0.143951
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -214.5)
