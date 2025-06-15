@@ -28,9 +28,11 @@ texture = ExtResource("2_l3xhj")
 
 [node name="PoopArea" type="Area2D" parent="PoopBody"]
 collision_layer = 4
-collision_mask = 24
+collision_mask = 25
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PoopBody/PoopArea"]
 polygon = PackedVector2Array(6, -28, 21, -17, 24, -8, 24, -2, 33, 0, 38, 7, 37, 12, 40, 17, 41, 23, 38, 28, 29, 33, 14, 34, -3, 33, -16, 31, -21, 26, -23, 21, -22, 18, -17, 15, -18, 11, -18, 5, -14, 2, -8, 1, -5, -2, -3, -7, 3, -13, 6, -16, 7, -20, 6, -24, 5, -27)
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="PoopBody/PoopArea" to="." method="_on_poop_area_area_entered"]

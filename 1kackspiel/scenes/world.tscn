@@ -35,7 +35,7 @@ scale = Vector2(4606.3, 46.063)
 shape = ExtResource("3_4wyf3")
 
 [node name="GroundArea" type="Area2D" parent="Ground/GroundBody"]
-collision_mask = 0
+collision_mask = 4
 
 [node name="GroundAreaCollision" type="CollisionShape2D" parent="Ground/GroundBody/GroundArea"]
 position = Vector2(578, 609.5)

@@ -13,6 +13,7 @@ extends Node2D
 
 # variables
 var hit_ground: bool = false
+var timer: Timer
 
 # poop falling variables
 @onready var fall_direction: bool = Globals.invert_direction
@@ -30,3 +31,5 @@ func _physics_process(delta):
 func _on_poop_area_area_entered(_area: Area2D):
 	hit_ground = true
 	poop_area.set_deferred("monitoring", false)
+	await get_tree().create_timer(10.0).timeout
+	queue_free()
