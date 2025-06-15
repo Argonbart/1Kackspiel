@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx6uvnh38aip2"]
+
+[ext_resource type="PackedScene" uid="uid://coce66ftult4a" path="res://scenes/pick_up.tscn" id="1_ecy7l"]
+[ext_resource type="Resource" uid="uid://clive6y0udkoa" path="res://resources/icecream.tres" id="2_ncabn"]
+
+[node name="PickUps" type="Node2D"]
+
+[node name="PickUp" parent="." instance=ExtResource("1_ecy7l")]
+position = Vector2(786, 129)
+pick_up_resource = ExtResource("2_ncabn")
