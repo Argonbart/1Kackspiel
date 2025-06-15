@@ -25,7 +25,11 @@ func item_collected(item_type: Globals.PICK_UP):
 	var ammo_color = picked_up_ammo.color
 	match item_type:
 		Globals.PICK_UP.BERRIES:
-			add_ammo(ammo_color, 1)
+			add_ammo(ammo_color, 3)
+		Globals.PICK_UP.HOTDOG:
+			add_ammo(ammo_color, 5)
+		Globals.PICK_UP.ICECREME:
+			add_ammo(ammo_color, 2)
 
 
 func add_ammo(ammo_color: Color, ammo_amount: int):
