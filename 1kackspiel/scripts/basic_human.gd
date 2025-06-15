@@ -4,6 +4,8 @@ extends CharacterBody2D
 
 # constants
 const _PICK_UP_SCENE = preload("res://scenes/pick_up.tscn")
+@export var _SPAWN_CHANCE_UMBRELLA: float = 0.6
+@export var _SPAWN_CHANCE_NET: float = 0.1
 
 # local nodes
 @export var human_sprite: AnimatedSprite2D
@@ -38,11 +40,11 @@ func _ready() -> void:
 
 
 func umbrella_condition():
-	return randf() <= 0.6
+	return randf() <= _SPAWN_CHANCE_UMBRELLA
 
 
 func net_condition():
-	return randf() < 0.3
+	return randf() < _SPAWN_CHANCE_NET
 
 
 func _physics_process(_delta) -> void: 
@@ -76,6 +78,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		poop.queue_free() 	# poop despawned
 		life_points -= 1								# mensch bekommt schaden
 		if life_points <= 0:
+			human_sprite.play("death")
+			await get_tree().create_timer(0.5).timeout
 			queue_free()
 
 
