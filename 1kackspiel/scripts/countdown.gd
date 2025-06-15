@@ -4,8 +4,11 @@ extends MarginContainer
 @export var countdown_label:Label 
 @export var score_label:Label 
 
+
+var score_scene = preload("res://scenes/score_screen.tscn")
+
 func _ready():
-	Globals.countdown = 120
+	Globals.countdown = 5
 	Globals.score = 0
 	if countdown_label:
 		countdown_label.text = "%02d:%02d" % [Globals.countdown / 60, Globals.countdown % 60]
@@ -16,7 +19,11 @@ func _ready():
 func _process(_delta) -> void:
 	if score_label:
 		score_label.text = "Score: " + str(Globals.score)
-
+	
+	if Globals.countdown <= 0:
+		var score_instance = score_scene.instantiate()
+		add_child(score_instance)
+		
 
 
 func _on_timer_timeout() -> void:

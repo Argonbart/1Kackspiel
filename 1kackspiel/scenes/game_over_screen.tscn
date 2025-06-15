@@ -1,16 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://boc8wp681mclv"]
+[gd_scene load_steps=6 format=3 uid="uid://boc8wp681mclv"]
 
 [ext_resource type="Script" uid="uid://dmtrfo6cs7obh" path="res://scripts/game_over_screen.gd" id="1_iwahs"]
 [ext_resource type="Texture2D" uid="uid://dh7xfv2n75abq" path="res://assets/game_over.png" id="2_61w2s"]
 [ext_resource type="Texture2D" uid="uid://b6vfholf7ebit" path="res://assets/background_canvas.png" id="2_jw6e5"]
+[ext_resource type="Texture2D" uid="uid://bisg0m6ldwgsm" path="res://assets/button_restart.png" id="4_wa2qn"]
 
-[node name="Node2D" type="Control" node_paths=PackedStringArray("game_over_sprite")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jw6e5"]
+bg_color = Color(0.823529, 0.145098, 0.509804, 1)
+
+[node name="Node2D" type="Control" node_paths=PackedStringArray("game_over_sprite", "resetGameButton")]
 process_mode = 3
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_iwahs")
 game_over_sprite = NodePath("CanvasLayer/Sprite2D")
+resetGameButton = NodePath("CanvasLayer/ResetTextureButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -28,6 +33,7 @@ scale = Vector2(0.415, 0.415)
 texture = ExtResource("2_jw6e5")
 
 [node name="ResetButton" type="Button" parent="CanvasLayer"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 anchors_preset = 7
 anchor_left = 0.5
@@ -41,6 +47,7 @@ offset_bottom = -67.335
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 26
+theme_override_styles/focus = SubResource("StyleBoxFlat_jw6e5")
 text = "Restart Game"
 icon_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -50,4 +57,20 @@ position = Vector2(582, 285)
 scale = Vector2(0.187833, 0.187833)
 texture = ExtResource("2_61w2s")
 
+[node name="ResetTextureButton" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 1.057
+anchor_bottom = 1.0
+offset_left = 385.0
+offset_top = 381.0
+offset_right = 1215.34
+offset_bottom = 1781.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.2, 0.2)
+size_flags_vertical = 8
+texture_normal = ExtResource("4_wa2qn")
+texture_focused = ExtResource("4_wa2qn")
+
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ResetTextureButton" to="." method="_on_texture_button_pressed"]

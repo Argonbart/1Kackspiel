@@ -1,16 +1,15 @@
 extends Control
 
-@export var game_over_sprite : Sprite2D
-@export var resetGameButton: TextureButton
+@export var scoreText: Label
+@export var newGameButton: TextureButton
 
 func _ready():
-	resetGameButton.grab_focus()
-	var screen_size = get_viewport_rect().size
-	game_over_sprite.position.x = screen_size.x / 2
+	newGameButton.grab_focus()
 	var world = get_tree().current_scene
 	world.get_node("UI").hide()
+	scoreText.text = str(Globals.score)
 	Globals.invert_direction = false;
-
+	
 
 func _on_texture_button_pressed() -> void:
 	get_tree().paused = false
