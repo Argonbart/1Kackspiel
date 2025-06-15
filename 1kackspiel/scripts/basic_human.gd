@@ -62,10 +62,10 @@ func head_condition():
 func _physics_process(_delta) -> void: 
 	
 	
-	print(Globals.score)
 	
 	if life_points <= 0:
 		human_sprite.play("death")
+		SoundManager.play_sound.emit("death")
 		visible = false
 		Globals.score += 1
 		await get_tree().create_timer(10.0).timeout

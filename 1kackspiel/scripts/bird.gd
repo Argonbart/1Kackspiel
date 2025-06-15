@@ -103,6 +103,7 @@ func eat() -> void:
 
 func dive():
 	bird_sprite.play("dive_down")
+	SoundManager.play_sound.emit("swoop")
 	
 	# Dive down with ease-in-out
 	var dive_tween1 = create_tween()
@@ -143,6 +144,7 @@ func dive():
 func change_direction():
 	Globals.invert_direction = !Globals.invert_direction
 	bird_sprite.play("turning")
+	SoundManager.play_sound.emit("direction_change")
 	bird_sprite.flip_h = !bird_sprite.flip_h
 	await get_tree().create_timer(0.3).timeout
 	bird_sprite.play("default")
@@ -151,8 +153,9 @@ func change_direction():
 
 func poop():
 	var random_gurr = randi_range(0, 100)
-	if random_gurr < 20:
-		$GurrPlayer.play()
+	if random_gurr < 50:
+		SoundManager.play_sound.emit("poop")
+		#SoundManager.play_sound.emit("gurr")
 	if Globals.ammo_is_empty:
 		currently_executing_command = false
 		return

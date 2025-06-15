@@ -17,4 +17,5 @@ func _ready():
 func _on_pick_up_area_area_entered(area: Area2D):
 	if area.get_groups().has("bird"):
 		Globals.item_collected.emit(pick_up_resource.type)
+		SoundManager.play_sound.emit("pickup")
 		queue_free()

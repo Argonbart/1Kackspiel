@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://d34jmdcx1eup7"
-path="res://.godot/imported/dove-cry-1.wav-8892a8c8bfc154f8b49df665313ff76b.sample"
+path="res://.godot/imported/gurr.wav-ac079d0cd61497116f8e71a30ee12ea8.sample"
 
 [deps]
 
-source_file="res://sound/dove-cry-1.wav"
-dest_files=["res://.godot/imported/dove-cry-1.wav-8892a8c8bfc154f8b49df665313ff76b.sample"]
+source_file="res://sound/gurr.wav"
+dest_files=["res://.godot/imported/gurr.wav-ac079d0cd61497116f8e71a30ee12ea8.sample"]
 
 [params]
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://coce66ftult4a"]
+[gd_scene load_steps=10 format=3 uid="uid://coce66ftult4a"]
 
 [ext_resource type="Script" uid="uid://df1i34s0jw5la" path="res://scripts/pick_up.gd" id="1_adew5"]
 [ext_resource type="Resource" uid="uid://cinw1onlvb74u" path="res://resources/berries.tres" id="2_a7jki"]
 [ext_resource type="Texture2D" uid="uid://8m2t6cjcgxer" path="res://assets/pickup_berry_background.png" id="3_c87fy"]
 [ext_resource type="Shader" uid="uid://b48g1knbq0xjw" path="res://shader/hovering.gdshader" id="4_a7jki"]
 [ext_resource type="Texture2D" uid="uid://b3qqm72k53syp" path="res://assets/icon.svg" id="4_c87fy"]
+[ext_resource type="AudioStream" uid="uid://cny76lu1lwo" path="res://sound/pickup.mp3" id="6_8tsvk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a7jki"]
 shader = ExtResource("4_a7jki")
@@ -38,5 +39,9 @@ collision_mask = 2
 
 [node name="PickUpCollisionShape" type="CollisionShape2D" parent="PickUpArea"]
 shape = SubResource("CircleShape2D_c468w")
+
+[node name="PickUpPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_8tsvk")
+volume_db = 24.0
 
 [connection signal="area_entered" from="PickUpArea" to="." method="_on_pick_up_area_area_entered"]
