@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://byn4td0vgnl0q"]
+
+[ext_resource type="Script" uid="uid://icrksdnegglj" path="res://scripts/net.gd" id="1_i41qj"]
+[ext_resource type="Texture2D" uid="uid://cx1hg14aev2g3" path="res://assets/net.png" id="2_h6vps"]
+
+[node name="Net" type="Area2D"]
+scale = Vector2(0.27, 0.27)
+collision_layer = 16
+collision_mask = 6
+script = ExtResource("1_i41qj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_h6vps")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(1, -20, -124, -56, -233, -101, -311, -153, -242, -216, -107, -278, 49, -326, 159, -321, 226, -291, 234, -205, 199, -111, 141, -54, 55, -22)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
