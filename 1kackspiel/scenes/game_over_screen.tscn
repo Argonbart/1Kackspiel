@@ -43,6 +43,7 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 26
 text = "Restart Game"
 icon_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(582, 285)

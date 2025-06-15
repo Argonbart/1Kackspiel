@@ -43,6 +43,7 @@ func _ready() -> void:
 		
 	if net_condition():
 		spawn_lefthand(net_scene)
+		life_points +=4;
 	elif umbrella_condition():
 		spawn_lefthand(umbrella_scene)
 	
@@ -94,6 +95,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			human_sprite.play("death")
 			await get_tree().create_timer(0.5).timeout
 			queue_free()
+			Globals.score += 1
 
 
 func spawn_lefthand(item):

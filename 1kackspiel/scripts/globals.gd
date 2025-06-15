@@ -21,6 +21,11 @@ var next_ammo_color: Color
 var ammo_is_empty: bool
 
 
+# counter
+var countdown: int
+#score
+var score: int
+
 # dict
 enum PICK_UP {
 	BERRIES,
