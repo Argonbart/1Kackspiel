@@ -30,18 +30,18 @@ func _ready() -> void:
 	
 	add_random_pickup()
 	
-	if umbrella_condition():
-		spawn_lefthand(umbrella_scene)
 	if net_condition():
 		spawn_lefthand(net_scene)
+	elif umbrella_condition():
+		spawn_lefthand(umbrella_scene)
 
 
 func umbrella_condition():
-	return (randf() <= 0.8) && (randf() > 0.1)
+	return randf() <= 0.6
 
 
 func net_condition():
-	return randf() < 1
+	return randf() < 0.3
 
 
 func _physics_process(_delta) -> void: 
@@ -69,7 +69,10 @@ func _on_timer_change_direction_timeout() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "PoopArea": 						# poop trifft mensch
-		area.get_parent().get_parent().queue_free() 	# poop despawned
+		var poop: Poop = area.get_parent().get_parent()
+		if poop.hit_ground:
+			return
+		poop.queue_free() 	# poop despawned
 		life_points -= 1								# mensch bekommt schaden
 		if life_points <= 0:
 			queue_free()

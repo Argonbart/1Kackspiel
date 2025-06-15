@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://dewh3pwmqjbpy" path="res://scripts/umbrella.gd" id="1_6qus1"]
 [ext_resource type="Texture2D" uid="uid://dx4jq0fmi08cc" path="res://assets/umbrella.png" id="1_013dy"]
 
-[node name="Umbrella" type="Area2D"]
+[node name="Umbrella" type="Area2D" groups=["umbrella"]]
 scale = Vector2(0.205, 0.205)
 collision_layer = 16
-collision_mask = 4
+collision_mask = 6
 script = ExtResource("1_6qus1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -22,6 +22,8 @@ enum PICK_UP {
 # pick up dict
 var pick_up_list = {
 	PICK_UP.BERRIES : "res://resources/berries.tres",
+	PICK_UP.HOTDOG : "res://resources/hotdog.tres",
+	PICK_UP.ICECREME : "res://resources/icecream.tres",
 }
 
 
@@ -36,5 +38,6 @@ func _ready():
 # 2 - Bird
 # 3 - Poop
 # 4 - Enemy
-# 5 - Umbrella, Net
+# 5 - Umbrella
 # 6 - Pick Ups
+# 7 - Net
