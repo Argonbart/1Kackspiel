@@ -77,4 +77,5 @@ var kill_limit = 3
 func _on_area_2d_area_entered(area):
 	if area.get_groups().has("umbrella") or area.get_groups().has("human"):
 		area.get_parent().queue_free()
+		Globals.score += 1
 		kill_limit -= 1
