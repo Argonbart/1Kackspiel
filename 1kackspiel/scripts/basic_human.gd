@@ -49,6 +49,12 @@ func net_condition():
 
 func _physics_process(_delta) -> void: 
 	
+	if life_points <= 0:
+			human_sprite.play("death")
+			visible = false
+			await get_tree().create_timer(10.0).timeout
+			queue_free()
+	
 	# flip human
 	human_sprite.flip_h = random_number == 0
 	
@@ -78,13 +84,18 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if area.get_groups().has("chestnut"):
 			area.get_parent().get_parent().shoot_projectiles()
 			await get_tree().create_timer(10.0).timeout
+		if area.get_groups().has("ice"):
+			await get_tree().create_timer(1.0).timeout
+			var new_poop = area.get_parent().get_parent()
+			if new_poop:
+				new_poop.explode()
 		poop.queue_free() 	# poop despawned
 		life_points -= 1								# mensch bekommt schaden
-		if life_points <= 0:
-			human_sprite.play("death")
-			visible = false
-			await get_tree().create_timer(10.0).timeout
-			queue_free()
+		#if life_points <= 0:
+			#human_sprite.play("death")
+			#visible = false
+			#await get_tree().create_timer(10.0).timeout
+			#queue_free()
 
 
 func spawn_lefthand(item):

@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_on0a1"]
 radius = 500.0
 
-[node name="Poop" type="Node2D" node_paths=PackedStringArray("poop_body", "poop_area", "poop_color_sprite", "projectiles")]
+[node name="ChestnutPoop" type="Node2D" node_paths=PackedStringArray("poop_body", "poop_area", "poop_color_sprite", "projectiles")]
 script = ExtResource("1_luwk5")
 poop_body = NodePath("PoopBody")
 poop_area = NodePath("PoopBody/PoopArea")

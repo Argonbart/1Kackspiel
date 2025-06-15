@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlemcjsfork8s"
-path="res://.godot/imported/Unbenanntes_Projekt.png-88086bbab7c95f714ae71a47f2bda7ca.ctex"
+path="res://.godot/imported/icecube.png-447c207be0f2c93bb0d0a510b037d9fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Unbenanntes_Projekt.png"
-dest_files=["res://.godot/imported/Unbenanntes_Projekt.png-88086bbab7c95f714ae71a47f2bda7ca.ctex"]
+source_file="res://assets/icecube.png"
+dest_files=["res://.godot/imported/icecube.png-447c207be0f2c93bb0d0a510b037d9fd.ctex"]
 
 [params]
 

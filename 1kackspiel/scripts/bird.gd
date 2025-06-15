@@ -16,6 +16,7 @@ signal button_released
 # other scenes
 @onready var _POOP_SCENE = preload("res://scenes/poop.tscn")
 @onready var _FIRE_POOP_SCENE = preload("res://scenes/fire_poop.tscn")
+@onready var _ICE_POOP_SCENE = preload("res://scenes/ice_poop.tscn")
 
 # exports
 @export var bird_sprite: AnimatedSprite2D
@@ -153,12 +154,20 @@ func poop():
 		currently_executing_command = false
 		return
 	var new_poop
+	var ice = false
 	if Globals.next_ammo_type == Globals.PICK_UP.HOTDOG:
 		new_poop = _FIRE_POOP_SCENE.instantiate()
+	elif Globals.next_ammo_type == Globals.PICK_UP.ICECREAM:
+		new_poop = _ICE_POOP_SCENE.instantiate()
+		ice = true
 	else:
 		new_poop = _POOP_SCENE.instantiate()
 	new_poop.set_color(Globals.next_ammo_color)
 	new_poop.global_position = bird_sprite.global_position
 	get_parent().add_child(new_poop)
+	if ice:
+		await get_tree().create_timer(1.0).timeout
+		if new_poop:
+			new_poop.explode()
 	Globals.pooped.emit()
 	currently_executing_command = false

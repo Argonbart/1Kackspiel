@@ -41,7 +41,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Poop" type="Node2D" node_paths=PackedStringArray("poop_body", "poop_area", "poop_color_sprite")]
+[node name="FirePoop" type="Node2D" node_paths=PackedStringArray("poop_body", "poop_area", "poop_color_sprite")]
 script = ExtResource("1_uomov")
 poop_body = NodePath("PoopBody")
 poop_area = NodePath("PoopBody/PoopArea")

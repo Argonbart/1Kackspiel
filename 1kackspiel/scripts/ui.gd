@@ -6,7 +6,7 @@ const _POOP_CONTAINER = preload("res://scenes/poop_container.tscn")
 const _POOP_SCENE = preload("res://scenes/poop.tscn")
 const _FIRE_POOP_SCENE = preload("res://scenes/fire_poop.tscn")
 const _CHESTNUT_POOP_SCENE = preload("res://scenes/chestnut_poop.tscn")
-const _ICEBOMB_SCENE = preload("res://scenes/icebomb.tscn")
+const _ICEBOMB_SCENE = preload("res://scenes/ice_poop.tscn")
 
 @export var containers: HBoxContainer
 @export var bird: CharacterBody2D
@@ -98,16 +98,17 @@ func activate_poop_effect():
 				get_parent().add_child(new_poop)
 				await get_tree().create_timer(0.1).timeout
 		Globals.PICK_UP.ICECREAM:
-			var new_poop = _POOP_SCENE.instantiate()
-			new_poop.set_color(Globals.next_ammo_color)
-			new_poop.global_position = bird.get_child(0).global_position
-			get_parent().add_child(new_poop)
-			var new_ice_bomb: Area2D = _ICEBOMB_SCENE.instantiate()
-			#new_ice_bomb.global_position = new_poop.global_position
-			new_poop.add_child(new_ice_bomb)
-			await get_tree().create_timer(1.0).timeout
-			if new_ice_bomb:
-				new_ice_bomb.explode()
+			pass
+			#var new_poop = _POOP_SCENE.instantiate()
+			#new_poop.set_color(Globals.next_ammo_color)
+			#new_poop.global_position = bird.get_child(0).global_position
+			#get_parent().add_child(new_poop)
+			#var new_ice_bomb = _ICEBOMB_SCENE.instantiate()
+			##new_ice_bomb.global_position = new_poop.global_position
+			#new_poop.add_child(new_ice_bomb)
+			#await get_tree().create_timer(1.0).timeout
+			#if new_ice_bomb:
+				#new_ice_bomb.explode()
 		Globals.PICK_UP.CHESTNUT:
 			var new_poop = _CHESTNUT_POOP_SCENE.instantiate()
 			new_poop.set_color(Globals.next_ammo_color)

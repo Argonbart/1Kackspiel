@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bfipa14gkf06n" path="res://scenes/basic_human.tscn" id="5_71j4m"]
 [ext_resource type="PackedScene" uid="uid://5kpma8i70u3" path="res://scenes/ui.tscn" id="6_qfnet"]
 [ext_resource type="PackedScene" uid="uid://coce66ftult4a" path="res://scenes/pick_up.tscn" id="8_4mrxx"]
-[ext_resource type="Resource" uid="uid://qr6xt0otwj4h" path="res://resources/chestnut.tres" id="9_7r4gi"]
+[ext_resource type="Resource" uid="uid://clive6y0udkoa" path="res://resources/icecream.tres" id="9_7r4gi"]
 
 [node name="World" type="Node2D"]
 
