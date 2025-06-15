@@ -138,7 +138,10 @@ func dive():
 
 func change_direction():
 	Globals.invert_direction = !Globals.invert_direction
+	bird_sprite.play("turning")
 	bird_sprite.flip_h = !bird_sprite.flip_h
+	await get_tree().create_timer(0.3).timeout
+	bird_sprite.play("default")
 	currently_executing_command = false
 
 
