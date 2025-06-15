@@ -1,36 +1,45 @@
 extends Node
 
 
+const _BERRIES = preload("res://resources/berries.tres")
+const _HOTDOG = preload("res://resources/hotdog.tres")
+const _ICECREAM = preload("res://resources/icecream.tres")
+
+
 # signals
 signal item_collected(pick_up_type: Globals.PICK_UP)
 signal pooped()
-signal next_ammo_color(color: Color)
 
 
 # movement variables
 var invert_direction: bool = false # 0 = nach rechts ; 1 = nach links
 
 
+# next ammo variables
+var next_ammo_type: PICK_UP
+var next_ammo_color: Color
+var ammo_is_empty: bool
+
+
 # dict
 enum PICK_UP {
 	BERRIES,
 	HOTDOG,
-	ICECREME
+	ICECREAM
 }
 
 
 # pick up dict
 var pick_up_list = {
-	PICK_UP.BERRIES : "res://resources/berries.tres",
-	PICK_UP.HOTDOG : "res://resources/hotdog.tres",
-	PICK_UP.ICECREME : "res://resources/icecream.tres",
+	PICK_UP.BERRIES : _BERRIES,
+	PICK_UP.HOTDOG : _HOTDOG,
+	PICK_UP.ICECREAM : _ICECREAM,
 }
 
 
 func _ready():
 	item_collected.get_name()
 	pooped.get_name()
-	next_ammo_color.get_name()
 
 
 ## Collision Layers:
@@ -41,3 +50,4 @@ func _ready():
 # 5 - Umbrella
 # 6 - Pick Ups
 # 7 - Net
+# 8 - icebomb

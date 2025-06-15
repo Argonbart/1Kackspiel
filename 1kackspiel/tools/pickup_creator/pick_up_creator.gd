@@ -5,6 +5,7 @@ extends Node
 @export var power_up_name: String
 @export var type: Globals.PICK_UP
 @export var color: Color
+@export var amount: int
 @export var icon: CompressedTexture2D
 @export var icon_background: CompressedTexture2D
 @export var icon_scaling: Vector2 = Vector2(1.0, 1.0)

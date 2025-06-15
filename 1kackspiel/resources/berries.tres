@@ -7,7 +7,8 @@
 [resource]
 script = ExtResource("3_72i0e")
 type = 0
-color = Color(0.529412, 0, 0, 0.588235)
+color = Color(0.545, 0.18, 0, 0.392)
+amount = 3
 icon = ExtResource("1_wpews")
 icon_background = ExtResource("2_if2ea")
 icon_scaling = Vector2(0.1, 0.1)

@@ -1,3 +1,4 @@
+class_name Human
 extends CharacterBody2D
 
 
