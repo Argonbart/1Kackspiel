@@ -75,11 +75,15 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var poop = area.get_parent().get_parent()
 		if poop.hit_ground:
 			return
+		if area.get_groups().has("chestnut"):
+			area.get_parent().get_parent().shoot_projectiles()
+			await get_tree().create_timer(10.0).timeout
 		poop.queue_free() 	# poop despawned
 		life_points -= 1								# mensch bekommt schaden
 		if life_points <= 0:
 			human_sprite.play("death")
-			await get_tree().create_timer(0.5).timeout
+			visible = false
+			await get_tree().create_timer(10.0).timeout
 			queue_free()
 
 

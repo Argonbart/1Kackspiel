@@ -15,4 +15,8 @@ func _process(delta):
 # umbrealla hit
 func _on_area_entered(area: Area2D) -> void:
 	if area.name == "PoopArea":
+		if area.get_groups().has("chestnut"):
+			area.get_parent().get_parent().shoot_projectiles()
+			visible = false
+			await get_tree().create_timer(10.0).timeout
 		area.get_parent().get_parent().queue_free() 	# poop despawned

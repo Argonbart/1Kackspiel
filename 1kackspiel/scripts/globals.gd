@@ -4,6 +4,7 @@ extends Node
 const _BERRIES = preload("res://resources/berries.tres")
 const _HOTDOG = preload("res://resources/hotdog.tres")
 const _ICECREAM = preload("res://resources/icecream.tres")
+const _CHESTNUT = preload("res://resources/chestnut.tres")
 
 
 # signals
@@ -25,7 +26,8 @@ var ammo_is_empty: bool
 enum PICK_UP {
 	BERRIES,
 	HOTDOG,
-	ICECREAM
+	ICECREAM,
+	CHESTNUT,
 }
 
 
@@ -34,6 +36,7 @@ var pick_up_list = {
 	PICK_UP.BERRIES : _BERRIES,
 	PICK_UP.HOTDOG : _HOTDOG,
 	PICK_UP.ICECREAM : _ICECREAM,
+	PICK_UP.CHESTNUT : _CHESTNUT,
 }
 
 

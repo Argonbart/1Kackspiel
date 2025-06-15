@@ -1,23 +1,24 @@
 [gd_scene load_steps=5 format=3 uid="uid://dbo1vrbffajtm"]
 
 [ext_resource type="Script" uid="uid://0sclwy6xqu7n" path="res://tools/pickup_creator/pick_up_creator.gd" id="1_fg31k"]
-[ext_resource type="Texture2D" uid="uid://di0v7nlls43f1" path="res://assets/pickup_icecream.png" id="2_5edfa"]
-[ext_resource type="Texture2D" uid="uid://bgkndxdsipool" path="res://assets/pickup_icecream_background.png" id="3_6r0wb"]
+[ext_resource type="Texture2D" uid="uid://cdj24txadm32w" path="res://assets/pickup_chestnut_background.png" id="3_o0w86"]
 [ext_resource type="Texture2D" uid="uid://cpfwki7sir61w" path="res://assets/pickup_berry.png" id="4_o0w86"]
+[ext_resource type="Texture2D" uid="uid://e6h2ipq40ary" path="res://assets/pickup_chestnut.png" id="5_5edfa"]
 
 [node name="PickUpCreator" type="Node"]
 script = ExtResource("1_fg31k")
-power_up_name = "icecream"
-type = 2
-color = Color(0.360867, 0.682562, 0.993735, 1)
-icon = ExtResource("2_5edfa")
-icon_background = ExtResource("3_6r0wb")
-icon_scaling = Vector2(0.05, 0.05)
+power_up_name = "chestnut"
+type = 3
+color = Color(0.774025, 0.653535, 0.112142, 1)
+amount = 2
+icon = ExtResource("5_5edfa")
+icon_background = ExtResource("3_o0w86")
+icon_scaling = Vector2(0.08, 0.08)
 
 [node name="BerriesReference" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_o0w86")
 
 [node name="YourPickUpSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_5edfa")
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("5_5edfa")
