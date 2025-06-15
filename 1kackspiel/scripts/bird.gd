@@ -30,12 +30,15 @@ var diving_diff: float = 0.0
 
 # other variables
 var currently_executing_command: bool = false
+var next_ammo_color: Color = Color(0.545, 0.18, 0.0, 0.392)
+var ammo_is_empty: bool = false
 
 
 # Connect signals
 func _ready():
 	connect("button_pressed", button_just_pressed)
 	connect("button_released", button_just_released)
+	Globals.connect("next_ammo_color", set_next_ammo_color)
 
 
 # Set direction and move
@@ -140,7 +143,19 @@ func change_direction():
 
 
 func poop():
+	if ammo_is_empty:
+		currently_executing_command = false
+		return
 	var new_poop = _POOP_SCENE.instantiate()
+	new_poop.set_color(next_ammo_color)
 	new_poop.global_position = bird_sprite.global_position
 	get_parent().add_child(new_poop)
+	Globals.pooped.emit()
 	currently_executing_command = false
+
+
+func set_next_ammo_color(next_color: Color):
+	next_ammo_color = next_color
+	ammo_is_empty = false
+	if next_ammo_color == Color.BLACK:
+		ammo_is_empty = true

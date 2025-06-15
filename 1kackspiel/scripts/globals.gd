@@ -2,8 +2,9 @@ extends Node
 
 
 # signals
-signal set_container_color(container_idx: int, new_color: Color)
 signal item_collected(pick_up_type: Globals.PICK_UP)
+signal pooped()
+signal next_ammo_color(color: Color)
 
 
 # movement variables
@@ -25,8 +26,9 @@ var pick_up_list = {
 
 
 func _ready():
-	set_container_color.get_name()
 	item_collected.get_name()
+	pooped.get_name()
+	next_ammo_color.get_name()
 
 
 ## Collision Layers:

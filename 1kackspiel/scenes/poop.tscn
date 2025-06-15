@@ -4,10 +4,11 @@
 [ext_resource type="Script" uid="uid://wxgakxl7g3u3" path="res://scripts/poop.gd" id="2_pkbnx"]
 [ext_resource type="Texture2D" uid="uid://dlm8sgwh3kl1y" path="res://assets/poop_munition_shape.png" id="3_l3xhj"]
 
-[node name="Poop" type="Node2D" node_paths=PackedStringArray("poop_body", "poop_area")]
+[node name="Poop" type="Node2D" node_paths=PackedStringArray("poop_body", "poop_area", "poop_color_sprite")]
 script = ExtResource("2_pkbnx")
 poop_body = NodePath("PoopBody")
 poop_area = NodePath("PoopBody/PoopArea")
+poop_color_sprite = NodePath("PoopBody/PoopSpriteColor")
 
 [node name="PoopBody" type="StaticBody2D" parent="."]
 position = Vector2(0, 100)
@@ -17,7 +18,7 @@ collision_layer = 4
 polygon = PackedVector2Array(6, -28, 21, -17, 24, -8, 24, -2, 33, 0, 38, 7, 37, 12, 40, 17, 41, 23, 38, 28, 29, 33, 14, 34, -3, 33, -16, 31, -21, 26, -23, 21, -22, 18, -17, 15, -18, 11, -18, 5, -14, 2, -8, 1, -5, -2, -3, -7, 3, -13, 6, -16, 7, -20, 6, -24, 5, -27)
 
 [node name="PoopSpriteColor" type="Sprite2D" parent="PoopBody"]
-modulate = Color(1, 1, 1, 0.392157)
+modulate = Color(1, 1, 1, 0.588235)
 self_modulate = Color(0.545098, 0.180392, 0, 1)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("3_l3xhj")
