@@ -4,6 +4,7 @@ extends CanvasLayer
 # constants
 const _POOP_CONTAINER = preload("res://scenes/poop_container.tscn")
 const _POOP_SCENE = preload("res://scenes/poop.tscn")
+const _FIRE_POOP_SCENE = preload("res://scenes/fire_poop.tscn")
 const _ICEBOMB_SCENE = preload("res://scenes/icebomb.tscn")
 
 @export var containers: HBoxContainer
@@ -90,8 +91,8 @@ func activate_poop_effect():
 			pass
 		Globals.PICK_UP.HOTDOG:		 # fire rain
 			for i in range(2, 16):
-				var new_poop = _POOP_SCENE.instantiate()
-				new_poop.set_color(Globals.next_ammo_color)
+				var new_poop = _FIRE_POOP_SCENE.instantiate()
+				#new_poop.set_color(Globals.next_ammo_color)
 				new_poop.global_position = bird.get_child(0).global_position
 				get_parent().add_child(new_poop)
 				await get_tree().create_timer(0.1).timeout

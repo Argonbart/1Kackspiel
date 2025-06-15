@@ -72,7 +72,7 @@ func _on_timer_change_direction_timeout() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "PoopArea": 						# poop trifft mensch
-		var poop: Poop = area.get_parent().get_parent()
+		var poop = area.get_parent().get_parent()
 		if poop.hit_ground:
 			return
 		poop.queue_free() 	# poop despawned

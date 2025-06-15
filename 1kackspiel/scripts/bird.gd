@@ -10,9 +10,12 @@ signal button_released
 @export var Y_DIVE_DISTANCE: float = 300.0
 @export var LONG_PRESS_TIME: float = 0.5		# time till press counts as long press
 @export var DOUBLE_CLICK_TIME: float = 0.3		# time it waits for a second press after first short press
+@export var LEFT_BOUNDRY: float = -5000.0
+@export var RIGHT_BOUNDRY: float = 5000.0
 
 # other scenes
 @onready var _POOP_SCENE = preload("res://scenes/poop.tscn")
+@onready var _FIRE_POOP_SCENE = preload("res://scenes/fire_poop.tscn")
 
 # exports
 @export var bird_sprite: AnimatedSprite2D
@@ -41,6 +44,8 @@ func _ready():
 # Set direction and move
 func _process(delta):
 	position.x += FLYING_SPEED * delta * pow(-1, Globals.invert_direction)
+	if position.x < LEFT_BOUNDRY or position.x > RIGHT_BOUNDRY:
+		change_direction()
 	position.y = diving_neutral_y + diving_diff
 	camera.position.y = -diving_diff
 	move_and_slide()
@@ -147,7 +152,11 @@ func poop():
 	if Globals.ammo_is_empty:
 		currently_executing_command = false
 		return
-	var new_poop = _POOP_SCENE.instantiate()
+	var new_poop
+	if Globals.next_ammo_type == Globals.PICK_UP.HOTDOG:
+		new_poop = _FIRE_POOP_SCENE.instantiate()
+	else:
+		new_poop = _POOP_SCENE.instantiate()
 	new_poop.set_color(Globals.next_ammo_color)
 	new_poop.global_position = bird_sprite.global_position
 	get_parent().add_child(new_poop)

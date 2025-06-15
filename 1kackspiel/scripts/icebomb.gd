@@ -14,7 +14,6 @@ func explode():
 
 func _on_area_entered(area: Area2D):
 	if area.get_groups().has("human"):
-		print(area.get_parent())
 		enemies_nearby.append(area.get_parent())
 
 
