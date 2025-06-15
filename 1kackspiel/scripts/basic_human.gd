@@ -5,8 +5,11 @@ extends CharacterBody2D
 # constants
 const _PICK_UP_SCENE = preload("res://scenes/pick_up.tscn")
 @export var _SPAWN_CHANCE_UMBRELLA: float = 0.4
-@export var _SPAWN_CHANCE_NET: float = 0.1
+@export var _SPAWN_CHANCE_NET: float = 0.09
 @export var _SPAWN_CHANCE_HEAD: float = 0.7
+@export var _SPAWN_CHANCE_ICE: float = 0.1
+@export var _SPAWN_CHANCE_HOTDOG: float = 0.2
+@export var _SPAWN_CHANCE_BERRIES: float = 0.5
 
 # local nodes
 @export var human_sprite: AnimatedSprite2D
@@ -35,7 +38,12 @@ var head_item
 
 func _ready() -> void:
 	
-	add_random_pickup()
+	if ice_condition():
+		add_random_pickup(1)
+	elif hotdog_condition():
+		add_random_pickup(0)
+	elif berries_condition():
+		add_random_pickup(2)
 	
 	if head_condition():
 		spawn_head(head_scene)
@@ -52,12 +60,20 @@ func _ready() -> void:
 func umbrella_condition():
 	return randf() <= _SPAWN_CHANCE_UMBRELLA
 
-
 func net_condition():
 	return randf() < _SPAWN_CHANCE_NET
 
 func head_condition():
 	return randf() < _SPAWN_CHANCE_HEAD
+	
+func ice_condition():
+	return randf() < _SPAWN_CHANCE_ICE
+	
+func hotdog_condition():
+	return randf() < _SPAWN_CHANCE_HOTDOG
+
+func berries_condition():
+	return randf() < _SPAWN_CHANCE_BERRIES
 
 func _physics_process(_delta) -> void: 
 	
@@ -129,8 +145,9 @@ func spawn_head(item):
 	head_item = item.instantiate()
 	head_point.add_child(head_item)
 
-func add_random_pickup():
+func add_random_pickup(index:int):
+	
 	var new_pick_up = _PICK_UP_SCENE.instantiate()
-	new_pick_up.pick_up_resource = pick_up_list[randi_range(0, 1)]
+	new_pick_up.pick_up_resource = pick_up_list[index]
 	right_hand_point.add_child(new_pick_up)
 	righthand_item = new_pick_up
