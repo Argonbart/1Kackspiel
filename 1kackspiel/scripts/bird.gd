@@ -150,6 +150,9 @@ func change_direction():
 
 
 func poop():
+	var random_gurr = randi_range(0, 100)
+	if random_gurr < 20:
+		$GurrPlayer.play()
 	if Globals.ammo_is_empty:
 		currently_executing_command = false
 		return

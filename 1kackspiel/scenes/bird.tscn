@@ -1,9 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://cm4xec5ngycft"]
+[gd_scene load_steps=22 format=3 uid="uid://cm4xec5ngycft"]
 
 [ext_resource type="Script" uid="uid://cf3yhgot6dmyf" path="res://scripts/bird.gd" id="1_3po83"]
 [ext_resource type="Texture2D" uid="uid://501y3kru52u2" path="res://assets/bird_spritesheet.png" id="2_3po83"]
 [ext_resource type="Texture2D" uid="uid://dto1gdnkssbxp" path="res://assets/dive_down.png" id="3_hq4t0"]
 [ext_resource type="Texture2D" uid="uid://d26heagd18plq" path="res://assets/turning.png" id="4_twsrt"]
+[ext_resource type="AudioStream" uid="uid://d34jmdcx1eup7" path="res://sound/dove-cry-1.wav" id="5_b7mtg"]
+[ext_resource type="AudioStream" uid="uid://bxc1tofb253bf" path="res://sound/music.mp3" id="6_bdh3x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3po83"]
 atlas = ExtResource("2_3po83")
@@ -146,3 +148,10 @@ collision_mask = 80
 [node name="CollisionShape" type="CollisionShape2D" parent="BirdArea"]
 position = Vector2(0, -214.5)
 shape = SubResource("RectangleShape2D_3po83")
+
+[node name="GurrPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_b7mtg")
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_bdh3x")
+autoplay = true
