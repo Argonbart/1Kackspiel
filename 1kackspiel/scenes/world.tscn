@@ -49,7 +49,7 @@ mob_scene = ExtResource("5_71j4m")
 bird = NodePath("../Bird")
 
 [node name="Timer" type="Timer" parent="Human Spawner"]
-wait_time = 1.985
+wait_time = 4.0
 autostart = true
 
 [node name="UI" parent="." node_paths=PackedStringArray("bird") instance=ExtResource("6_qfnet")]

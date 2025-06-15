@@ -5,7 +5,7 @@ extends CharacterBody2D
 # constants
 const _PICK_UP_SCENE = preload("res://scenes/pick_up.tscn")
 @export var _SPAWN_CHANCE_UMBRELLA: float = 0.4
-@export var _SPAWN_CHANCE_NET: float = 1
+@export var _SPAWN_CHANCE_NET: float = 0.1
 @export var _SPAWN_CHANCE_HEAD: float = 0.7
 
 # local nodes

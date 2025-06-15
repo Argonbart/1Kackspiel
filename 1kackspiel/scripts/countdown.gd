@@ -8,7 +8,7 @@ extends MarginContainer
 var score_scene = preload("res://scenes/score_screen.tscn")
 
 func _ready():
-	Globals.countdown = 5
+	Globals.countdown = 120
 	Globals.score = 0
 	if countdown_label:
 		countdown_label.text = "%02d:%02d" % [Globals.countdown / 60, Globals.countdown % 60]
