@@ -10,8 +10,8 @@ signal button_released
 @export var Y_DIVE_DISTANCE: float = 300.0
 @export var LONG_PRESS_TIME: float = 0.5		# time till press counts as long press
 @export var DOUBLE_CLICK_TIME: float = 0.3		# time it waits for a second press after first short press
-@export var LEFT_BOUNDRY: float = -5000.0
-@export var RIGHT_BOUNDRY: float = 5000.0
+@export var LEFT_BOUNDRY: float = -5300.0
+@export var RIGHT_BOUNDRY: float = 5300.0
 
 # other scenes
 @onready var _POOP_SCENE = preload("res://scenes/poop.tscn")
