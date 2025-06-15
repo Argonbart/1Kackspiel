@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://bfipa14gkf06n"]
+[gd_scene load_steps=29 format=3 uid="uid://bfipa14gkf06n"]
 
 [ext_resource type="Script" uid="uid://cq22hu7adpbap" path="res://scripts/basic_human.gd" id="1_x2wwd"]
 [ext_resource type="PackedScene" uid="uid://bf0hovtqbrhx3" path="res://scenes/umbrella.tscn" id="2_smnjy"]
 [ext_resource type="PackedScene" uid="uid://byn4td0vgnl0q" path="res://scenes/net.tscn" id="3_np2id"]
 [ext_resource type="Texture2D" uid="uid://b003ppykcktrv" path="res://assets/human.png" id="3_smnjy"]
 [ext_resource type="Script" uid="uid://dfcfw6bulxxl4" path="res://scripts/pick_up_resource.gd" id="4_np2id"]
+[ext_resource type="PackedScene" uid="uid://ci6aqmfys2paw" path="res://scenes/hat.tscn" id="4_wvdd5"]
 [ext_resource type="Resource" uid="uid://h0b2rwicfxt0" path="res://resources/hotdog.tres" id="6_c3l26"]
 [ext_resource type="Resource" uid="uid://clive6y0udkoa" path="res://resources/icecream.tres" id="6_wvdd5"]
 [ext_resource type="Texture2D" uid="uid://cosqhgsm54n2o" path="res://assets/Death.png" id="7_c3l26"]
@@ -144,23 +145,22 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2wwd"]
 size = Vector2(135, 140)
 
-[node name="Basic Human" type="CharacterBody2D" node_paths=PackedStringArray("human_sprite", "left_hand_point", "right_hand_point")]
+[node name="Basic Human" type="CharacterBody2D" node_paths=PackedStringArray("human_sprite", "left_hand_point", "right_hand_point", "head_point")]
 collision_layer = 8
 script = ExtResource("1_x2wwd")
 human_sprite = NodePath("AnimatedSprite2D")
 left_hand_point = NodePath("LeftHandPoint")
 right_hand_point = NodePath("RightHandPoint")
+head_point = NodePath("HeadPoint")
 umbrella_scene = ExtResource("2_smnjy")
 net_scene = ExtResource("3_np2id")
+head_scene = ExtResource("4_wvdd5")
 pick_up_list = Array[ExtResource("4_np2id")]([ExtResource("6_c3l26"), ExtResource("6_wvdd5")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_c3l26")
-animation = &"death"
 autoplay = "default"
-frame = 12
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
@@ -179,6 +179,9 @@ collision_mask = 132
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_x2wwd")
+
+[node name="HeadPoint" type="Node2D" parent="."]
+position = Vector2(18, -89)
 
 [node name="RightHandPoint" type="Node2D" parent="."]
 position = Vector2(49, -21)

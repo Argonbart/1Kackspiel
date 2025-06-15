@@ -8,7 +8,7 @@ func explode():
 	get_child(2).visible = true
 	await get_tree().create_timer(0.2).timeout
 	for enemy in enemies_nearby:
-		enemy.queue_free()
+		enemy.life_points -=1
 	queue_free()
 
 
