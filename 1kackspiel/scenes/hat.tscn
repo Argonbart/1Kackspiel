@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci6aqmfys2paw"]
+
+[ext_resource type="Texture2D" uid="uid://bbyfirxqjaa25" path="res://assets/hat.png" id="1_uepus"]
+[ext_resource type="Script" uid="uid://cp3mq7pbtdgxm" path="res://scripts/hat.gd" id="1_y2nui"]
+
+[node name="Hat" type="Area2D"]
+scale = Vector2(0.03, 0.03)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_y2nui")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uepus")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, 153, -226, 162, -402, 182, -533, 223, -578, 128, -462, -48, -357, -247, -251, -393, -35, -442, 190, -405, 317, -241, 386, -63, 568, 55, 506, 125, 261, 125)

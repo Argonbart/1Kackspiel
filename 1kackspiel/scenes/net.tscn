@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://byn4td0vgnl0q"]
 
-[ext_resource type="Script" path="res://scripts/net.gd" id="1_i41qj"]
+[ext_resource type="Script" uid="uid://icrksdnegglj" path="res://scripts/net.gd" id="1_i41qj"]
 [ext_resource type="Texture2D" uid="uid://cx1hg14aev2g3" path="res://assets/net.png" id="2_h6vps"]
 
 [node name="Net" type="Area2D"]
