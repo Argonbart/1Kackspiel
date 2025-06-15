@@ -93,6 +93,10 @@ size = Vector2(128, 127)
 [node name="Bird" type="CharacterBody2D" node_paths=PackedStringArray("bird_sprite", "camera")]
 collision_layer = 2
 script = ExtResource("1_3po83")
+FLYING_SPEED = null
+Y_DIVE_DISTANCE = null
+LONG_PRESS_TIME = null
+DOUBLE_CLICK_TIME = null
 bird_sprite = NodePath("Sprite")
 camera = NodePath("Camera")
 
@@ -102,7 +106,7 @@ scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_qavic")
 animation = &"dive_down"
 autoplay = "default"
-frame_progress = 0.143951
+frame_progress = 0.882763
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -214.5)

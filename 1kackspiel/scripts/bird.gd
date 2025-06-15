@@ -7,6 +7,7 @@ signal button_released
 
 # constants
 @export var FLYING_SPEED: float = 300.0
+@export var Y_DIVE_DISTANCE: float = 300.0
 @export var LONG_PRESS_TIME: float = 0.5		# time till press counts as long press
 @export var DOUBLE_CLICK_TIME: float = 0.3		# time it waits for a second press after first short press
 
@@ -24,7 +25,8 @@ var waiting_for_double_press: bool = false
 var time_when_button_was_released: float = 0.0
 
 # eating variables
-var diving: float = false
+var diving_neutral_y: float = 324.0
+var diving_diff: float = 0.0
 
 # other variables
 var currently_executing_command: bool = false
@@ -39,8 +41,8 @@ func _ready():
 # Set direction and move
 func _process(delta):
 	position.x += FLYING_SPEED * delta * pow(-1, Globals.invert_direction)
-	position.y += diving * delta
-	camera.position.y += -diving * delta
+	position.y = diving_neutral_y + diving_diff
+	camera.position.y = -diving_diff
 	move_and_slide()
 
 
@@ -88,24 +90,47 @@ func button_just_released():
 
 
 func eat() -> void:
-	dive_down()
-	await get_tree().create_timer(0.9).timeout
-	dive_up()
-	await get_tree().create_timer(0.9).timeout
-	stop_dive()
+	dive()
 	currently_executing_command = false
 
 
-func dive_down():
-	diving = 400.0
-
-
-func dive_up():
-	diving = -400.0
-
-
-func stop_dive():
-	diving = 0.0
+func dive():
+	bird_sprite.play("dive_down")
+	
+	# Dive down with ease-in-out
+	var dive_tween1 = create_tween()
+	dive_tween1.tween_property(self, "diving_diff", 300.0, 0.6)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_IN_OUT)
+	var dive_tween2 = create_tween()
+	dive_tween2.tween_property(bird_sprite, "rotation_degrees", 45.0, 0.3)\
+		.set_trans(Tween.TRANS_CUBIC)\
+		.set_ease(Tween.EASE_OUT)
+	await get_tree().create_timer(0.5).timeout
+	var dive_tween3 = create_tween()
+	dive_tween3.tween_property(bird_sprite, "rotation_degrees", 0.0, 0.3)\
+		.set_trans(Tween.TRANS_CUBIC)\
+		.set_ease(Tween.EASE_OUT)
+	await get_tree().create_timer(0.4).timeout
+	
+	# Dive down with ease-in-out
+	var dive_tween4 = create_tween()
+	dive_tween4.tween_property(self, "diving_diff", 0.0, 0.6)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_IN_OUT)
+	var dive_tween5 = create_tween()
+	dive_tween5.tween_property(bird_sprite, "rotation_degrees", -45.0, 0.1)\
+		.set_trans(Tween.TRANS_CUBIC)\
+		.set_ease(Tween.EASE_OUT)
+	await get_tree().create_timer(0.5).timeout
+	var dive_tween6 = create_tween()
+	dive_tween6.tween_property(bird_sprite, "rotation_degrees", 0.0, 0.5)\
+		.set_trans(Tween.TRANS_CUBIC)\
+		.set_ease(Tween.EASE_OUT)
+	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.3).timeout
+	
+	bird_sprite.play("default")
 
 
 func change_direction():
