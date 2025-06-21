@@ -12,7 +12,7 @@ func _ready():
 
 
 func start_game():
-	Globals.countdown = 10
+	Globals.countdown = 120
 	Globals.score = 0
 	if countdown_label:
 		countdown_label.text = "%02d:%02d" % [Globals.countdown / 60, Globals.countdown % 60]
