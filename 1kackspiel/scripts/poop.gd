@@ -16,10 +16,6 @@ extends StaticBody2D
 var hit_ground: bool = false
 
 
-func _ready() -> void:
-	connect("tree_exited", explode_on_impact)
-
-
 # movement
 func _physics_process(delta):
 	
@@ -39,11 +35,24 @@ func set_color(new_color: Color):
 
 
 func explode_on_impact():
+	hit_ground = true
+	poop_sprite.visible = false
+	poop_color_sprite.visible = false
 	for child in get_children():
 		if child.get_groups().has("ice"):
-			print("ice explosion")
+			var ice_explosion = child as IceExplosion
+			ice_explosion.connect("explosion_finished", delete)
+			ice_explosion.explode()
 			hit_ground = true
-			child.explode()
+		if child.get_groups().has("chestnut"):
+			var chestnut_explosion = child as ChestnutExplosion
+			if !chestnut_explosion.has_connections("explosion_finished"):
+				chestnut_explosion.connect("explosion_finished", delete)
+			chestnut_explosion.explode()
+
+
+func delete():
+	queue_free()
 
 
 func _on_poop_area_area_entered(area: Area2D):

@@ -14,20 +14,10 @@ func _process(delta):
 
 # umbrealla hit
 func _on_area_entered(area: Area2D) -> void:
-	print(area.name) 
-	#if area.get_groups().has("ice"):
-		#area.get_parent().explode()
-		#await get_tree().create_timer(1.0).timeout
 	if area.name == "PoopArea":
 		SoundManager.play_sound.emit("umbrella_destroyed")
-		#if area.get_groups().has("chestnut"):
-			#area.get_parent().get_parent().shoot_projectiles()
-			#visible = false
-			#await get_tree().create_timer(10.0).timeout
-		#if area.get_groups().has("ice"):
-			##await get_tree().create_timer(1.0).timeout
-			#var new_poop = area.get_parent().get_parent()
-			#if new_poop:
-				#new_poop.explode()
-				#await get_tree().create_timer(1.0).timeout
-		area.get_parent().explode_on_impact() 	# poop despawned
+		area.get_parent().explode_on_impact()
+
+
+func take_damage(_damage):
+	queue_free()

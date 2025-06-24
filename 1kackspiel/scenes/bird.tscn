@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cm4xec5ngycft"]
+[gd_scene load_steps=34 format=3 uid="uid://cm4xec5ngycft"]
 
 [ext_resource type="Script" uid="uid://cf3yhgot6dmyf" path="res://scripts/bird.gd" id="1_3po83"]
 [ext_resource type="Texture2D" uid="uid://501y3kru52u2" path="res://assets/bird_spritesheet.png" id="2_3po83"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://cuwnkqrbmkjt3" path="res://sound/poop3.mp3" id="14_e7a8l"]
 [ext_resource type="Script" uid="uid://bb13k3wojl7hc" path="res://scripts/poop_effect_manager.gd" id="16_mlfkm"]
 [ext_resource type="PackedScene" uid="uid://de7d57ns2qobq" path="res://scenes/ice_explosion.tscn" id="17_lm7xv"]
+[ext_resource type="PackedScene" uid="uid://bhscgdynxm7oq" path="res://scenes/chestnut_explosion.tscn" id="18_y6ysx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3po83"]
 atlas = ExtResource("2_3po83")
@@ -209,3 +210,4 @@ script = ExtResource("16_mlfkm")
 bird = NodePath("..")
 _POOP_SCENE = ExtResource("2_lm7xv")
 _ICE_EXPLOSION = ExtResource("17_lm7xv")
+_CHESTNUT_EXPLOSION = ExtResource("18_y6ysx")

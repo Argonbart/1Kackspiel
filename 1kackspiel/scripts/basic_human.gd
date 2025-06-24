@@ -18,7 +18,7 @@ const _PICK_UP_SCENE = preload("res://scenes/pick_up.tscn")
 @export_range(0.0, 3.0) var _SPEED_MULTIPLIER_MINIMUM: float = 0.5
 @export_range(0.0, 3.0) var _SPEED_MULTIPLIER_MAXIMUM: float = 2.0
 @export_category("Stats")
-@export var life_points: int = 1;
+@export var BASIC_LIFE_POINTS: int = 1
 @export_category("Nodes")
 @export var human_sprite: AnimatedSprite2D
 @export var left_hand_point: Node2D
@@ -34,6 +34,7 @@ const _PICK_UP_SCENE = preload("res://scenes/pick_up.tscn")
 # variables
 var moving_direction: bool = false # 0 = nach rechts ; 1 = nach links
 var human_moving_speed: float = 1.0
+var current_life_points: int = BASIC_LIFE_POINTS
 
 
 func _ready() -> void:
@@ -59,12 +60,10 @@ func _ready() -> void:
 	var random_lefthand_item = randf()
 	if random_lefthand_item < _SPAWN_CHANCE_HEAD:
 		add_hat(head_scene) # spawn head
-		life_points +=1;
 	elif random_lefthand_item < _SPAWN_CHANCE_HEAD + _SPAWN_CHANCE_UMBRELLA:
 		add_weapon(umbrella_scene) # spawn umbrella
 	elif random_lefthand_item < _SPAWN_CHANCE_HEAD + _SPAWN_CHANCE_UMBRELLA + _SPAWN_CHANCE_NET:
 		add_weapon(net_scene) # spawn net
-		life_points +=4;
 	
 	# random movement speed
 	var random_multiplier: float = randf_range(_SPEED_MULTIPLIER_MINIMUM, _SPEED_MULTIPLIER_MAXIMUM)
@@ -86,7 +85,7 @@ func _physics_process(_delta) -> void:
 		left_hand_point.get_child(0).scale.x = 0.2 * pow(-1, int(human_sprite.flip_h))
 	
 	# human death
-	if life_points <= 0:
+	if current_life_points <= 0:
 		human_sprite.play("death")
 		SoundManager.play_sound.emit("death")
 		Globals.score += 1
@@ -114,6 +113,10 @@ func _on_timer_change_direction_timeout() -> void:
 	moving_direction = randi_range(0, 1)
 
 
+func take_damage(damage: int):
+	current_life_points -= damage
+
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "PoopArea":
 		var poop = area.get_parent()
@@ -128,4 +131,4 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			if new_poop:
 				new_poop.explode()
 		poop.queue_free()
-		life_points -= 1
+		take_damage(1)
