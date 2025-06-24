@@ -56,12 +56,14 @@ func delete():
 
 
 func _on_poop_area_area_entered(area: Area2D):
-	if area.get_groups().has("umbrella"):
-		area.queue_free()
-	if area.get_groups().has("hat"):
-		area.queue_free()
+	
+	# poop hit ground
 	if area.get_groups().has("ground"):
 		hit_ground = true
 		poop_area.set_deferred("monitoring", false)
 		await get_tree().create_timer(10.0).timeout
 		queue_free()
+	
+	# poop hit something
+	if area.get_groups().has("can_get_damage"):
+		area.take_damage(1)

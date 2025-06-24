@@ -207,6 +207,7 @@ autoplay = true
 
 [node name="PoopEffectManager" type="Node" parent="." node_paths=PackedStringArray("bird")]
 script = ExtResource("16_mlfkm")
+_FIRE_POOP_AMOUNT = 100
 bird = NodePath("..")
 _POOP_SCENE = ExtResource("2_lm7xv")
 _ICE_EXPLOSION = ExtResource("17_lm7xv")

@@ -1,3 +1,4 @@
+class_name HumanArea
 extends Area2D
 
 func take_damage(damage: int):

@@ -3,7 +3,6 @@ extends CharacterBody2D
 
 
 # exports
-const _PICK_UP_SCENE = preload("res://scenes/pick_up.tscn")
 @export_category("Right Hand PickUp Items (need to add up to 1.0)")
 @export_range(0.0, 1.0) var _SPAWN_CHANCE_BERRIES: float = 0.5
 @export_range(0.0, 1.0) var _SPAWN_CHANCE_HOTDOG: float = 0.2
@@ -25,11 +24,10 @@ const _PICK_UP_SCENE = preload("res://scenes/pick_up.tscn")
 @export var right_hand_point: Node2D
 @export var head_point: Node2D
 @export_category("Scenes")
-@export var head_scene: PackedScene
-@export var umbrella_scene: PackedScene
-@export var net_scene: PackedScene
-@export_category("PickUps")
-@export var pick_up_list: Array[Enum.PoopType]
+@export var _PICK_UP_SCENE: PackedScene
+@export var _HEAD_SCENE: PackedScene
+@export var _UMBRELLA_SCENE: PackedScene
+@export var _NET_SCENE: PackedScene
 
 # variables
 var moving_direction: bool = false # 0 = nach rechts ; 1 = nach links
@@ -59,11 +57,11 @@ func _ready() -> void:
 	# random left hand item
 	var random_lefthand_item = randf()
 	if random_lefthand_item < _SPAWN_CHANCE_HEAD:
-		add_hat(head_scene) # spawn head
+		add_head_armor(_HEAD_SCENE) # spawn head
 	elif random_lefthand_item < _SPAWN_CHANCE_HEAD + _SPAWN_CHANCE_UMBRELLA:
-		add_weapon(umbrella_scene) # spawn umbrella
+		add_weapon(_UMBRELLA_SCENE) # spawn umbrella
 	elif random_lefthand_item < _SPAWN_CHANCE_HEAD + _SPAWN_CHANCE_UMBRELLA + _SPAWN_CHANCE_NET:
-		add_weapon(net_scene) # spawn net
+		add_weapon(_NET_SCENE) # spawn net
 	
 	# random movement speed
 	var random_multiplier: float = randf_range(_SPEED_MULTIPLIER_MINIMUM, _SPEED_MULTIPLIER_MAXIMUM)
@@ -104,31 +102,14 @@ func add_weapon(armor_scene: PackedScene):
 	left_hand_point.add_child(new_armor)
 
 
-func add_hat(armor_scene: PackedScene):
+func add_head_armor(armor_scene: PackedScene):
 	var new_armor = armor_scene.instantiate()
 	head_point.add_child(new_armor)
-
-
-func _on_timer_change_direction_timeout() -> void:
-	moving_direction = randi_range(0, 1)
 
 
 func take_damage(damage: int):
 	current_life_points -= damage
 
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.name == "PoopArea":
-		var poop = area.get_parent()
-		if poop.hit_ground:
-			return
-		if area.get_groups().has("chestnut"):
-			area.get_parent().get_parent().shoot_projectiles()
-			await get_tree().create_timer(10.0).timeout
-		if area.get_groups().has("ice"):
-			await get_tree().create_timer(1.0).timeout
-			var new_poop = area.get_parent().get_parent()
-			if new_poop:
-				new_poop.explode()
-		poop.queue_free()
-		take_damage(1)
+func _on_timer_change_direction_timeout() -> void:
+	moving_direction = randi_range(0, 1)
