@@ -1,47 +1,29 @@
 extends Node
 
 
-const _BERRIES = preload("res://resources/berries.tres")
-const _HOTDOG = preload("res://resources/hotdog.tres")
-const _ICECREAM = preload("res://resources/icecream.tres")
-const _CHESTNUT = preload("res://resources/chestnut.tres")
-
-
 # signals
-signal item_collected(pick_up_type: Globals.PICK_UP)
+signal item_collected(pick_up_type: Enum.PoopType)
 signal pooped()
 
+const POOP_RESOURCE_BERRIES = preload("res://resources/berries.tres")
+const POOP_RESOURCE_CHESTNUT = preload("res://resources/chestnut.tres")
+const POOP_RESOURCE_HOTDOG = preload("res://resources/hotdog.tres")
+const POOP_RESOURCE_ICECREAM = preload("res://resources/icecream.tres")
 
 # movement variables
 var invert_direction: bool = false # 0 = nach rechts ; 1 = nach links
 
-
-# next ammo variables
-var next_ammo_type: PICK_UP
-var next_ammo_color: Color
-var ammo_is_empty: bool
-
-
 # counter
 var countdown: int
+
 #score
 var score: int
 
-# dict
-enum PICK_UP {
-	BERRIES,
-	HOTDOG,
-	ICECREAM,
-	CHESTNUT,
-}
-
-
-# pick up dict
-var pick_up_list = {
-	PICK_UP.BERRIES : _BERRIES,
-	PICK_UP.HOTDOG : _HOTDOG,
-	PICK_UP.ICECREAM : _ICECREAM,
-	PICK_UP.CHESTNUT : _CHESTNUT,
+var poop_resources = {
+	Enum.PoopType.BERRIES : POOP_RESOURCE_BERRIES,
+	Enum.PoopType.CHESTNUT : POOP_RESOURCE_CHESTNUT,
+	Enum.PoopType.HOTDOG : POOP_RESOURCE_HOTDOG,
+	Enum.PoopType.ICECREAM : POOP_RESOURCE_ICECREAM,
 }
 
 

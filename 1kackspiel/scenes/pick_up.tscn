@@ -1,11 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://coce66ftult4a"]
+[gd_scene load_steps=6 format=3 uid="uid://coce66ftult4a"]
 
 [ext_resource type="Script" uid="uid://df1i34s0jw5la" path="res://scripts/pick_up.gd" id="1_adew5"]
-[ext_resource type="Resource" uid="uid://cinw1onlvb74u" path="res://resources/berries.tres" id="2_a7jki"]
-[ext_resource type="Texture2D" uid="uid://8m2t6cjcgxer" path="res://assets/pickup_berry_background.png" id="3_c87fy"]
 [ext_resource type="Shader" uid="uid://b48g1knbq0xjw" path="res://shader/hovering.gdshader" id="4_a7jki"]
-[ext_resource type="Texture2D" uid="uid://b3qqm72k53syp" path="res://assets/icon.svg" id="4_c87fy"]
-[ext_resource type="AudioStream" uid="uid://cny76lu1lwo" path="res://sound/pickup.mp3" id="6_8tsvk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a7jki"]
 shader = ExtResource("4_a7jki")
@@ -16,22 +12,21 @@ shader = ExtResource("4_a7jki")
 [sub_resource type="CircleShape2D" id="CircleShape2D_c468w"]
 radius = 22.0
 
-[node name="PickUp" type="Node2D" node_paths=PackedStringArray("pick_up_sprite", "pick_up_sprite_background")]
+[node name="PickUp" type="Node2D" node_paths=PackedStringArray("pick_up_sprite", "pick_up_background_sprite")]
 script = ExtResource("1_adew5")
-pick_up_resource = ExtResource("2_a7jki")
-pick_up_sprite = NodePath("Sprite")
-pick_up_sprite_background = NodePath("SpriteBackground")
+pick_up_sprite = NodePath("PickUpSprite")
+pick_up_background_sprite = NodePath("PickUpBackgroundSprite")
+pick_up_background_color = Color(0.337255, 1, 0, 0.215686)
 
-[node name="SpriteBackground" type="Sprite2D" parent="."]
+[node name="PickUpBackgroundSprite" type="Sprite2D" parent="."]
 self_modulate = Color(0.337255, 1, 0, 0.215686)
 material = SubResource("ShaderMaterial_a7jki")
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_c87fy")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="PickUpSprite" type="Sprite2D" parent="."]
+self_modulate = Color(0, 1, 1, 1)
 material = SubResource("ShaderMaterial_8tsvk")
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("4_c87fy")
 
 [node name="PickUpArea" type="Area2D" parent="."]
 collision_layer = 32
@@ -39,9 +34,5 @@ collision_mask = 2
 
 [node name="PickUpCollisionShape" type="CollisionShape2D" parent="PickUpArea"]
 shape = SubResource("CircleShape2D_c468w")
-
-[node name="PickUpPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_8tsvk")
-volume_db = 24.0
 
 [connection signal="area_entered" from="PickUpArea" to="." method="_on_pick_up_area_area_entered"]

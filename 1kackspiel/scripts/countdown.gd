@@ -15,7 +15,7 @@ func start_game():
 	Globals.countdown = 120
 	Globals.score = 0
 	if countdown_label:
-		countdown_label.text = "%02d:%02d" % [Globals.countdown / 60, Globals.countdown % 60]
+		countdown_label.text = "%02d:%02d" % [Globals.countdown / 60.0, Globals.countdown % 60]
 	if timer:
 		timer.start()
 
@@ -34,4 +34,4 @@ func _process(_delta) -> void:
 func _on_timer_timeout() -> void:
 	Globals.countdown -= 1
 	if countdown_label:
-		countdown_label.text = "%02d:%02d" % [Globals.countdown / 60, Globals.countdown % 60]
+		countdown_label.text = "%02d:%02d" % [Globals.countdown / 60.0, Globals.countdown % 60]

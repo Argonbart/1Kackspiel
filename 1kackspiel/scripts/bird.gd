@@ -1,48 +1,30 @@
+class_name Bird
 extends CharacterBody2D
 
 
-# signals
-signal button_pressed
-signal button_released
-
 # constants
+@export_category("Stats")
 @export var FLYING_SPEED: float = 300.0
 @export var Y_DIVE_DISTANCE: float = 300.0
 @export var LONG_PRESS_TIME: float = 0.5		# time till press counts as long press
 @export var DOUBLE_CLICK_TIME: float = 0.3		# time it waits for a second press after first short press
+@export_category("Screen Boundries")
 @export var LEFT_BOUNDRY: float = -5300.0
 @export var RIGHT_BOUNDRY: float = 5300.0
-
-# other scenes
-@onready var _POOP_SCENE = preload("res://scenes/poop.tscn")
-@onready var _FIRE_POOP_SCENE = preload("res://scenes/fire_poop.tscn")
-@onready var _ICE_POOP_SCENE = preload("res://scenes/ice_poop.tscn")
-
-# exports
+@export_category("Nodes")
 @export var bird_sprite: AnimatedSprite2D
 @export var camera: Camera2D
 
-# button variables
+# variables
 var time_when_button_was_pressed: float = 0.0
 var time_of_first_short_button_press: float = -1.0
 var waiting_for_double_press: bool = false
 var time_when_button_was_released: float = 0.0
-
-# eating variables
 var diving_neutral_y: float = 324.0
 var diving_diff: float = 0.0
-
-# other variables
 var currently_executing_command: bool = false
 
 
-# Connect signals
-func _ready():
-	connect("button_pressed", button_just_pressed)
-	connect("button_released", button_just_released)
-
-
-# Set direction and move
 func _process(delta):
 	position.x += FLYING_SPEED * delta * pow(-1, Globals.invert_direction)
 	if position.x < LEFT_BOUNDRY or position.x > RIGHT_BOUNDRY:
@@ -52,128 +34,121 @@ func _process(delta):
 	move_and_slide()
 
 
-# Emit signal on button input
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			button_pressed.emit()
+			button_pressed()
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
-			button_released.emit()
+			button_released()
 
 
-# Button down
-func button_just_pressed():
+func button_pressed():
+	
 	if currently_executing_command:
 		return
-	time_when_button_was_pressed = Time.get_unix_time_from_system()		# safe timing of button press
+	
+	time_when_button_was_pressed = Time.get_unix_time_from_system()
 
 
-# Button up
-func button_just_released():
+func button_released():
+	
 	if currently_executing_command:
 		return
+	
 	time_when_button_was_released = Time.get_unix_time_from_system()
 	var held_duration = time_when_button_was_released - time_when_button_was_pressed
 	if held_duration >= LONG_PRESS_TIME:
 		currently_executing_command = true
-		eat() # Long press
 		waiting_for_double_press = false
+		dive()
 	else:
-		if waiting_for_double_press and (time_when_button_was_released - time_of_first_short_button_press) <= DOUBLE_CLICK_TIME:
+		var time_since_first_short_button_press = time_when_button_was_released - time_of_first_short_button_press
+		if waiting_for_double_press and time_since_first_short_button_press <= DOUBLE_CLICK_TIME:
 			currently_executing_command = true
-			change_direction() # Double-click
 			waiting_for_double_press = false
+			change_direction()
 		else:
-			# Start waiting for a second click
 			waiting_for_double_press = true
 			time_of_first_short_button_press = time_when_button_was_released
-			# Wait to confirm it's not a double click
 			await get_tree().create_timer(DOUBLE_CLICK_TIME).timeout
 			if waiting_for_double_press:
 				currently_executing_command = true
-				poop() # Single short click
 				waiting_for_double_press = false
-
-
-func eat() -> void:
-	dive()
-	await get_tree().create_timer(1.0).timeout
-	currently_executing_command = false
+				poop()
 
 
 func dive():
-	bird_sprite.play("dive_down")
-	SoundManager.play_sound.emit("swoop")
 	
-	# Dive down with ease-in-out
+	# start animation
+	SoundManager.play_sound.emit("swoop")
+	bird_sprite.play("dive_down")
+	
+	# stats
+	var _DIVING_TIME_TO_REACH_BOTTOM: float = 0.6
+	var _DIVIMG_TIME_SPENT_AT_BOTTOM: float = 0.2
+	var _DIVING_TIME_TO_ROTATE: float = 0.3
+	var _DIVING_TIME_TILL_ROTATE_BACK: float = 0.5
+	
+	# flying down part - takes _DIVING_TIME_TILL_ROTATE_BACK + _DIVING_TIME_TO_ROTATE = 0.8 sec
 	var dive_tween1 = create_tween()
-	dive_tween1.tween_property(self, "diving_diff", 300.0, 0.6)\
+	dive_tween1.tween_property(self, "diving_diff", Y_DIVE_DISTANCE, _DIVING_TIME_TO_REACH_BOTTOM)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN_OUT)
 	var dive_tween2 = create_tween()
-	dive_tween2.tween_property(bird_sprite, "rotation_degrees", pow(-1, Globals.invert_direction) * 45.0, 0.3)\
+	dive_tween2.tween_property(bird_sprite, "rotation_degrees", pow(-1, Globals.invert_direction) * 45.0, _DIVING_TIME_TO_ROTATE)\
 		.set_trans(Tween.TRANS_CUBIC)\
 		.set_ease(Tween.EASE_OUT)
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(_DIVING_TIME_TILL_ROTATE_BACK).timeout
 	var dive_tween3 = create_tween()
-	dive_tween3.tween_property(bird_sprite, "rotation_degrees", 0.0, 0.3)\
+	dive_tween3.tween_property(bird_sprite, "rotation_degrees", 0.0, _DIVING_TIME_TO_ROTATE)\
 		.set_trans(Tween.TRANS_CUBIC)\
 		.set_ease(Tween.EASE_OUT)
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(_DIVING_TIME_TO_ROTATE).timeout
 	
-	# Dive down with ease-in-out
+	# flying up part - takes _DIVING_TIME_TILL_ROTATE_BACK + _DIVING_TIME_TO_ROTATE = 0.8 sec
 	var dive_tween4 = create_tween()
-	dive_tween4.tween_property(self, "diving_diff", 0.0, 0.6)\
+	dive_tween4.tween_property(self, "diving_diff", 0.0, _DIVING_TIME_TO_REACH_BOTTOM)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN_OUT)
 	var dive_tween5 = create_tween()
-	dive_tween5.tween_property(bird_sprite, "rotation_degrees", pow(-1, Globals.invert_direction) * -45.0, 0.1)\
+	dive_tween5.tween_property(bird_sprite, "rotation_degrees", pow(-1, Globals.invert_direction) * -45.0, _DIVING_TIME_TO_ROTATE)\
 		.set_trans(Tween.TRANS_CUBIC)\
 		.set_ease(Tween.EASE_OUT)
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(_DIVING_TIME_TILL_ROTATE_BACK).timeout
 	var dive_tween6 = create_tween()
-	dive_tween6.tween_property(bird_sprite, "rotation_degrees", 0.0, 0.5)\
+	dive_tween6.tween_property(bird_sprite, "rotation_degrees", 0.0, _DIVING_TIME_TO_ROTATE)\
 		.set_trans(Tween.TRANS_CUBIC)\
 		.set_ease(Tween.EASE_OUT)
-	await get_tree().create_timer(0.4).timeout
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(_DIVING_TIME_TO_ROTATE).timeout
 	
+	# end animation
 	bird_sprite.play("default")
+	currently_executing_command = false
 
 
 func change_direction():
-	Globals.invert_direction = !Globals.invert_direction
+	
+	# start animation
 	bird_sprite.play("turning")
 	SoundManager.play_sound.emit("direction_change")
+	
+	Globals.invert_direction = !Globals.invert_direction
 	bird_sprite.flip_h = !bird_sprite.flip_h
 	await get_tree().create_timer(0.3).timeout
+	
+	# end animation
 	bird_sprite.play("default")
 	currently_executing_command = false
 
 
 func poop():
-	var random_gurr = randi_range(0, 100)
-	if random_gurr < 50:
-		SoundManager.play_sound.emit("poop")
-		#SoundManager.play_sound.emit("gurr")
-	if Globals.ammo_is_empty:
+	
+	if AmmunitionManager.ammo_is_empty:
 		currently_executing_command = false
 		return
-	var new_poop
-	var ice = false
-	if Globals.next_ammo_type == Globals.PICK_UP.HOTDOG:
-		new_poop = _FIRE_POOP_SCENE.instantiate()
-	elif Globals.next_ammo_type == Globals.PICK_UP.ICECREAM:
-		new_poop = _ICE_POOP_SCENE.instantiate()
-		ice = true
-	else:
-		new_poop = _POOP_SCENE.instantiate()
-	new_poop.set_color(Globals.next_ammo_color)
-	new_poop.global_position = bird_sprite.global_position
-	get_parent().add_child(new_poop)
-	if ice:
-		await get_tree().create_timer(1.0).timeout
-		if new_poop:
-			new_poop.explode()
-	Globals.pooped.emit()
+	
+	if randi_range(0, 1):
+		SoundManager.play_sound.emit("poop")
+	
+	AmmunitionManager.use_ammo.emit()
 	currently_executing_command = false

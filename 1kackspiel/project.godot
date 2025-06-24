@@ -19,10 +19,10 @@ config/icon="res://assets/icon.svg"
 
 Globals="*res://scripts/globals.gd"
 SoundManager="*res://scripts/sound_manager.gd"
+AmmunitionManager="*res://scripts/ammunition_manager.gd"
 
 [display]
 
-window/size/mode=4
 window/stretch/mode="canvas_items"
 
 [global_group]
@@ -33,3 +33,4 @@ ground=""
 human=""
 chestnut=""
 ice=""
+hat=""

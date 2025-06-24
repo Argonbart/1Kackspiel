@@ -1,39 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://c25xab4l8sob6"]
+[gd_scene load_steps=5 format=3 uid="uid://c25xab4l8sob6"]
 
 [ext_resource type="Texture2D" uid="uid://bop7sv3ajsy1p" path="res://assets/poop_munition_outline.png" id="2_l3xhj"]
 [ext_resource type="Script" uid="uid://wxgakxl7g3u3" path="res://scripts/poop.gd" id="2_pkbnx"]
 [ext_resource type="Texture2D" uid="uid://dlm8sgwh3kl1y" path="res://assets/poop_munition_shape.png" id="3_l3xhj"]
 
-[node name="Poop" type="Node2D" node_paths=PackedStringArray("poop_body", "poop_area", "poop_color_sprite")]
-script = ExtResource("2_pkbnx")
-poop_body = NodePath("PoopBody")
-poop_area = NodePath("PoopBody/PoopArea")
-poop_color_sprite = NodePath("PoopBody/PoopSpriteColor")
+[sub_resource type="SpriteFrames" id="SpriteFrames_l3xhj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l3xhj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
-[node name="PoopBody" type="StaticBody2D" parent="."]
-position = Vector2(0, 100)
+[node name="Poop" type="StaticBody2D" node_paths=PackedStringArray("poop_color_sprite", "poop_sprite", "poop_area")]
 collision_layer = 4
+script = ExtResource("2_pkbnx")
+poop_color_sprite = NodePath("PoopSpriteColor")
+poop_sprite = NodePath("PoopSprite")
+poop_area = NodePath("PoopArea")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PoopBody"]
+[node name="PoopCollisionShape" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(6, -28, 21, -17, 24, -8, 24, -2, 33, 0, 38, 7, 37, 12, 40, 17, 41, 23, 38, 28, 29, 33, 14, 34, -3, 33, -16, 31, -21, 26, -23, 21, -22, 18, -17, 15, -18, 11, -18, 5, -14, 2, -8, 1, -5, -2, -3, -7, 3, -13, 6, -16, 7, -20, 6, -24, 5, -27)
 
-[node name="PoopSpriteColor" type="Sprite2D" parent="PoopBody"]
+[node name="PoopSpriteColor" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.588235)
 self_modulate = Color(0.545098, 0.180392, 0, 1)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("3_l3xhj")
 
-[node name="PoopSprite" type="Sprite2D" parent="PoopBody"]
+[node name="PoopSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.04, 0.04)
-texture = ExtResource("2_l3xhj")
+sprite_frames = SubResource("SpriteFrames_l3xhj")
+autoplay = "default"
 
-[node name="PoopArea" type="Area2D" parent="PoopBody"]
+[node name="PoopArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 25
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PoopBody/PoopArea"]
+[node name="PoopAreaCollisionShape" type="CollisionPolygon2D" parent="PoopArea"]
 polygon = PackedVector2Array(6, -28, 21, -17, 24, -8, 24, -2, 33, 0, 38, 7, 37, 12, 40, 17, 41, 23, 38, 28, 29, 33, 14, 34, -3, 33, -16, 31, -21, 26, -23, 21, -22, 18, -17, 15, -18, 11, -18, 5, -14, 2, -8, 1, -5, -2, -3, -7, 3, -13, 6, -16, 7, -20, 6, -24, 5, -27)
 
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="area_entered" from="PoopBody/PoopArea" to="." method="_on_poop_area_area_entered"]
+[connection signal="area_entered" from="PoopArea" to="." method="_on_poop_area_area_entered"]

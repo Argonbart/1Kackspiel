@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://de7d57ns2qobq"]
+
+[ext_resource type="Script" uid="uid://f4yku5e8dprf" path="res://scripts/ice_explosion.gd" id="1_4yosi"]
+[ext_resource type="Texture2D" uid="uid://dlemcjsfork8s" path="res://assets/icecube.png" id="1_gwkhg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4yosi"]
+radius = 57.2189
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g1bam"]
+radius = 500.0
+
+[node name="IceExplosion" type="Node2D" node_paths=PackedStringArray("ice_area", "ice_particles") groups=["ice"]]
+script = ExtResource("1_4yosi")
+ice_area = NodePath("ExplosionArea")
+ice_particles = NodePath("Paricles/CPUParticles2D")
+
+[node name="TriggerHitbox" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 25
+
+[node name="TriggerHitboxCollisionShape" type="CollisionShape2D" parent="TriggerHitbox"]
+shape = SubResource("CircleShape2D_4yosi")
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 25
+
+[node name="ExplosionAreaCollisionShape" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("CircleShape2D_g1bam")
+
+[node name="Paricles" type="Node2D" parent="."]
+scale = Vector2(4, 4)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Paricles"]
+emitting = false
+amount = 2000
+texture = ExtResource("1_gwkhg")
+lifetime = 0.5
+one_shot = true
+randomness = 1.0
+fixed_fps = 60
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(0, 0)
+scale_amount_min = 0.01
+scale_amount_max = 0.01

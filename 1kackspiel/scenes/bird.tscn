@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://cm4xec5ngycft"]
+[gd_scene load_steps=33 format=3 uid="uid://cm4xec5ngycft"]
 
 [ext_resource type="Script" uid="uid://cf3yhgot6dmyf" path="res://scripts/bird.gd" id="1_3po83"]
 [ext_resource type="Texture2D" uid="uid://501y3kru52u2" path="res://assets/bird_spritesheet.png" id="2_3po83"]
+[ext_resource type="PackedScene" uid="uid://c25xab4l8sob6" path="res://scenes/poop.tscn" id="2_lm7xv"]
 [ext_resource type="Texture2D" uid="uid://dto1gdnkssbxp" path="res://assets/dive_down.png" id="3_hq4t0"]
 [ext_resource type="Texture2D" uid="uid://d26heagd18plq" path="res://assets/turning.png" id="4_twsrt"]
 [ext_resource type="AudioStream" uid="uid://d34jmdcx1eup7" path="res://sound/gurr.wav" id="5_b7mtg"]
@@ -14,6 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://ci23n1f277rsb" path="res://sound/sound_umbrella_destroyed.mp3" id="12_21s24"]
 [ext_resource type="AudioStream" uid="uid://ba10do51bqe1v" path="res://sound/poop2.mp3" id="13_ai2xt"]
 [ext_resource type="AudioStream" uid="uid://cuwnkqrbmkjt3" path="res://sound/poop3.mp3" id="14_e7a8l"]
+[ext_resource type="Script" uid="uid://bb13k3wojl7hc" path="res://scripts/poop_effect_manager.gd" id="16_mlfkm"]
+[ext_resource type="PackedScene" uid="uid://de7d57ns2qobq" path="res://scenes/ice_explosion.tscn" id="17_lm7xv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3po83"]
 atlas = ExtResource("2_3po83")
@@ -131,10 +134,10 @@ size = Vector2(128, 127)
 collision_layer = 2
 collision_mask = 81
 script = ExtResource("1_3po83")
-bird_sprite = NodePath("Sprite")
-camera = NodePath("Camera")
+bird_sprite = NodePath("BirdSprite")
+camera = NodePath("PlayerCamera")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="BirdSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -214.5)
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_qavic")
@@ -143,24 +146,19 @@ autoplay = "default"
 frame = 2
 frame_progress = 1.0
 
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
+[node name="BirdCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -214.5)
 shape = SubResource("RectangleShape2D_3po83")
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="."]
 
 [node name="BirdArea" type="Area2D" parent="." groups=["bird"]]
 collision_layer = 2
 collision_mask = 80
 
-[node name="CollisionShape" type="CollisionShape2D" parent="BirdArea"]
+[node name="BirdAreaCollisionShape" type="CollisionShape2D" parent="BirdArea"]
 position = Vector2(0, -214.5)
 shape = SubResource("RectangleShape2D_3po83")
-
-[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_bdh3x")
-volume_db = -22.0
-autoplay = true
 
 [node name="SoundPlayers" type="Node" parent="."]
 script = ExtResource("5_ehebh")
@@ -200,3 +198,14 @@ volume_db = -10.0
 [node name="Poop3Player" type="AudioStreamPlayer" parent="SoundPlayers"]
 stream = ExtResource("14_e7a8l")
 volume_db = -10.0
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("6_bdh3x")
+volume_db = -30.0
+autoplay = true
+
+[node name="PoopEffectManager" type="Node" parent="." node_paths=PackedStringArray("bird")]
+script = ExtResource("16_mlfkm")
+bird = NodePath("..")
+_POOP_SCENE = ExtResource("2_lm7xv")
+_ICE_EXPLOSION = ExtResource("17_lm7xv")

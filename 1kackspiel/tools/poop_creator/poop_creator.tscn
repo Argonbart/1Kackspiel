@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbo1vrbffajtm"]
+
+[ext_resource type="Script" uid="uid://0sclwy6xqu7n" path="res://tools/poop_creator/poop_creator.gd" id="1_n6xdg"]
+[ext_resource type="Texture2D" uid="uid://cyxekmtvxo0po" path="res://assets/Fire_Hotdog.png" id="2_urg1a"]
+[ext_resource type="Texture2D" uid="uid://brboakuou00dx" path="res://assets/pickup_hotdog_background.png" id="3_1mjcr"]
+[ext_resource type="SpriteFrames" uid="uid://cij46xoml5d22" path="res://sprite_frames/fire_sprite_frames.tres" id="4_xf60k"]
+[ext_resource type="Texture2D" uid="uid://cpfwki7sir61w" path="res://assets/pickup_berry.png" id="5_opdw5"]
+[ext_resource type="Texture2D" uid="uid://e6h2ipq40ary" path="res://assets/pickup_chestnut.png" id="6_84qpq"]
+
+[node name="PoopCreator" type="Node"]
+script = ExtResource("1_n6xdg")
+resource_name = "fire"
+poop_type = 2
+poop_color = Color(0.360867, 0.682562, 0.993735, 1)
+poop_amount = 2
+poop_sprite_frames = ExtResource("4_xf60k")
+poop_sprite_scaling = Vector2(0.4, 0.4)
+pick_up_icon = ExtResource("2_urg1a")
+pick_up_icon_background = ExtResource("3_1mjcr")
+pick_up_icon_scaling = Vector2(0.8, 0.8)
+
+[node name="BerriesReference" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_opdw5")
+
+[node name="YourPickUpSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("6_84qpq")

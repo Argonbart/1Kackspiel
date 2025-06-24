@@ -51,11 +51,10 @@ bird = NodePath("../Bird")
 wait_time = 4.0
 autostart = true
 
-[node name="UI" parent="." node_paths=PackedStringArray("bird") instance=ExtResource("6_qfnet")]
-bird = NodePath("../Bird")
+[node name="UI" parent="." instance=ExtResource("6_qfnet")]
 
 [node name="PickUps" parent="." instance=ExtResource("8_4mrxx")]
 
-[node name="PickUpEffectManager" type="Node" parent="."]
+[node name="Poops" type="Node2D" parent="."]
 
 [connection signal="timeout" from="Human Spawner/Timer" to="Human Spawner" method="_on_timer_timeout"]

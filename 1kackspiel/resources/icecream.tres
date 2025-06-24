@@ -1,14 +1,17 @@
-[gd_resource type="Resource" script_class="PickUp" load_steps=4 format=3 uid="uid://clive6y0udkoa"]
+[gd_resource type="Resource" script_class="PoopResource" load_steps=5 format=3 uid="uid://clive6y0udkoa"]
 
 [ext_resource type="Texture2D" uid="uid://di0v7nlls43f1" path="res://assets/pickup_icecream.png" id="1_ckb0d"]
 [ext_resource type="Texture2D" uid="uid://bgkndxdsipool" path="res://assets/pickup_icecream_background.png" id="2_ebg50"]
-[ext_resource type="Script" uid="uid://dfcfw6bulxxl4" path="res://scripts/pick_up_resource.gd" id="3_1lw65"]
+[ext_resource type="Script" uid="uid://dfcfw6bulxxl4" path="res://tools/poop_creator/poop_resource.gd" id="3_1lw65"]
+[ext_resource type="SpriteFrames" uid="uid://dmlg7d75m7ykq" path="res://sprite_frames/ice_sprite_frames.tres" id="3_ebg50"]
 
 [resource]
 script = ExtResource("3_1lw65")
-type = 2
-color = Color(0.360867, 0.682562, 0.993735, 1)
-amount = 2
-icon = ExtResource("1_ckb0d")
-icon_background = ExtResource("2_ebg50")
-icon_scaling = Vector2(0.05, 0.05)
+poop_type = 3
+poop_color = Color(0.360784, 0.682353, 0.992157, 1)
+poop_amount = 2
+poop_sprite_frames = ExtResource("3_ebg50")
+poop_sprite_scaling = Vector2(0, 0)
+pick_up_icon = ExtResource("1_ckb0d")
+pick_up_icon_background = ExtResource("2_ebg50")
+pick_up_icon_scaling = Vector2(0.05, 0.05)
