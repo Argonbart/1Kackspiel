@@ -25,6 +25,10 @@ var diving_diff: float = 0.0
 var currently_executing_command: bool = false
 
 
+func _ready():
+	Globals.invert_direction = false;
+
+
 func _process(delta):
 	position.x += FLYING_SPEED * delta * pow(-1, Globals.invert_direction)
 	if position.x < LEFT_BOUNDRY or position.x > RIGHT_BOUNDRY:

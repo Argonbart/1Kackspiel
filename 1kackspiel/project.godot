@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="1Kackspiel"
-run/main_scene="uid://b87flovmmqdy6"
+run/main_scene="uid://dc06ec8pucmt1"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
@@ -20,6 +20,8 @@ config/icon="res://assets/icon.svg"
 Globals="*res://scripts/globals.gd"
 SoundManager="*res://scripts/sound_manager.gd"
 AmmunitionManager="*res://scripts/ammunition_manager.gd"
+GameStateManager="*res://scripts/game_state_manager.gd"
+SceneSwitcher="*res://scripts/scene_switcher.gd"
 
 [display]
 

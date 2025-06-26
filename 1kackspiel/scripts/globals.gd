@@ -2,23 +2,16 @@ extends Node
 
 
 # signals
-signal item_collected(pick_up_type: Enum.PoopType)
-signal pooped()
+signal item_collected(poop_type: Enum.PoopType)
+signal hide_ui()
 
+# poop resource paths
 const POOP_RESOURCE_BERRIES = preload("res://resources/berries.tres")
 const POOP_RESOURCE_CHESTNUT = preload("res://resources/chestnut.tres")
 const POOP_RESOURCE_HOTDOG = preload("res://resources/hotdog.tres")
 const POOP_RESOURCE_ICECREAM = preload("res://resources/icecream.tres")
 
-# movement variables
-var invert_direction: bool = false # 0 = nach rechts ; 1 = nach links
-
-# counter
-var countdown: int
-
-#score
-var score: int
-
+# poop resources
 var poop_resources = {
 	Enum.PoopType.BERRIES : POOP_RESOURCE_BERRIES,
 	Enum.PoopType.CHESTNUT : POOP_RESOURCE_CHESTNUT,
@@ -26,10 +19,15 @@ var poop_resources = {
 	Enum.PoopType.ICECREAM : POOP_RESOURCE_ICECREAM,
 }
 
+# variables
+var invert_direction: bool = false # 0 = nach rechts ; 1 = nach links
+var countdown: int
+var score: int
+
 
 func _ready():
 	item_collected.get_name()
-	pooped.get_name()
+	hide_ui.get_name()
 
 
 ## Collision Layers:

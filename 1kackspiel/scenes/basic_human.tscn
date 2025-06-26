@@ -150,8 +150,8 @@ _SPAWN_CHANCE_HOTDOG = 1.0
 _SPAWN_CHANCE_ICECREAM = 0.0
 _SPAWN_CHANCE_RIGHT_NOTHING = 0.0
 _SPAWN_CHANCE_HEAD = 0.0
-_SPAWN_CHANCE_UMBRELLA = 1.0
-_SPAWN_CHANCE_NET = 0.0
+_SPAWN_CHANCE_UMBRELLA = 0.0
+_SPAWN_CHANCE_NET = 1.0
 _SPAWN_CHANCE_LEFT_NOTHING = 0.0
 human_sprite = NodePath("HumanSprite")
 left_hand_point = NodePath("LeftHandPoint")
@@ -175,10 +175,11 @@ shape = ExtResource("7_np2id")
 wait_time = 2.0
 autostart = true
 
-[node name="HumanArea" type="Area2D" parent="." groups=["can_get_damage", "human"]]
+[node name="HumanArea" type="Area2D" parent="." node_paths=PackedStringArray("human") groups=["can_get_damage", "human"]]
 collision_layer = 8
 collision_mask = 132
 script = ExtResource("8_c3l26")
+human = NodePath("..")
 
 [node name="HumanAreaCollisionShape" type="CollisionShape2D" parent="HumanArea"]
 shape = ExtResource("7_np2id")

@@ -14,6 +14,7 @@ var loading_poop: bool = false
 func _ready():
 	init_poop_containers()
 	Globals.connect("item_collected", add_ammo)
+	Globals.connect("hide_ui", hide)
 	AmmunitionManager.connect("use_ammo", move_container)
 
 
