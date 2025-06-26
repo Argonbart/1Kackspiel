@@ -4,8 +4,6 @@ extends Node2D
 
 signal explosion_finished()
 
-
-@export var ice_area: Area2D
 @export var ice_particles: CPUParticles2D
 
 var damageable_objects: Array = []

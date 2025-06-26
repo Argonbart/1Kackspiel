@@ -6,10 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_g1bam"]
 radius = 500.0
 
-[node name="IceExplosion" type="Node2D" node_paths=PackedStringArray("ice_area", "ice_particles") groups=["ice"]]
+[node name="IceExplosion" type="Node2D" node_paths=PackedStringArray("ice_particles") groups=["ice"]]
 script = ExtResource("1_4yosi")
-ice_area = NodePath("ExplosionArea")
-ice_particles = NodePath("Particles/CPUParticles2D")
+ice_particles = NodePath("ParticlesScaling/Particles")
 
 [node name="ExplosionArea" type="Area2D" parent="."]
 collision_layer = 128
@@ -18,10 +17,10 @@ collision_mask = 25
 [node name="ExplosionAreaCollisionShape" type="CollisionShape2D" parent="ExplosionArea"]
 shape = SubResource("CircleShape2D_g1bam")
 
-[node name="Particles" type="Node2D" parent="."]
+[node name="ParticlesScaling" type="Node2D" parent="."]
 scale = Vector2(4, 4)
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Particles"]
+[node name="Particles" type="CPUParticles2D" parent="ParticlesScaling"]
 emitting = false
 amount = 2000
 texture = ExtResource("1_gwkhg")

@@ -1,11 +1,4 @@
-extends Control
-
-@export var game_over_sprite : Sprite2D
-@export var resetGameButton: TextureButton
-
-func _ready():
-	game_over_sprite.position.x = get_viewport_rect().size.x / 2
-	resetGameButton.grab_focus()
+extends Node2D
 
 
 func _input(event: InputEvent) -> void:

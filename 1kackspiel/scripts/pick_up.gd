@@ -3,9 +3,9 @@ extends Node
 
 
 @export var poop_resource: PoopResource
-@export var pick_up_sprite: Sprite2D
-@export var pick_up_background_sprite: Sprite2D
 @export var pick_up_background_color: Color 
+@export var pick_up_background_sprite: Sprite2D
+@export var pick_up_sprite: Sprite2D
 
 
 func set_resource(_poop_resource: PoopResource):
@@ -22,6 +22,6 @@ func _ready() -> void:
 
 func _on_pick_up_area_area_entered(area: Area2D):
 	if area.get_groups().has("bird"):
-		Globals.item_collected.emit(poop_resource.poop_type)
 		SoundManager.play_sound.emit("pickup")
+		Globals.item_collected.emit(poop_resource.poop_type)
 		queue_free()

@@ -9,10 +9,10 @@ collision_layer = 64
 collision_mask = 2
 script = ExtResource("1_i41qj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="NetSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_h6vps")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="NetCollisionShape" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(1, -20, -124, -56, -233, -101, -311, -153, -242, -216, -107, -278, 49, -326, 159, -321, 226, -291, 234, -205, 199, -111, 141, -54, 55, -22)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

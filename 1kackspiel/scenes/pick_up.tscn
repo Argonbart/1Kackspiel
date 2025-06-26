@@ -12,11 +12,11 @@ shader = ExtResource("4_a7jki")
 [sub_resource type="CircleShape2D" id="CircleShape2D_c468w"]
 radius = 22.0
 
-[node name="PickUp" type="Node2D" node_paths=PackedStringArray("pick_up_sprite", "pick_up_background_sprite")]
+[node name="PickUp" type="Node2D" node_paths=PackedStringArray("pick_up_background_sprite", "pick_up_sprite")]
 script = ExtResource("1_adew5")
-pick_up_sprite = NodePath("PickUpSprite")
-pick_up_background_sprite = NodePath("PickUpBackgroundSprite")
 pick_up_background_color = Color(0.337255, 1, 0, 0.215686)
+pick_up_background_sprite = NodePath("PickUpBackgroundSprite")
+pick_up_sprite = NodePath("PickUpSprite")
 
 [node name="PickUpBackgroundSprite" type="Sprite2D" parent="."]
 self_modulate = Color(0.337255, 1, 0, 0.215686)

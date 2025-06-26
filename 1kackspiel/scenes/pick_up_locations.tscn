@@ -7,7 +7,11 @@
 [node name="PickUps" type="Node2D"]
 
 [node name="Berry1" parent="." instance=ExtResource("1_ecy7l")]
-position = Vector2(1903, 471)
+position = Vector2(-4050, 484)
+poop_resource = ExtResource("2_ncabn")
+
+[node name="Berry2" parent="." instance=ExtResource("1_ecy7l")]
+position = Vector2(-2534, 492)
 poop_resource = ExtResource("2_ncabn")
 
 [node name="Berry3" parent="." instance=ExtResource("1_ecy7l")]
@@ -15,18 +19,14 @@ position = Vector2(-951, 481)
 poop_resource = ExtResource("2_ncabn")
 
 [node name="Berry4" parent="." instance=ExtResource("1_ecy7l")]
-position = Vector2(-2534, 492)
+position = Vector2(1903, 471)
 poop_resource = ExtResource("2_ncabn")
 
 [node name="Berry5" parent="." instance=ExtResource("1_ecy7l")]
-position = Vector2(-4050, 484)
-poop_resource = ExtResource("2_ncabn")
-
-[node name="Berry2" parent="." instance=ExtResource("1_ecy7l")]
 position = Vector2(3389, 463)
 poop_resource = ExtResource("2_ncabn")
 
-[node name="Chestnut" parent="." instance=ExtResource("1_ecy7l")]
+[node name="Chestnut1" parent="." instance=ExtResource("1_ecy7l")]
 position = Vector2(-4259, 384)
 poop_resource = ExtResource("2_ecy7l")
 

@@ -7,18 +7,18 @@
 [node name="UI" type="CanvasLayer" node_paths=PackedStringArray("containers")]
 script = ExtResource("1_yev5y")
 _POOP_CONTAINER = ExtResource("2_yev5y")
-containers = NodePath("MarginContainer/HBoxContainer")
+containers = NodePath("PoopsMarginContainer/PoopsHBox")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="PoopsMarginContainer" type="MarginContainer" parent="."]
 offset_right = 70.0
 offset_bottom = 20.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="PoopsHBox" type="HBoxContainer" parent="PoopsMarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="."]
+[node name="ScoreMarginContainer" type="MarginContainer" parent="."]
 offset_left = 948.0
 offset_top = 60.245
 offset_right = 1125.0
@@ -26,14 +26,14 @@ offset_bottom = 125.245
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer3"]
+[node name="ScoreLabel" type="Label" parent="ScoreMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Score: 100"
 
-[node name="MarginContainer2" type="MarginContainer" parent="." node_paths=PackedStringArray("timer", "countdown_label", "score_label")]
+[node name="TimeMarginContainer" type="MarginContainer" parent="." node_paths=PackedStringArray("countdown_label", "score_label")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -45,16 +45,15 @@ grow_horizontal = 0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 script = ExtResource("2_x4jx1")
-timer = NodePath("Timer")
 countdown_label = NodePath("CountdownLabel")
-score_label = NodePath("../MarginContainer3/ScoreLabel")
+score_label = NodePath("../ScoreMarginContainer/ScoreLabel")
 
-[node name="CountdownLabel" type="Label" parent="MarginContainer2"]
+[node name="CountdownLabel" type="Label" parent="TimeMarginContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "00:00"
 
-[node name="Timer" type="Timer" parent="MarginContainer2"]
+[node name="Timer" type="Timer" parent="TimeMarginContainer"]
 
-[connection signal="timeout" from="MarginContainer2/Timer" to="MarginContainer2" method="_on_timer_timeout"]
+[connection signal="timeout" from="TimeMarginContainer/Timer" to="TimeMarginContainer" method="_on_timer_timeout"]

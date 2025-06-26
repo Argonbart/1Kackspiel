@@ -14,7 +14,7 @@ func _process(delta):
 
 # umbrealla hit
 func _on_area_entered(area: Area2D) -> void:
-	if area.name == "PoopArea":
+	if area.get_groups().has("poop"):
 		SoundManager.play_sound.emit("umbrella_destroyed")
 		area.get_parent().explode_on_impact()
 

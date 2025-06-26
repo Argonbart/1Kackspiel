@@ -9,6 +9,7 @@ script = ExtResource("4_72i0e")
 poop_type = 0
 poop_color = Color(0.545098, 0.180392, 0, 0.392157)
 poop_amount = 3
+poop_sprite_scaling = Vector2(0, 0)
 pick_up_icon = ExtResource("1_wpews")
 pick_up_icon_background = ExtResource("2_if2ea")
 pick_up_icon_scaling = Vector2(0.1, 0.1)

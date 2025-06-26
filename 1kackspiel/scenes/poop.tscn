@@ -36,7 +36,7 @@ scale = Vector2(0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_l3xhj")
 autoplay = "default"
 
-[node name="PoopArea" type="Area2D" parent="."]
+[node name="PoopArea" type="Area2D" parent="." groups=["poop"]]
 collision_layer = 4
 collision_mask = 25
 
