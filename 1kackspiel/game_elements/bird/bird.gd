@@ -46,10 +46,6 @@ func _input(event: InputEvent) -> void:
 
 
 func button_pressed():
-	
-	if currently_executing_command:
-		return
-	
 	time_when_button_was_pressed = Time.get_unix_time_from_system()
 
 

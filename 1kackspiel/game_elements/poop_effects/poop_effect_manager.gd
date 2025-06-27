@@ -9,6 +9,7 @@ extends Node
 @export var _POOP_SCENE: PackedScene
 @export var _ICE_EXPLOSION: PackedScene
 @export var _CHESTNUT_EXPLOSION: PackedScene
+@export var _FIRE_EFFECT: PackedScene
 
 
 func _ready() -> void:
@@ -26,22 +27,27 @@ func activate_poop_effect():
 	
 	match AmmunitionManager.next_ammo_type:
 		Enum.PoopType.BERRY: # throw single normal poop
+			AmmunitionManager.next_ammo.emit()
 			new_poop.global_position = bird.bird_sprite.global_position + Vector2(0.0, 100.0)
 			get_parent().get_parent().find_child("Poops").add_child(new_poop)
 		Enum.PoopType.CHESTNUT: # spawn chestnut bomb
+			AmmunitionManager.next_ammo.emit()
 			new_poop.global_position = bird.bird_sprite.global_position + Vector2(0.0, 100.0)
 			get_parent().get_parent().find_child("Poops").add_child(new_poop)
 			var chestnut_explosion = _CHESTNUT_EXPLOSION.instantiate()
 			new_poop.add_child(chestnut_explosion)
 		Enum.PoopType.FIRE: # throw multiple fire poops
+			AmmunitionManager.next_ammo.emit()
 			for i in range(_FIRE_POOP_AMOUNT):
 				var fire_poop = new_poop.duplicate()
 				fire_poop.global_position = bird.bird_sprite.global_position + Vector2(0.0, 100.0)
 				get_parent().get_parent().find_child("Poops").add_child(fire_poop)
+				var fire_effect = _FIRE_EFFECT.instantiate()
+				fire_poop.add_child(fire_effect)
 				await get_tree().create_timer(0.1).timeout
 		Enum.PoopType.ICE: # spawn big ice bomb
+			AmmunitionManager.next_ammo.emit()
 			new_poop.global_position = bird.bird_sprite.global_position + Vector2(0.0, 100.0)
 			get_parent().get_parent().find_child("Poops").add_child(new_poop)
 			var ice_explosion = _ICE_EXPLOSION.instantiate()
 			new_poop.add_child(ice_explosion)
-	AmmunitionManager.next_ammo.emit()

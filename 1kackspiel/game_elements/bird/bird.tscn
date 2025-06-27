@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cm4xec5ngycft"]
+[gd_scene load_steps=35 format=3 uid="uid://cm4xec5ngycft"]
 
 [ext_resource type="Script" uid="uid://cf3yhgot6dmyf" path="res://game_elements/bird/bird.gd" id="1_3po83"]
 [ext_resource type="Texture2D" uid="uid://501y3kru52u2" path="res://assets/bird/bird_flying.png" id="2_3po83"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://bb13k3wojl7hc" path="res://game_elements/poop_effects/poop_effect_manager.gd" id="16_mlfkm"]
 [ext_resource type="PackedScene" uid="uid://de7d57ns2qobq" path="res://game_elements/poop_effects/ice/ice_explosion.tscn" id="17_lm7xv"]
 [ext_resource type="PackedScene" uid="uid://bhscgdynxm7oq" path="res://game_elements/poop_effects/chestnut/explosion/chestnut_explosion.tscn" id="18_y6ysx"]
+[ext_resource type="PackedScene" uid="uid://b2227pu0nvm51" path="res://game_elements/poop_effects/fire/fire_effect.tscn" id="19_67r2r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3po83"]
 atlas = ExtResource("2_3po83")
@@ -203,5 +204,6 @@ bird = NodePath("..")
 _POOP_SCENE = ExtResource("2_lm7xv")
 _ICE_EXPLOSION = ExtResource("17_lm7xv")
 _CHESTNUT_EXPLOSION = ExtResource("18_y6ysx")
+_FIRE_EFFECT = ExtResource("19_67r2r")
 
 [connection signal="area_entered" from="BirdArea" to="." method="_on_bird_area_area_entered"]

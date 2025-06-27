@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2227pu0nvm51"]
+
+[sub_resource type="Gradient" id="Gradient_nt46l"]
+offsets = PackedFloat32Array(0, 0.336391, 0.651376, 1)
+colors = PackedColorArray(0.745098, 0.196078, 0.462745, 1, 1, 0, 0, 1, 1, 0.418053, 0, 1, 1, 1, 0, 1)
+
+[node name="FireEffect" type="Node2D"]
+scale = Vector2(10, 10)
+
+[node name="FireParticles" type="CPUParticles2D" parent="."]
+amount = 200
+lifetime = 0.2
+speed_scale = 0.4
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector2(0, -1)
+spread = 40.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_max = 5.0
+color_initial_ramp = SubResource("Gradient_nt46l")
