@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://5kpma8i70u3"]
+
+[ext_resource type="Script" uid="uid://cenrydhi4iq3e" path="res://game_elements/ui/ui.gd" id="1_yev5y"]
+[ext_resource type="PackedScene" uid="uid://c5g4j2sgg1sc1" path="res://game_elements/ui/poop_container.tscn" id="2_yev5y"]
+
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("containers", "one_second_timer", "countdown_label", "score_label")]
+script = ExtResource("1_yev5y")
+containers = NodePath("PoopsMarginContainer/PoopsHBox")
+one_second_timer = NodePath("TimeMarginContainer/OneSecondTimer")
+countdown_label = NodePath("TimeMarginContainer/CountdownLabel")
+score_label = NodePath("ScoreMarginContainer/ScoreLabel")
+_POOP_CONTAINER = ExtResource("2_yev5y")
+
+[node name="PoopsMarginContainer" type="MarginContainer" parent="."]
+offset_right = 70.0
+offset_bottom = 20.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="PoopsHBox" type="HBoxContainer" parent="PoopsMarginContainer"]
+layout_mode = 2
+
+[node name="ScoreMarginContainer" type="MarginContainer" parent="."]
+offset_left = 948.0
+offset_top = 60.245
+offset_right = 1125.0
+offset_bottom = 125.245
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="ScoreLabel" type="Label" parent="ScoreMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Score: 100"
+
+[node name="TimeMarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -127.0
+offset_top = 10.0
+offset_right = -25.0
+offset_bottom = 75.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="CountdownLabel" type="Label" parent="TimeMarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "00:00"
+
+[node name="OneSecondTimer" type="Timer" parent="TimeMarginContainer"]
+
+[connection signal="timeout" from="TimeMarginContainer/OneSecondTimer" to="." method="_on_one_second_timer_timeout"]

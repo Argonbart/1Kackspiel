@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://b8r5bpw50i8rd"]
+
+[ext_resource type="Texture2D" uid="uid://b7mx7pomg2s6q" path="res://assets/poop_effects/berry/berry_sprite.png" id="1_sqqte"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5htbl"]
+atlas = ExtResource("1_sqqte")
+region = Rect2(0, 0, 2048, 2048)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5htbl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PoopResource" load_steps=5 format=3 uid="uid://qr6xt0otwj4h"]
+
+[ext_resource type="Texture2D" uid="uid://e6h2ipq40ary" path="res://assets/poop_effects/chestnut/chestnut_pickup_item.png" id="1_mgafy"]
+[ext_resource type="Texture2D" uid="uid://cdj24txadm32w" path="res://assets/poop_effects/chestnut/chestnut_pickup_item_bg.png" id="2_quiln"]
+[ext_resource type="SpriteFrames" uid="uid://djoig4peakenk" path="res://resources/sprite_frames/chestnut_sprite_frames.tres" id="3_ixjm8"]
+[ext_resource type="Script" uid="uid://dfcfw6bulxxl4" path="res://resources/poop_creator_tool/poop_resource.gd" id="4_lxrx5"]
+
+[resource]
+script = ExtResource("4_lxrx5")
+poop_type = 1
+poop_color = Color(0.772549, 0.654902, 0.113725, 1)
+poop_amount = 4
+poop_sprite_frames = ExtResource("3_ixjm8")
+poop_sprite_scaling = Vector2(0.03, 0.03)
+pick_up_icon = ExtResource("1_mgafy")
+pick_up_icon_background = ExtResource("2_quiln")
+pick_up_icon_scaling = Vector2(0.08, 0.08)

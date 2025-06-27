@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://c25xab4l8sob6"]
+
+[ext_resource type="Script" uid="uid://wxgakxl7g3u3" path="res://game_elements/poop/poop.gd" id="2_pkbnx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x0ywk"]
+
+[sub_resource type="Gradient" id="Gradient_eamhn"]
+colors = PackedColorArray(0.611765, 0.321569, 0, 1, 0.184228, 0.080109, 1.8049e-08, 1)
+
+[node name="Poop" type="Node2D" node_paths=PackedStringArray("poop_color_sprite", "poop_sprite", "poop_area", "poop_particles")]
+script = ExtResource("2_pkbnx")
+poop_color_sprite = NodePath("PoopSpriteColor")
+poop_sprite = NodePath("PoopSprite")
+poop_area = NodePath("PoopArea")
+poop_particles = NodePath("PoopParticles")
+
+[node name="PoopSpriteColor" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
+self_modulate = Color(0.545098, 0.180392, 0, 1)
+scale = Vector2(0.04, 0.04)
+
+[node name="PoopSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.04, 0.04)
+sprite_frames = SubResource("SpriteFrames_x0ywk")
+autoplay = "default"
+
+[node name="PoopArea" type="Area2D" parent="." groups=["poop"]]
+
+[node name="PoopAreaCollisionShape" type="CollisionPolygon2D" parent="PoopArea"]
+polygon = PackedVector2Array(6, -28, 21, -17, 24, -8, 24, -2, 33, 0, 38, 7, 37, 12, 40, 17, 41, 23, 38, 28, 29, 33, 14, 34, -3, 33, -16, 31, -21, 26, -23, 21, -22, 18, -17, 15, -18, 11, -18, 5, -14, 2, -8, 1, -5, -2, -3, -7, 3, -13, 6, -16, 7, -20, 6, -24, 5, -27)
+
+[node name="PoopParticles" type="CPUParticles2D" parent="."]
+position = Vector2(9, 34)
+emitting = false
+amount = 200
+lifetime = 5.0
+one_shot = true
+speed_scale = 20.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_eamhn")
+
+[connection signal="area_entered" from="PoopArea" to="." method="_on_poop_area_area_entered"]

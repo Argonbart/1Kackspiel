@@ -1,0 +1,207 @@
+[gd_scene load_steps=34 format=3 uid="uid://cm4xec5ngycft"]
+
+[ext_resource type="Script" uid="uid://cf3yhgot6dmyf" path="res://game_elements/bird/bird.gd" id="1_3po83"]
+[ext_resource type="Texture2D" uid="uid://501y3kru52u2" path="res://assets/bird/bird_flying.png" id="2_3po83"]
+[ext_resource type="PackedScene" uid="uid://c25xab4l8sob6" path="res://game_elements/poop/poop.tscn" id="2_lm7xv"]
+[ext_resource type="Texture2D" uid="uid://dto1gdnkssbxp" path="res://assets/bird/bird_diving.png" id="3_hq4t0"]
+[ext_resource type="Texture2D" uid="uid://d26heagd18plq" path="res://assets/bird/bird_turning.png" id="4_twsrt"]
+[ext_resource type="AudioStream" uid="uid://d34jmdcx1eup7" path="res://resources/sounds/gurr.wav" id="5_b7mtg"]
+[ext_resource type="Script" uid="uid://cp1xbtd4sgr1" path="res://game_elements/sound/soundplayers.gd" id="5_ehebh"]
+[ext_resource type="AudioStream" uid="uid://bxc1tofb253bf" path="res://resources/sounds/music.mp3" id="6_bdh3x"]
+[ext_resource type="AudioStream" uid="uid://da3insmh5pa2o" path="res://resources/sounds/death.mp3" id="6_hrcfq"]
+[ext_resource type="AudioStream" uid="uid://jdta87cq6igf" path="res://resources/sounds/swoop.mp3" id="6_jggmu"]
+[ext_resource type="AudioStream" uid="uid://cny76lu1lwo" path="res://resources/sounds/pickup.mp3" id="10_qavic"]
+[ext_resource type="AudioStream" uid="uid://x465t35xwt7c" path="res://resources/sounds/direction_change.mp3" id="11_ifiym"]
+[ext_resource type="AudioStream" uid="uid://ci23n1f277rsb" path="res://resources/sounds/sound_umbrella_destroyed.mp3" id="12_21s24"]
+[ext_resource type="AudioStream" uid="uid://ba10do51bqe1v" path="res://resources/sounds/poop2.mp3" id="13_ai2xt"]
+[ext_resource type="AudioStream" uid="uid://cuwnkqrbmkjt3" path="res://resources/sounds/poop3.mp3" id="14_e7a8l"]
+[ext_resource type="Script" uid="uid://bb13k3wojl7hc" path="res://game_elements/poop_effects/poop_effect_manager.gd" id="16_mlfkm"]
+[ext_resource type="PackedScene" uid="uid://de7d57ns2qobq" path="res://game_elements/poop_effects/ice/ice_explosion.tscn" id="17_lm7xv"]
+[ext_resource type="PackedScene" uid="uid://bhscgdynxm7oq" path="res://game_elements/poop_effects/chestnut/explosion/chestnut_explosion.tscn" id="18_y6ysx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3po83"]
+atlas = ExtResource("2_3po83")
+region = Rect2(0, 0, 1130, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hq4t0"]
+atlas = ExtResource("2_3po83")
+region = Rect2(1130, 0, 1130, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twsrt"]
+atlas = ExtResource("2_3po83")
+region = Rect2(2260, 0, 1130, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7mtg"]
+atlas = ExtResource("2_3po83")
+region = Rect2(3390, 0, 1130, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdh3x"]
+atlas = ExtResource("2_3po83")
+region = Rect2(4520, 0, 1130, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jggmu"]
+atlas = ExtResource("2_3po83")
+region = Rect2(5650, 0, 1130, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrcfq"]
+atlas = ExtResource("2_3po83")
+region = Rect2(6780, 0, 1130, 1110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehebh"]
+atlas = ExtResource("3_hq4t0")
+region = Rect2(0, 0, 1029, 1019)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qavic"]
+atlas = ExtResource("3_hq4t0")
+region = Rect2(1029, 0, 1029, 1019)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifiym"]
+atlas = ExtResource("3_hq4t0")
+region = Rect2(2058, 0, 1029, 1019)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21s24"]
+atlas = ExtResource("4_twsrt")
+region = Rect2(0, 0, 1046, 1019)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wujcm"]
+atlas = ExtResource("4_twsrt")
+region = Rect2(1046, 0, 1046, 1019)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ai2xt"]
+atlas = ExtResource("4_twsrt")
+region = Rect2(2092, 0, 1046, 1019)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qavic"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3po83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hq4t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twsrt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7mtg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdh3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jggmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrcfq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehebh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qavic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifiym")
+}],
+"loop": true,
+"name": &"dive_down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21s24")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_wujcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ai2xt")
+}],
+"loop": false,
+"name": &"turning",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3po83"]
+size = Vector2(128, 127)
+
+[node name="Bird" type="Node2D" node_paths=PackedStringArray("bird_sprite", "camera")]
+script = ExtResource("1_3po83")
+bird_sprite = NodePath("BirdSprite")
+camera = NodePath("PlayerCamera")
+
+[node name="BirdSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -214.5)
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_qavic")
+animation = &"turning"
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+
+[node name="BirdArea" type="Area2D" parent="." groups=["bird"]]
+
+[node name="BirdAreaCollisionShape" type="CollisionShape2D" parent="BirdArea"]
+position = Vector2(0, -214.5)
+shape = SubResource("RectangleShape2D_3po83")
+
+[node name="SoundPlayers" type="Node" parent="."]
+script = ExtResource("5_ehebh")
+
+[node name="SwoopPlayer" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("6_jggmu")
+volume_db = -20.0
+
+[node name="DeathPlayer" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("6_hrcfq")
+volume_db = -20.0
+
+[node name="GurrPlayer" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("5_b7mtg")
+volume_db = -20.0
+
+[node name="PickUpPlayer" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("10_qavic")
+volume_db = -10.0
+
+[node name="DirectionChangePlayer" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("11_ifiym")
+volume_db = -10.0
+
+[node name="UmbreallDestroyedPlayer" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("12_21s24")
+volume_db = -10.0
+
+[node name="Poop1Player" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("12_21s24")
+volume_db = -10.0
+
+[node name="Poop2Player" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("13_ai2xt")
+volume_db = -10.0
+
+[node name="Poop3Player" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("14_e7a8l")
+volume_db = -10.0
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("6_bdh3x")
+volume_db = -30.0
+autoplay = true
+
+[node name="PoopEffectManager" type="Node" parent="." node_paths=PackedStringArray("bird")]
+script = ExtResource("16_mlfkm")
+bird = NodePath("..")
+_POOP_SCENE = ExtResource("2_lm7xv")
+_ICE_EXPLOSION = ExtResource("17_lm7xv")
+_CHESTNUT_EXPLOSION = ExtResource("18_y6ysx")
+
+[connection signal="area_entered" from="BirdArea" to="." method="_on_bird_area_area_entered"]

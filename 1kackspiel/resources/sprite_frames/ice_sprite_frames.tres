@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://dmlg7d75m7ykq"]
+
+[ext_resource type="Texture2D" uid="uid://dlemcjsfork8s" path="res://assets/poop_effects/ice/ice_sprite.png" id="1_c2r8m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lw65"]
+atlas = ExtResource("1_c2r8m")
+region = Rect2(0, 0, 2048, 2048)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1lw65")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

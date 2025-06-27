@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://coce66ftult4a"]
+
+[ext_resource type="Script" uid="uid://df1i34s0jw5la" path="res://game_elements/pick_up/pick_up.gd" id="1_adew5"]
+[ext_resource type="Shader" uid="uid://b48g1knbq0xjw" path="res://resources/shader/hovering.gdshader" id="4_a7jki"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7jki"]
+shader = ExtResource("4_a7jki")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8tsvk"]
+shader = ExtResource("4_a7jki")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c468w"]
+radius = 22.0
+
+[node name="PickUp" type="Node2D" node_paths=PackedStringArray("pick_up_background_sprite", "pick_up_sprite")]
+script = ExtResource("1_adew5")
+pick_up_background_color = Color(0.337255, 1, 0, 0.215686)
+pick_up_background_sprite = NodePath("PickUpBackgroundSprite")
+pick_up_sprite = NodePath("PickUpSprite")
+
+[node name="PickUpBackgroundSprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.337255, 1, 0, 0.215686)
+material = SubResource("ShaderMaterial_a7jki")
+scale = Vector2(0.1, 0.1)
+
+[node name="PickUpSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8tsvk")
+scale = Vector2(0.1, 0.1)
+
+[node name="PickUpArea" type="Area2D" parent="." groups=["pick_up"]]
+
+[node name="PickUpCollisionShape" type="CollisionShape2D" parent="PickUpArea"]
+shape = SubResource("CircleShape2D_c468w")

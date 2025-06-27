@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cms7plw3hgaj5"]
+
+[ext_resource type="Texture2D" uid="uid://bvbujl81dowds" path="res://assets/poop_effects/chestnut/chestnut_sprite.png" id="1_ielfb"]
+[ext_resource type="Script" uid="uid://cvggrqxiaoae7" path="res://game_elements/poop_effects/chestnut/projectile/chestnut_projectile.gd" id="2_ptog3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34vit"]
+radius = 500.0
+
+[node name="ChestnutProjectile" type="Sprite2D"]
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("1_ielfb")
+script = ExtResource("2_ptog3")
+
+[node name="ChestnutProjectileArea" type="Area2D" parent="."]
+
+[node name="ChestnutProjectileCollisionShape" type="CollisionShape2D" parent="ChestnutProjectileArea"]
+shape = SubResource("CircleShape2D_34vit")
+
+[connection signal="area_entered" from="ChestnutProjectileArea" to="." method="_on_chestnut_projectile_area_area_entered"]

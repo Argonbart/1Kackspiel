@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://cij46xoml5d22"]
+
+[ext_resource type="Texture2D" uid="uid://bvi7sdrbkfoou" path="res://assets/poop_effects/fire/fire_sprite.png" id="1_i4qg3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myftd"]
+atlas = ExtResource("1_i4qg3")
+region = Rect2(0, 0, 1337, 1419)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3dfv"]
+atlas = ExtResource("1_i4qg3")
+region = Rect2(1337, 0, 1337, 1419)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxga1"]
+atlas = ExtResource("1_i4qg3")
+region = Rect2(2674, 0, 1337, 1419)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hybfl"]
+atlas = ExtResource("1_i4qg3")
+region = Rect2(4011, 0, 1337, 1419)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myftd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3dfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxga1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hybfl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]

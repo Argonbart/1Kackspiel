@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci6aqmfys2paw"]
+
+[ext_resource type="Texture2D" uid="uid://bbyfirxqjaa25" path="res://assets/human_extras/hat.png" id="1_uepus"]
+[ext_resource type="Script" uid="uid://cp3mq7pbtdgxm" path="res://game_elements/hat/hat.gd" id="1_y2nui"]
+[ext_resource type="Shader" uid="uid://b48g1knbq0xjw" path="res://resources/shader/hovering.gdshader" id="2_dvrgv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cyt3v"]
+shader = ExtResource("2_dvrgv")
+
+[node name="Hat" type="Area2D" groups=["can_get_damage", "can_get_hit", "hat"]]
+scale = Vector2(0.03, 0.03)
+script = ExtResource("1_y2nui")
+
+[node name="HatSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cyt3v")
+texture = ExtResource("1_uepus")
+
+[node name="HatCollisionShape" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, 153, -226, 162, -402, 182, -533, 223, -578, 128, -462, -48, -357, -247, -251, -393, -35, -442, 190, -405, 317, -241, 386, -63, 568, 55, 506, 125, 261, 125)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf0hovtqbrhx3"]
+
+[ext_resource type="Script" uid="uid://dewh3pwmqjbpy" path="res://game_elements/umbrella/umbrella.gd" id="1_6qus1"]
+[ext_resource type="Texture2D" uid="uid://dx4jq0fmi08cc" path="res://assets/human_extras/umbrella.png" id="1_013dy"]
+[ext_resource type="Shader" uid="uid://b48g1knbq0xjw" path="res://resources/shader/hovering.gdshader" id="2_7bia0"]
+[ext_resource type="Texture2D" uid="uid://bla1arms8wfwj" path="res://assets/human_extras/umbrella_rainbow.png" id="3_bqjjs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5absy"]
+shader = ExtResource("2_7bia0")
+
+[node name="Umbrella" type="Area2D" node_paths=PackedStringArray("umbrella_sprite") groups=["can_get_damage", "can_get_hit", "umbrella"]]
+scale = Vector2(0.205, 0.205)
+script = ExtResource("1_6qus1")
+umbrella_sprite = NodePath("UmbrellaSprite")
+umbrella_usual = ExtResource("1_013dy")
+umbrella_special = ExtResource("3_bqjjs")
+
+[node name="UmbrellaSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5absy")
+position = Vector2(-15, 200)
+texture = ExtResource("1_013dy")
+offset = Vector2(8, -435)
+
+[node name="UmbrellaCollisionShape" type="CollisionPolygon2D" parent="."]
+position = Vector2(-78.0488, -380.488)
+polygon = PackedVector2Array(60.5, -142.5, 132.5, -143.5, 196.5, -141.5, 287.5, -129.5, 388.5, -96.5, 492.5, -30.5, 596.5, 106.5, 637.5, 215.5, 198.5, 227.5, -271.5, 185.5, -227.5, 72.5, -146.5, -25.5, -52.5, -93.5)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://b87flovmmqdy6"]
+
+[ext_resource type="Texture2D" uid="uid://b6vfholf7ebit" path="res://assets/background/background_canvas.png" id="1_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://cyrdjg7ty8oja" path="res://game_elements/background/background.tscn" id="1_i7141"]
+[ext_resource type="PackedScene" uid="uid://cm4xec5ngycft" path="res://game_elements/bird/bird.tscn" id="1_nnsk1"]
+[ext_resource type="Shape2D" uid="uid://c66lqgv2eaf30" path="res://resources/shapes/ground_shape.tres" id="3_4wyf3"]
+[ext_resource type="Script" uid="uid://cosk1k0wef2rc" path="res://game_elements/game_scenes/world/human_spawner.gd" id="4_k0juu"]
+[ext_resource type="PackedScene" uid="uid://bfipa14gkf06n" path="res://game_elements/human/human.tscn" id="5_71j4m"]
+[ext_resource type="PackedScene" uid="uid://5kpma8i70u3" path="res://game_elements/ui/ui.tscn" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://cx6uvnh38aip2" path="res://game_elements/background/pick_up_locations.tscn" id="8_4mrxx"]
+
+[node name="World" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource("6_qfnet")]
+
+[node name="Parallax" type="Parallax2D" parent="."]
+repeat_size = Vector2(4096, 0)
+repeat_times = 20
+
+[node name="BackgroundWallpaper" type="Sprite2D" parent="Parallax"]
+position = Vector2(-15, 2)
+texture = ExtResource("1_4mrxx")
+
+[node name="BackgroundSprites" parent="." instance=ExtResource("1_i7141")]
+
+[node name="GroundArea" type="Area2D" parent="." groups=["can_get_hit", "ground"]]
+
+[node name="GroundAreaCollision" type="CollisionShape2D" parent="GroundArea"]
+position = Vector2(578, 609.5)
+scale = Vector2(4606.3, 46.063)
+shape = ExtResource("3_4wyf3")
+
+[node name="Human Spawner" type="Node2D" parent="." node_paths=PackedStringArray("bird")]
+script = ExtResource("4_k0juu")
+mob_scene = ExtResource("5_71j4m")
+bird = NodePath("../Bird")
+
+[node name="HumanSpawnTimer" type="Timer" parent="Human Spawner"]
+wait_time = 4.0
+autostart = true
+
+[node name="Bird" parent="." instance=ExtResource("1_nnsk1")]
+position = Vector2(0, 324)
+
+[node name="PickUps" parent="." instance=ExtResource("8_4mrxx")]
+
+[node name="Poops" type="Node2D" parent="."]
+
+[connection signal="timeout" from="Human Spawner/HumanSpawnTimer" to="Human Spawner" method="_on_timer_timeout"]

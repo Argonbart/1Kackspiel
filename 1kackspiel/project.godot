@@ -13,15 +13,14 @@ config_version=5
 config/name="1Kackspiel"
 run/main_scene="uid://dc06ec8pucmt1"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://assets/icon.svg"
 
 [autoload]
 
-Globals="*res://scripts/globals.gd"
-SoundManager="*res://scripts/sound_manager.gd"
-AmmunitionManager="*res://scripts/ammunition_manager.gd"
-GameStateManager="*res://scripts/game_state_manager.gd"
-SceneSwitcher="*res://scripts/scene_switcher.gd"
+Globals="*res://game_elements/autoload/globals.gd"
+SoundManager="*res://game_elements/autoload/sound_manager.gd"
+AmmunitionManager="*res://game_elements/autoload/ammunition_manager.gd"
+GameStateManager="*res://game_elements/autoload/game_state_manager.gd"
+SceneSwitcher="*res://game_elements/autoload/scene_switcher.gd"
 
 [display]
 
@@ -38,3 +37,6 @@ ice=""
 hat=""
 can_get_damage=""
 poop=""
+pick_up=""
+net=""
+can_get_hit=""

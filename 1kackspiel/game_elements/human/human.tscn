@@ -1,0 +1,193 @@
+[gd_scene load_steps=28 format=3 uid="uid://bfipa14gkf06n"]
+
+[ext_resource type="Script" uid="uid://cq22hu7adpbap" path="res://game_elements/human/human.gd" id="1_x2wwd"]
+[ext_resource type="PackedScene" uid="uid://bf0hovtqbrhx3" path="res://game_elements/umbrella/umbrella.tscn" id="2_smnjy"]
+[ext_resource type="PackedScene" uid="uid://coce66ftult4a" path="res://game_elements/pick_up/pick_up.tscn" id="2_wvdd5"]
+[ext_resource type="PackedScene" uid="uid://byn4td0vgnl0q" path="res://game_elements/net/net.tscn" id="3_np2id"]
+[ext_resource type="Texture2D" uid="uid://b003ppykcktrv" path="res://assets/human/human_walking.png" id="3_smnjy"]
+[ext_resource type="PackedScene" uid="uid://ci6aqmfys2paw" path="res://game_elements/hat/hat.tscn" id="4_wvdd5"]
+[ext_resource type="Texture2D" uid="uid://cosqhgsm54n2o" path="res://assets/human/human_dying.png" id="7_c3l26"]
+[ext_resource type="Shape2D" uid="uid://b4s5tc7ekkah3" path="res://resources/shapes/human_shape.tres" id="7_np2id"]
+[ext_resource type="Script" uid="uid://wvhb28qfigg2" path="res://game_elements/human/human_area.gd" id="8_c3l26"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvdd5"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(0, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aaqc2"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(896, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb2by"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(1792, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giy6d"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(2688, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plq0k"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(3584, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn8em"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(4480, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0uin"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(5376, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nqmq"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(6272, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrj45"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(7168, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp237"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(8064, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkaci"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(8960, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2lug"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(9856, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po2iy"]
+atlas = ExtResource("7_c3l26")
+region = Rect2(10752, 0, 896, 1396)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xydof"]
+atlas = ExtResource("3_smnjy")
+region = Rect2(0, 0, 1207, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_201oq"]
+atlas = ExtResource("3_smnjy")
+region = Rect2(1207, 0, 1207, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6q5m"]
+atlas = ExtResource("3_smnjy")
+region = Rect2(2414, 0, 1207, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np2id"]
+atlas = ExtResource("3_smnjy")
+region = Rect2(3621, 0, 1207, 2048)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c3l26"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvdd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aaqc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb2by")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giy6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plq0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn8em")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0uin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nqmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrj45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp237")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkaci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2lug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_po2iy")
+}],
+"loop": false,
+"name": &"death",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xydof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_201oq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6q5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np2id")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Human" type="Node2D" node_paths=PackedStringArray("human_sprite", "left_hand_point", "right_hand_point", "head_point")]
+script = ExtResource("1_x2wwd")
+_SPAWN_CHANCE_BERRIES = 0.2
+_SPAWN_CHANCE_HOTDOG = 0.3
+_SPAWN_CHANCE_ICECREAM = 0.3
+_SPAWN_CHANCE_RIGHT_NOTHING = 0.2
+_SPAWN_CHANCE_HEAD = 0.2
+_SPAWN_CHANCE_UMBRELLA = 0.2
+_SPAWN_CHANCE_NET = 0.1
+_SPAWN_CHANCE_LEFT_NOTHING = 0.5
+_GENERAL_SPEED_MULTIPLIER = 50.0
+_SPEED_MULTIPLIER_MINIMUM = 0.6
+_SPEED_MULTIPLIER_MAXIMUM = 1.4
+human_sprite = NodePath("HumanSprite")
+left_hand_point = NodePath("LeftHandPoint")
+right_hand_point = NodePath("RightHandPoint")
+head_point = NodePath("HeadPoint")
+_PICK_UP_SCENE = ExtResource("2_wvdd5")
+_HEAD_SCENE = ExtResource("4_wvdd5")
+_UMBRELLA_SCENE = ExtResource("2_smnjy")
+_NET_SCENE = ExtResource("3_np2id")
+
+[node name="HumanSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_c3l26")
+autoplay = "default"
+frame_progress = 0.45146
+
+[node name="TimerChangeDirection" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="HumanArea" type="Area2D" parent="." node_paths=PackedStringArray("human") groups=["can_get_damage", "can_get_hit", "human"]]
+script = ExtResource("8_c3l26")
+human = NodePath("..")
+
+[node name="HumanAreaCollisionShape" type="CollisionShape2D" parent="HumanArea"]
+shape = ExtResource("7_np2id")
+
+[node name="HeadPoint" type="Node2D" parent="."]
+position = Vector2(18, -100)
+
+[node name="RightHandPoint" type="Node2D" parent="."]
+position = Vector2(49, -21)
+
+[node name="LeftHandPoint" type="Node2D" parent="."]
+position = Vector2(50, -54)
+
+[connection signal="timeout" from="TimerChangeDirection" to="." method="_on_timer_change_direction_timeout"]
