@@ -1,0 +1,490 @@
+[gd_scene load_steps=8 format=3 uid="uid://csbj3uioi2o5l"]
+
+[ext_resource type="Script" uid="uid://xshkbnndxe5i" path="res://game_elements/game_scenes/game_won/score_display/score_display.gd" id="1_c00yy"]
+[ext_resource type="Texture2D" uid="uid://b6vfholf7ebit" path="res://assets/background/background_canvas.png" id="1_ndt6k"]
+[ext_resource type="Texture2D" uid="uid://c1qp8dsoujofj" path="res://assets/final_scenes/bg_your_score.png" id="2_c00yy"]
+[ext_resource type="Texture2D" uid="uid://bnssvn1nwemdh" path="res://assets/final_scenes/button_newgame.png" id="3_fboeb"]
+[ext_resource type="Script" uid="uid://oyc5ma5ywtqo" path="res://game_elements/game_scenes/game_won/score_display/load_scores.gd" id="4_hs71x"]
+[ext_resource type="Texture2D" uid="uid://dl1muboqvtund" path="res://assets/final_scenes/save_score_progress_bar.png" id="5_fboeb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c00yy"]
+bg_color = Color(0.615686, 0.615686, 0.839216, 1)
+
+[node name="ScoreDisplay" type="Node2D" node_paths=PackedStringArray("short_press_timer", "long_press_timer", "scoreText", "highscore_table", "hold_button", "hold_button_progress_bar")]
+script = ExtResource("1_c00yy")
+short_press_timer = NodePath("HoldButton/ShortPressTimer")
+long_press_timer = NodePath("HoldButton/LongPressTimer")
+scoreText = NodePath("Score/ScoreText")
+highscore_table = NodePath("HighscoreTable")
+hold_button = NodePath("HoldButton")
+hold_button_progress_bar = NodePath("HoldButton/HoldProgressBar")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="BackgroundWallpaper" type="Sprite2D" parent="Background"]
+position = Vector2(513, 327)
+scale = Vector2(0.405, 0.405)
+texture = ExtResource("1_ndt6k")
+
+[node name="BackgroundArt" type="Sprite2D" parent="Background"]
+position = Vector2(393, 312)
+scale = Vector2(0.228083, 0.227294)
+texture = ExtResource("2_c00yy")
+
+[node name="Score" type="Node2D" parent="."]
+
+[node name="ScoreText" type="Label" parent="Score"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 542.0
+offset_top = 225.0
+offset_right = 789.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "100000"
+
+[node name="PressButton" type="Node2D" parent="."]
+
+[node name="PressText" type="Label" parent="PressButton"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 362.0
+offset_top = 440.0
+offset_right = 539.0
+offset_bottom = 495.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Press for"
+
+[node name="NewGameButtonArt" type="Sprite2D" parent="PressButton"]
+position = Vector2(694, 506)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_fboeb")
+
+[node name="HoldButton" type="Node2D" parent="."]
+
+[node name="HoldText" type="Label" parent="HoldButton"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 358.0
+offset_top = 553.0
+offset_right = 535.0
+offset_bottom = 608.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Hold for"
+
+[node name="SaveScoreButtonBgColor" type="Panel" parent="HoldButton"]
+offset_left = 540.0
+offset_top = 552.0
+offset_right = 764.0
+offset_bottom = 611.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c00yy")
+
+[node name="SaveScoreButtonText" type="Label" parent="HoldButton"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 548.0
+offset_top = 552.0
+offset_right = 755.0
+offset_bottom = 607.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Save Score"
+
+[node name="HoldProgressBar" type="TextureProgressBar" parent="HoldButton"]
+custom_minimum_size = Vector2(1152, 648)
+offset_right = 1152.0
+offset_bottom = 648.0
+step = 0.1
+fill_mode = 4
+texture_under = ExtResource("5_fboeb")
+texture_progress = ExtResource("5_fboeb")
+tint_under = Color(1, 1, 1, 0)
+tint_over = Color(1, 1, 1, 0)
+tint_progress = Color(0.623529, 0.0509804, 0.176471, 1)
+
+[node name="ShortPressTimer" type="Timer" parent="HoldButton"]
+wait_time = 0.4
+one_shot = true
+
+[node name="LongPressTimer" type="Timer" parent="HoldButton"]
+one_shot = true
+
+[node name="HighscoreTable" type="Node2D" parent="." node_paths=PackedStringArray("highscore_vbox")]
+position = Vector2(830, 6)
+script = ExtResource("4_hs71x")
+highscore_vbox = NodePath("Highscores")
+
+[node name="HighscoreText" type="Label" parent="HighscoreTable"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = 3.0
+offset_right = -8.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Top Scores:"
+
+[node name="Highscores" type="VBoxContainer" parent="HighscoreTable"]
+custom_minimum_size = Vector2(310, 0)
+offset_right = 310.0
+offset_bottom = 636.0
+
+[node name="ScorePanel1" type="Panel" parent="HighscoreTable/Highscores"]
+custom_minimum_size = Vector2(310, 60)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="HighscoreTable/Highscores/ScorePanel1"]
+custom_minimum_size = Vector2(310, 0)
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+
+[node name="Ranking" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel1/HBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel1/HBox"]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel1/HBox"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScorePanel2" type="Panel" parent="HighscoreTable/Highscores"]
+custom_minimum_size = Vector2(310, 60)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="HighscoreTable/Highscores/ScorePanel2"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+
+[node name="Ranking" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel2/HBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel2/HBox"]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel2/HBox"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScorePanel3" type="Panel" parent="HighscoreTable/Highscores"]
+custom_minimum_size = Vector2(310, 60)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="HighscoreTable/Highscores/ScorePanel3"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+
+[node name="Ranking" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel3/HBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel3/HBox"]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel3/HBox"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScorePanel4" type="Panel" parent="HighscoreTable/Highscores"]
+custom_minimum_size = Vector2(310, 60)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="HighscoreTable/Highscores/ScorePanel4"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+
+[node name="Ranking" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel4/HBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel4/HBox"]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel4/HBox"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScorePanel5" type="Panel" parent="HighscoreTable/Highscores"]
+custom_minimum_size = Vector2(310, 60)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="HighscoreTable/Highscores/ScorePanel5"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+
+[node name="Ranking" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel5/HBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel5/HBox"]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel5/HBox"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScorePanel6" type="Panel" parent="HighscoreTable/Highscores"]
+custom_minimum_size = Vector2(310, 60)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="HighscoreTable/Highscores/ScorePanel6"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+
+[node name="Ranking" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel6/HBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel6/HBox"]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel6/HBox"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScorePanel7" type="Panel" parent="HighscoreTable/Highscores"]
+custom_minimum_size = Vector2(310, 60)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="HighscoreTable/Highscores/ScorePanel7"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+
+[node name="Ranking" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel7/HBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel7/HBox"]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel7/HBox"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScorePanel8" type="Panel" parent="HighscoreTable/Highscores"]
+custom_minimum_size = Vector2(310, 60)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="HighscoreTable/Highscores/ScorePanel8"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+
+[node name="Ranking" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel8/HBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel8/HBox"]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel8/HBox"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScorePanel9" type="Panel" parent="HighscoreTable/Highscores"]
+custom_minimum_size = Vector2(310, 60)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="HighscoreTable/Highscores/ScorePanel9"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+
+[node name="Ranking" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel9/HBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel9/HBox"]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel9/HBox"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScorePanel10" type="Panel" parent="HighscoreTable/Highscores"]
+custom_minimum_size = Vector2(310, 60)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="HighscoreTable/Highscores/ScorePanel10"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+
+[node name="Ranking" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel10/HBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel10/HBox"]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="HighscoreTable/Highscores/ScorePanel10/HBox"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1

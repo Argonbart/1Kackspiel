@@ -41,7 +41,7 @@ func init_poop_containers():
 
 
 func start_game_timer():
-	Globals.countdown = 120
+	Globals.countdown = Globals.GAME_LENGTH
 	Globals.score = 0
 	countdown_label.text = "%02d:%02d" % [Globals.countdown / 60.0, Globals.countdown % 60]
 	one_second_timer.start()

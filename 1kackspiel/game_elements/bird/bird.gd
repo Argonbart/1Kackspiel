@@ -6,8 +6,6 @@ extends Node2D
 @export_category("Stats")
 @export var FLYING_SPEED: float = 300.0
 @export var Y_DIVE_DISTANCE: float = 300.0
-@export var LONG_PRESS_TIME: float = 0.5		# time till press counts as long press
-@export var DOUBLE_CLICK_TIME: float = 0.3		# time it waits for a second press after first short press
 @export_category("Screen Boundries")
 @export var LEFT_BOUNDRY: float = -5300.0
 @export var RIGHT_BOUNDRY: float = 5300.0
@@ -56,20 +54,20 @@ func button_released():
 	
 	time_when_button_was_released = Time.get_unix_time_from_system()
 	var held_duration = time_when_button_was_released - time_when_button_was_pressed
-	if held_duration >= LONG_PRESS_TIME:
+	if held_duration >= Globals.LONG_PRESS_TIME:
 		currently_executing_command = true
 		waiting_for_double_press = false
 		dive()
 	else:
 		var time_since_first_short_button_press = time_when_button_was_released - time_of_first_short_button_press
-		if waiting_for_double_press and time_since_first_short_button_press <= DOUBLE_CLICK_TIME:
+		if waiting_for_double_press and time_since_first_short_button_press <= Globals.DOUBLE_CLICK_TIME:
 			currently_executing_command = true
 			waiting_for_double_press = false
 			change_direction()
 		else:
 			waiting_for_double_press = true
 			time_of_first_short_button_press = time_when_button_was_released
-			await get_tree().create_timer(DOUBLE_CLICK_TIME).timeout
+			await get_tree().create_timer(Globals.DOUBLE_CLICK_TIME).timeout
 			if waiting_for_double_press:
 				currently_executing_command = true
 				waiting_for_double_press = false

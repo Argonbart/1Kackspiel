@@ -1,0 +1,358 @@
+[gd_scene load_steps=11 format=3 uid="uid://cijhtan7xsfl8"]
+
+[ext_resource type="Script" uid="uid://dd3aypwa2x8xi" path="res://game_elements/game_scenes/game_won/naming_score/naming_score.gd" id="1_rgmwf"]
+[ext_resource type="StyleBox" uid="uid://7nv8cdbfdeg6" path="res://game_elements/game_scenes/game_won/naming_score/styleboxes/gray_stylebox.tres" id="2_smdn2"]
+[ext_resource type="StyleBox" uid="uid://c541x0w28jk7i" path="res://game_elements/game_scenes/game_won/naming_score/styleboxes/pink_stylebox.tres" id="3_dyddo"]
+[ext_resource type="Texture2D" uid="uid://cnc48o5v1ylsq" path="res://assets/final_scenes/letter_progress_bar.png" id="4_6wjip"]
+[ext_resource type="Texture2D" uid="uid://c4xqdt3je8v5e" path="res://assets/final_scenes/confirm_progress_bar.png" id="5_3m5ju"]
+[ext_resource type="StyleBox" uid="uid://mlvptvbun68a" path="res://game_elements/game_scenes/game_won/naming_score/styleboxes/dark_gray_stylebox.tres" id="6_dyddo"]
+[ext_resource type="Texture2D" uid="uid://b6vfholf7ebit" path="res://assets/background/background_canvas.png" id="6_smdn2"]
+[ext_resource type="Material" uid="uid://o67ob7mpo38j" path="res://resources/shader/hovering_arrow_material.tres" id="7_6wjip"]
+[ext_resource type="Material" uid="uid://dukse163ux5up" path="res://resources/shader/hovering_arrow_material_inverted.tres" id="8_3m5ju"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gurh3"]
+
+[node name="NamingScore" type="Node2D" node_paths=PackedStringArray("short_press_timer", "long_press_timer", "hbox", "score_text")]
+script = ExtResource("1_rgmwf")
+short_press_timer = NodePath("NamingProcess/ShortPressTimer")
+long_press_timer = NodePath("NamingProcess/LongPressTimer")
+dark_gray_stylebox = ExtResource("6_dyddo")
+gray_stylebox = ExtResource("2_smdn2")
+pink_stylebox = ExtResource("3_dyddo")
+text_color_selected = Color(0.890196, 0.541176, 0.823529, 1)
+text_color_not_selected = Color(1, 1, 1, 1)
+hbox = NodePath("NamingProcess/HBox")
+score_text = NodePath("InfoScore/YourScoreText")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="BackgroundWallpaper" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(0, 3)
+scale = Vector2(0.405, 0.405)
+texture = ExtResource("6_smdn2")
+
+[node name="InfoText" type="Node2D" parent="."]
+
+[node name="EnterInitialsText" type="RichTextLabel" parent="InfoText"]
+offset_left = -480.0
+offset_top = -242.0
+offset_right = 301.0
+offset_bottom = -173.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 50
+text = "Enter initials to save your score"
+fit_content = true
+vertical_alignment = 1
+
+[node name="NamingProcess" type="Node2D" parent="."]
+
+[node name="HBox" type="HBoxContainer" parent="NamingProcess"]
+offset_left = -480.0
+offset_top = -100.0
+offset_right = 480.0
+offset_bottom = 100.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Letter1" type="Panel" parent="NamingProcess/HBox"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("2_smdn2")
+
+[node name="LetterText" type="RichTextLabel" parent="NamingProcess/HBox/Letter1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 140
+text = "A"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LetterProgressBar" type="TextureProgressBar" parent="NamingProcess/HBox/Letter1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+fill_mode = 4
+texture_under = ExtResource("4_6wjip")
+texture_progress = ExtResource("4_6wjip")
+tint_under = Color(1, 1, 1, 0)
+tint_over = Color(1, 1, 1, 0)
+tint_progress = Color(0.621766, 0.0510723, 0.175961, 1)
+
+[node name="Arrows" type="Node2D" parent="NamingProcess/HBox/Letter1"]
+
+[node name="ArrowDown" type="Node2D" parent="NamingProcess/HBox/Letter1/Arrows"]
+position = Vector2(100, 15)
+
+[node name="BlackPolygon" type="Polygon2D" parent="NamingProcess/HBox/Letter1/Arrows/ArrowDown"]
+material = ExtResource("7_6wjip")
+color = Color(0, 0, 0, 1)
+antialiased = true
+polygon = PackedVector2Array(-15, -3, 15, -3, 0, 20)
+
+[node name="PinkPolygon" type="Polygon2D" parent="NamingProcess/HBox/Letter1/Arrows/ArrowDown"]
+material = ExtResource("7_6wjip")
+color = Color(0.890196, 0.541176, 0.823529, 1)
+antialiased = true
+polygon = PackedVector2Array(-9, 0, 9, 0, 0, 14)
+
+[node name="ArrowDown2" type="Node2D" parent="NamingProcess/HBox/Letter1/Arrows"]
+position = Vector2(100, 165)
+
+[node name="BlackPolygon" type="Polygon2D" parent="NamingProcess/HBox/Letter1/Arrows/ArrowDown2"]
+material = ExtResource("8_3m5ju")
+color = Color(0, 0, 0, 1)
+antialiased = true
+polygon = PackedVector2Array(-15, 20, 15, 20, 0, -3)
+
+[node name="PinkPolygon" type="Polygon2D" parent="NamingProcess/HBox/Letter1/Arrows/ArrowDown2"]
+material = ExtResource("8_3m5ju")
+color = Color(0.890196, 0.541176, 0.823529, 1)
+antialiased = true
+polygon = PackedVector2Array(-9, 17, 9, 17, 0, 3)
+
+[node name="Letter2" type="Panel" parent="NamingProcess/HBox"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_gurh3")
+
+[node name="LetterText" type="RichTextLabel" parent="NamingProcess/HBox/Letter2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 140
+text = "A"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LetterProgressBar" type="TextureProgressBar" parent="NamingProcess/HBox/Letter2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+fill_mode = 4
+texture_under = ExtResource("4_6wjip")
+texture_progress = ExtResource("4_6wjip")
+tint_under = Color(1, 1, 1, 0)
+tint_over = Color(1, 1, 1, 0)
+tint_progress = Color(0.623529, 0.0509804, 0.176471, 1)
+
+[node name="Arrows" type="Node2D" parent="NamingProcess/HBox/Letter2"]
+
+[node name="ArrowDown" type="Node2D" parent="NamingProcess/HBox/Letter2/Arrows"]
+position = Vector2(100, 15)
+
+[node name="BlackPolygon" type="Polygon2D" parent="NamingProcess/HBox/Letter2/Arrows/ArrowDown"]
+material = ExtResource("7_6wjip")
+color = Color(0, 0, 0, 1)
+antialiased = true
+polygon = PackedVector2Array(-15, -3, 15, -3, 0, 20)
+
+[node name="PinkPolygon" type="Polygon2D" parent="NamingProcess/HBox/Letter2/Arrows/ArrowDown"]
+material = ExtResource("7_6wjip")
+color = Color(0.890196, 0.541176, 0.823529, 1)
+antialiased = true
+polygon = PackedVector2Array(-9, 0, 9, 0, 0, 14)
+
+[node name="ArrowDown2" type="Node2D" parent="NamingProcess/HBox/Letter2/Arrows"]
+position = Vector2(100, 165)
+
+[node name="BlackPolygon" type="Polygon2D" parent="NamingProcess/HBox/Letter2/Arrows/ArrowDown2"]
+material = ExtResource("8_3m5ju")
+color = Color(0, 0, 0, 1)
+antialiased = true
+polygon = PackedVector2Array(-15, 20, 15, 20, 0, -3)
+
+[node name="PinkPolygon" type="Polygon2D" parent="NamingProcess/HBox/Letter2/Arrows/ArrowDown2"]
+material = ExtResource("8_3m5ju")
+color = Color(0.890196, 0.541176, 0.823529, 1)
+antialiased = true
+polygon = PackedVector2Array(-9, 17, 9, 17, 0, 3)
+
+[node name="Letter3" type="Panel" parent="NamingProcess/HBox"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_gurh3")
+
+[node name="LetterText" type="RichTextLabel" parent="NamingProcess/HBox/Letter3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 140
+text = "A"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LetterProgressBar" type="TextureProgressBar" parent="NamingProcess/HBox/Letter3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+fill_mode = 4
+texture_under = ExtResource("4_6wjip")
+texture_progress = ExtResource("4_6wjip")
+tint_under = Color(1, 1, 1, 0)
+tint_over = Color(1, 1, 1, 0)
+tint_progress = Color(0.623529, 0.0509804, 0.176471, 1)
+
+[node name="Arrows" type="Node2D" parent="NamingProcess/HBox/Letter3"]
+
+[node name="ArrowDown" type="Node2D" parent="NamingProcess/HBox/Letter3/Arrows"]
+position = Vector2(100, 15)
+
+[node name="BlackPolygon" type="Polygon2D" parent="NamingProcess/HBox/Letter3/Arrows/ArrowDown"]
+material = ExtResource("7_6wjip")
+color = Color(0, 0, 0, 1)
+antialiased = true
+polygon = PackedVector2Array(-15, -3, 15, -3, 0, 20)
+
+[node name="PinkPolygon" type="Polygon2D" parent="NamingProcess/HBox/Letter3/Arrows/ArrowDown"]
+material = ExtResource("7_6wjip")
+color = Color(0.890196, 0.541176, 0.823529, 1)
+antialiased = true
+polygon = PackedVector2Array(-9, 0, 9, 0, 0, 14)
+
+[node name="ArrowDown2" type="Node2D" parent="NamingProcess/HBox/Letter3/Arrows"]
+position = Vector2(100, 165)
+
+[node name="BlackPolygon" type="Polygon2D" parent="NamingProcess/HBox/Letter3/Arrows/ArrowDown2"]
+material = ExtResource("8_3m5ju")
+color = Color(0, 0, 0, 1)
+antialiased = true
+polygon = PackedVector2Array(-15, 20, 15, 20, 0, -3)
+
+[node name="PinkPolygon" type="Polygon2D" parent="NamingProcess/HBox/Letter3/Arrows/ArrowDown2"]
+material = ExtResource("8_3m5ju")
+color = Color(0.890196, 0.541176, 0.823529, 1)
+antialiased = true
+polygon = PackedVector2Array(-9, 17, 9, 17, 0, 3)
+
+[node name="Confirmation" type="Panel" parent="NamingProcess/HBox"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("6_dyddo")
+
+[node name="ConfirmText" type="RichTextLabel" parent="NamingProcess/HBox/Confirmation"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 60
+text = "Confirm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmProgressBar" type="TextureProgressBar" parent="NamingProcess/HBox/Confirmation"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+fill_mode = 4
+texture_under = ExtResource("5_3m5ju")
+texture_progress = ExtResource("5_3m5ju")
+tint_under = Color(1, 1, 1, 0)
+tint_over = Color(1, 1, 1, 0)
+tint_progress = Color(0.623529, 0.0509804, 0.176471, 1)
+
+[node name="Arrows" type="Node2D" parent="NamingProcess/HBox/Confirmation"]
+
+[node name="ArrowDown" type="Node2D" parent="NamingProcess/HBox/Confirmation/Arrows"]
+position = Vector2(155, -11)
+
+[node name="BlackPolygon" type="Polygon2D" parent="NamingProcess/HBox/Confirmation/Arrows/ArrowDown"]
+material = ExtResource("7_6wjip")
+color = Color(0, 0, 0, 1)
+antialiased = true
+polygon = PackedVector2Array(-21, -3, 21, -3, 0, 26)
+
+[node name="PinkPolygon" type="Polygon2D" parent="NamingProcess/HBox/Confirmation/Arrows/ArrowDown"]
+material = ExtResource("7_6wjip")
+color = Color(0.890196, 0.541176, 0.823529, 1)
+antialiased = true
+polygon = PackedVector2Array(-15, 0, 15, 0, 0, 20)
+
+[node name="ArrowDown2" type="Node2D" parent="NamingProcess/HBox/Confirmation/Arrows"]
+position = Vector2(155, 89)
+
+[node name="BlackPolygon" type="Polygon2D" parent="NamingProcess/HBox/Confirmation/Arrows/ArrowDown2"]
+material = ExtResource("8_3m5ju")
+color = Color(0, 0, 0, 1)
+antialiased = true
+polygon = PackedVector2Array(-21, 26, 21, 26, 0, -6)
+
+[node name="PinkPolygon" type="Polygon2D" parent="NamingProcess/HBox/Confirmation/Arrows/ArrowDown2"]
+material = ExtResource("8_3m5ju")
+color = Color(0.890196, 0.541176, 0.823529, 1)
+antialiased = true
+polygon = PackedVector2Array(-15, 23, 15, 23, 0, 0)
+
+[node name="ShortPressTimer" type="Timer" parent="NamingProcess"]
+wait_time = 0.4
+one_shot = true
+
+[node name="LongPressTimer" type="Timer" parent="NamingProcess"]
+wait_time = 0.4
+one_shot = true
+
+[node name="InfoScore" type="Node2D" parent="."]
+
+[node name="YourScoreText" type="RichTextLabel" parent="InfoScore"]
+offset_left = -488.0
+offset_top = 163.0
+offset_right = 293.0
+offset_bottom = 232.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 50
+text = " Your Score: 000000"
+fit_content = true
+vertical_alignment = 1

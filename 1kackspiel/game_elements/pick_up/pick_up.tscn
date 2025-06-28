@@ -1,13 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://coce66ftult4a"]
 
 [ext_resource type="Script" uid="uid://df1i34s0jw5la" path="res://game_elements/pick_up/pick_up.gd" id="1_adew5"]
+[ext_resource type="Material" uid="uid://dp6sylp6bmeuw" path="res://resources/shader/hovering_pick_up_material.tres" id="3_2ih3e"]
 [ext_resource type="Shader" uid="uid://b48g1knbq0xjw" path="res://resources/shader/hovering.gdshader" id="4_a7jki"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a7jki"]
 shader = ExtResource("4_a7jki")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8tsvk"]
-shader = ExtResource("4_a7jki")
+shader_parameter/amplitude = 0.0
+shader_parameter/speed = 0.0
+shader_parameter/offset = 0.0
+shader_parameter/time_offset = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c468w"]
 radius = 22.0
@@ -24,7 +26,7 @@ material = SubResource("ShaderMaterial_a7jki")
 scale = Vector2(0.1, 0.1)
 
 [node name="PickUpSprite" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_8tsvk")
+material = ExtResource("3_2ih3e")
 scale = Vector2(0.1, 0.1)
 
 [node name="PickUpArea" type="Area2D" parent="." groups=["pick_up"]]

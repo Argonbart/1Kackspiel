@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dp6sylp6bmeuw"]
+
+[ext_resource type="Shader" uid="uid://b48g1knbq0xjw" path="res://resources/shader/hovering.gdshader" id="1_d88cg"]
+
+[resource]
+shader = ExtResource("1_d88cg")
+shader_parameter/amplitude = 40.0
+shader_parameter/speed = 5.0
+shader_parameter/offset = 0.0
+shader_parameter/time_offset = 0.0

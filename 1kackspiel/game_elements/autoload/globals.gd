@@ -19,6 +19,12 @@ var poop_resources = {
 	Enum.PoopType.ICE : POOP_RESOURCE_ICE,
 }
 
+# click timings
+var LONG_PRESS_TIME: float = 0.5		# time till press counts as long press
+var DOUBLE_CLICK_TIME: float = 0.3		# time it waits for a second press after first short press
+var GAME_LENGTH: int = 120				# time in seconds the game takes
+var _RESET_SCORES: bool = false
+
 # variables
 var invert_direction: bool = false # 0 = nach rechts ; 1 = nach links
 var countdown: int
@@ -28,3 +34,7 @@ var score: int
 func _ready():
 	item_collected.get_name()
 	hide_ui.get_name()
+	
+	# TO RESET THE SCORE RESOURCE
+	if _RESET_SCORES:
+		load(str(OS.get_user_data_dir(), "/scores/highscore_data.tres")).reset_scores()
