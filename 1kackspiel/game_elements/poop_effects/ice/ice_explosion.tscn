@@ -7,9 +7,10 @@
 offsets = PackedFloat32Array(0, 0.269113, 1)
 colors = PackedColorArray(0, 0.290196, 1, 1, 0, 1, 1, 1, 0, 0.513726, 0.807843, 1)
 
-[node name="IceExplosion" type="Node2D" node_paths=PackedStringArray("ice_particles") groups=["ice"]]
+[node name="IceExplosion" type="Node2D" node_paths=PackedStringArray("ice_particles", "explosion_collision_shape") groups=["ice"]]
 script = ExtResource("1_4yosi")
 ice_particles = NodePath("ParticlesScaling/Particles")
+explosion_collision_shape = NodePath("ExplosionArea/ExplosionAreaCollisionShape")
 
 [node name="ExplosionArea" type="Area2D" parent="." groups=["ice"]]
 

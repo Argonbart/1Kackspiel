@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://wjia1c8y52a7"
+
+[deps]
+
+files=["res://resources/csv/parameters.Object.translation", "res://resources/csv/parameters.Wert.translation", "res://resources/csv/parameters.Beschreibung.translation", "res://resources/csv/parameters.Notizen.translation"]
+
+source_file="res://resources/csv/parameters.csv"
+dest_files=["res://resources/csv/parameters.Object.translation", "res://resources/csv/parameters.Wert.translation", "res://resources/csv/parameters.Beschreibung.translation", "res://resources/csv/parameters.Notizen.translation"]
+
+[params]
+
+compress=true
+delimiter=0

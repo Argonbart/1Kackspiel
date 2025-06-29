@@ -144,14 +144,6 @@ animations = [{
 
 [node name="Human" type="Node2D" node_paths=PackedStringArray("human_sprite", "left_hand_point", "right_hand_point", "head_point")]
 script = ExtResource("1_x2wwd")
-_SPAWN_CHANCE_BERRIES = 0.2
-_SPAWN_CHANCE_HOTDOG = 0.3
-_SPAWN_CHANCE_ICECREAM = 0.3
-_SPAWN_CHANCE_RIGHT_NOTHING = 0.2
-_SPAWN_CHANCE_HEAD = 0.2
-_SPAWN_CHANCE_UMBRELLA = 0.2
-_SPAWN_CHANCE_NET = 0.1
-_SPAWN_CHANCE_LEFT_NOTHING = 0.5
 _GENERAL_SPEED_MULTIPLIER = 50.0
 _SPEED_MULTIPLIER_MINIMUM = 0.6
 _SPEED_MULTIPLIER_MAXIMUM = 1.4

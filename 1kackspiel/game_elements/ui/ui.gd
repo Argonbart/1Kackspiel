@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-# exports
-@export var _MAX_POOP_CONTAINERS: int = 10
 
 # nodes
 @export var containers: HBoxContainer
@@ -41,7 +39,7 @@ func init_poop_containers():
 
 
 func start_game_timer():
-	Globals.countdown = Globals.GAME_LENGTH
+	Globals.countdown = Parameters.GAME_LENGTH
 	Globals.score = 0
 	countdown_label.text = "%02d:%02d" % [Globals.countdown / 60.0, Globals.countdown % 60]
 	one_second_timer.start()
@@ -49,7 +47,7 @@ func start_game_timer():
 
 func add_ammo(ammo_type: Enum.PoopType):
 	for i in range(Globals.poop_resources[ammo_type].poop_amount):
-		if containers.get_children().size() >= _MAX_POOP_CONTAINERS:
+		if containers.get_children().size() >= Parameters.MAX_POOP_CONTAINERS:
 			return
 		poop_to_add_queue.append(ammo_type)
 	

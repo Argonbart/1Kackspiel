@@ -4,7 +4,6 @@ extends Node2D
 
 # constants
 @export_category("Stats")
-@export var FLYING_SPEED: float = 300.0
 @export var Y_DIVE_DISTANCE: float = 300.0
 @export_category("Screen Boundries")
 @export var LEFT_BOUNDRY: float = -5300.0
@@ -28,7 +27,7 @@ func _ready():
 
 
 func _process(delta):
-	position.x += FLYING_SPEED * delta * pow(-1, Globals.invert_direction)
+	position.x += Parameters.FLYING_SPEED * delta * pow(-1, Globals.invert_direction)
 	if position.x < LEFT_BOUNDRY or position.x > RIGHT_BOUNDRY:
 		change_direction()
 	position.y = diving_neutral_y + diving_diff
@@ -54,20 +53,20 @@ func button_released():
 	
 	time_when_button_was_released = Time.get_unix_time_from_system()
 	var held_duration = time_when_button_was_released - time_when_button_was_pressed
-	if held_duration >= Globals.LONG_PRESS_TIME:
+	if held_duration >= Parameters.LONG_PRESS_TIME:
 		currently_executing_command = true
 		waiting_for_double_press = false
 		dive()
 	else:
 		var time_since_first_short_button_press = time_when_button_was_released - time_of_first_short_button_press
-		if waiting_for_double_press and time_since_first_short_button_press <= Globals.DOUBLE_CLICK_TIME:
+		if waiting_for_double_press and time_since_first_short_button_press <= Parameters.DOUBLE_CLICK_TIME:
 			currently_executing_command = true
 			waiting_for_double_press = false
 			change_direction()
 		else:
 			waiting_for_double_press = true
 			time_of_first_short_button_press = time_when_button_was_released
-			await get_tree().create_timer(Globals.DOUBLE_CLICK_TIME).timeout
+			await get_tree().create_timer(Parameters.DOUBLE_CLICK_TIME).timeout
 			if waiting_for_double_press:
 				currently_executing_command = true
 				waiting_for_double_press = false

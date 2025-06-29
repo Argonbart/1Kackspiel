@@ -30,13 +30,13 @@ position = Vector2(578, 609.5)
 scale = Vector2(4606.3, 46.063)
 shape = ExtResource("3_4wyf3")
 
-[node name="Human Spawner" type="Node2D" parent="." node_paths=PackedStringArray("bird")]
+[node name="Human Spawner" type="Node2D" parent="." node_paths=PackedStringArray("bird", "spawn_timer")]
 script = ExtResource("4_k0juu")
-mob_scene = ExtResource("5_71j4m")
+human = ExtResource("5_71j4m")
 bird = NodePath("../Bird")
+spawn_timer = NodePath("HumanSpawnTimer")
 
 [node name="HumanSpawnTimer" type="Timer" parent="Human Spawner"]
-wait_time = 4.0
 autostart = true
 
 [node name="Bird" parent="." instance=ExtResource("1_nnsk1")]

@@ -21,6 +21,7 @@ SoundManager="*res://game_elements/autoload/sound_manager.gd"
 AmmunitionManager="*res://game_elements/autoload/ammunition_manager.gd"
 GameStateManager="*res://game_elements/autoload/game_state_manager.gd"
 SceneSwitcher="*res://game_elements/autoload/scene_switcher.gd"
+Parameters="*res://game_elements/autoload/parameters.gd"
 
 [display]
 

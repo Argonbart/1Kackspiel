@@ -1,11 +1,11 @@
 class_name PoopEffectManager
 extends Node
 
-@export_category("Balancing Poop")
-@export var _FIRE_POOP_AMOUNT: int = 10
-@export_category("Nodes")
+
+# nodes
 @export var bird: Bird
-@export_category("Scenes")
+
+#scenes
 @export var _POOP_SCENE: PackedScene
 @export var _ICE_EXPLOSION: PackedScene
 @export var _CHESTNUT_EXPLOSION: PackedScene
@@ -38,7 +38,7 @@ func activate_poop_effect():
 			new_poop.add_child(chestnut_explosion)
 		Enum.PoopType.FIRE: # throw multiple fire poops
 			AmmunitionManager.next_ammo.emit()
-			for i in range(_FIRE_POOP_AMOUNT):
+			for i in range(Parameters.FIRE_POOP_AMOUNT):
 				var fire_poop = new_poop.duplicate()
 				fire_poop.global_position = bird.bird_sprite.global_position + Vector2(0.0, 100.0)
 				get_parent().get_parent().find_child("Poops").add_child(fire_poop)

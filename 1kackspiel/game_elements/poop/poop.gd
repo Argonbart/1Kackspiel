@@ -2,12 +2,7 @@ class_name Poop
 extends Node2D
 
 
-# exports
-@export_category("Falling Force")
-@export var falling_force_x: float = -20.0
-@export var falling_force_y: float = 4.0
-@export var falling_force_dropoff_x: float = 0.3
-@export_category("Nodes")
+# nodes
 @export var poop_color_sprite: Sprite2D
 @export var poop_sprite: AnimatedSprite2D
 @export var poop_area: Area2D
@@ -18,15 +13,16 @@ var hit_ground: bool = false
 
 
 # movement
-func _physics_process(_delta):
+func _process(_delta):
 	
 	if hit_ground:
 		return
 	
-	position += Vector2(falling_force_x * pow(-1, Globals.invert_direction), falling_force_y)
-	falling_force_x -= falling_force_dropoff_x
-	if falling_force_x < 0.0:
-		falling_force_x = 0.0
+	position += Vector2(Parameters.FALLING_FORCE_X * pow(-1, Globals.invert_direction) * (-1), Parameters.FALLING_FORCE_Y)
+	if Parameters.FALLING_FORCE_X > 0.0:
+		Parameters.FALLING_FORCE_X -= Parameters.FALLING_FORCE_DROPOFF_X
+		if Parameters.FALLING_FORCE_X <= 0.0:
+			Parameters.FALLING_FORCE_X = 0.0
 
 
 func set_color(new_color: Color):
