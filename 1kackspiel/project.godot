@@ -13,6 +13,7 @@ config_version=5
 config/name="1Kackspiel"
 run/main_scene="uid://dc06ec8pucmt1"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/image="uid://d7ccj6l01dwt"
 
 [autoload]
 
@@ -25,6 +26,7 @@ Parameters="*res://game_elements/autoload/parameters.gd"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [global_group]

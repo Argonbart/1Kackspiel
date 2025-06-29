@@ -24,13 +24,13 @@ var SPAWN_CHANCE_HAT: float = 0.2
 var SPAWN_CHANCE_UMBRELLA: float = 0.2
 var SPAWN_CHANCE_NET: float = 0.1
 var SPAWN_CHANCE_LEFT_NOTHING: float = 0.5
-var SPEED_MULTIPLIER_MINIMUM: float = 0.5
-var SPEED_MULTIPLIER_MAXIMUM: float = 2.0
+var SPEED_MULTIPLIER_MINIMUM: float = 0.8
+var SPEED_MULTIPLIER_MAXIMUM: float = 1.2
 var BASIC_LIFE_POINTS: int = 1
 
 # poop
 var FALLING_FORCE_X: float = 2.0
-var FALLING_FORCE_Y: float = 4.0
+var FALLING_FORCE_Y: float = 2.0
 var FALLING_FORCE_DROPOFF_X: float = 1.0
 
 # effects

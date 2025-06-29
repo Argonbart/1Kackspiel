@@ -105,7 +105,8 @@ func short_press_input():
 	if currently_selected_idx == 3:
 		var new_name: String = str(hbox.get_child(0).get_child(0).text, hbox.get_child(1).get_child(0).text, hbox.get_child(2).get_child(0).text)
 		var new_score: int = Globals.score
-		save_file.add_new_score([new_name, new_score])
+		if save_file:
+			save_file.add_new_score([new_name, new_score])
 		var score_display_scene = get_parent().get_child(0)
 		score_display_scene.highscore_table.load_score()
 		score_display_scene.score_already_saved = true

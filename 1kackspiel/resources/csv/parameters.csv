@@ -13,8 +13,8 @@ SPAWN_CHANCE_HAT,Human,0.2,Chance dass ein Mensch mit einem Hut spawned,Hat
 SPAWN_CHANCE_UMBRELLA,Human,0.2,Chance dass ein Mensch mit einem Regenschirm spawned, + Umbrella
 SPAWN_CHANCE_NET,Human,0.1,Chance dass ein Mensch mit einem Netz spawned, + Net
 SPAWN_CHANCE_LEFT_NOTHING,Human,0.5,Chance dass ein Mensch mit keinem Objekt in der linken Hand spawned, + Nothing = 1.0
-SPEED_MULTIPLIER_MINIMUM,Human,0.5,Minimale Bewegungsgeschwindigkeit eines Menschen (zufällig zwischen min und max),
-SPEED_MULTIPLIER_MAXIMUM,Human,1.5,Maximale Bewegungsgeschwindigkeit eines Menschen (zufällig zwischen min und max),
+SPEED_MULTIPLIER_MINIMUM,Human,0.8,Minimale Bewegungsgeschwindigkeit eines Menschen (zufällig zwischen min und max),
+SPEED_MULTIPLIER_MAXIMUM,Human,1.2,Maximale Bewegungsgeschwindigkeit eines Menschen (zufällig zwischen min und max),
 BASIC_LIFE_POINTS,Human,1,Lebenspunkte eines Menschen,
 FALLING_FORCE_X,Poop,2.0,Bewegung in x-Richtung von fallendem Poop,
 FALLING_FORCE_Y,Poop,2.0,Bewegung in y-Richtung von fallendem Poop,
