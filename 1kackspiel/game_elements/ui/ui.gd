@@ -12,7 +12,6 @@ extends CanvasLayer
 
 # variables
 var poop_to_add_queue: Array[Enum.PoopType] = []
-var loading_poop: bool = false
 
 
 func _ready():
@@ -46,22 +45,14 @@ func start_game_timer():
 
 
 func add_ammo(ammo_type: Enum.PoopType):
+	
+	# create poops while ammo not full
 	for i in range(Globals.poop_resources[ammo_type].poop_amount):
-		if containers.get_children().size() >= Parameters.MAX_POOP_CONTAINERS:
-			return
-		poop_to_add_queue.append(ammo_type)
+		if containers.get_children().size() < Parameters.MAX_POOP_CONTAINERS:
+			create_new_poop_container(ammo_type)
 	
-	if loading_poop:
-		return
-	
-	loading_poop = true
-	while !poop_to_add_queue.is_empty():
-		create_new_poop_container(poop_to_add_queue[0])
-		poop_to_add_queue.remove_at(0)
-		await get_tree().create_timer(0.1).timeout
-	loading_poop = false
-	
-	if AmmunitionManager.ammo_is_empty:
+	# update ammunition manager variables
+	if containers.get_children().size() > 0:
 		AmmunitionManager.next_ammo_type = containers.get_child(0).get_type()
 		AmmunitionManager.ammo_is_empty = false
 
