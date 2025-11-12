@@ -26,7 +26,7 @@ Parameters="*res://game_elements/autoload/parameters.gd"
 
 [display]
 
-window/size/mode=3
+window/size/mode=4
 window/stretch/mode="canvas_items"
 
 [global_group]

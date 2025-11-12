@@ -10,6 +10,7 @@ extends Node2D
 @export var hold_button_progress_bar: TextureProgressBar
 
 # variables
+var button_is_pressed: bool = false
 var time_when_button_was_pressed: float = Time.get_unix_time_from_system()
 var time_when_button_was_released: float = Time.get_unix_time_from_system()
 var currently_naming_score: bool = false
@@ -41,11 +42,13 @@ func _input(event: InputEvent) -> void:
 	if currently_naming_score:
 		return
 	
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			button_pressed()
-		if event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
-			button_released()
+	if event is InputEventKey:
+		event = event as InputEventKey
+		if event.keycode == KEY_SPACE:
+			if event.is_pressed() and not button_is_pressed:
+				button_pressed()
+			if event.is_released():
+				button_released()
 
 
 func short_press_timer_timeout():
@@ -59,10 +62,12 @@ func long_press_timer_timeout():
 
 
 func button_pressed():
+	button_is_pressed = true
 	short_press_timer.start()
 
 
 func button_released():
+	button_is_pressed = false
 	if short_press_timer.time_left > 0.0:
 		short_press_input()
 	if long_press_timer.time_left > 0.0:
@@ -80,6 +85,7 @@ func long_press_abort():
 
 
 func swap_scene_to_name_score():
+	button_is_pressed = false
 	
 	# long press becomes invalid after score got saved once
 	if score_already_saved:

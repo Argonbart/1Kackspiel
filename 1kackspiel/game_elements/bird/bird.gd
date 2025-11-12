@@ -13,6 +13,7 @@ extends Node2D
 @export var camera: Camera2D
 
 # variables
+var button_is_pressed: bool = false
 var time_when_button_was_pressed: float = 0.0
 var time_of_first_short_button_press: float = -1.0
 var waiting_for_double_press: bool = false
@@ -35,18 +36,22 @@ func _process(delta):
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			button_pressed()
-		if event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
-			button_released()
+	if event is InputEventKey:
+		event = event as InputEventKey
+		if event.keycode == KEY_SPACE:
+			if event.is_pressed() and not button_is_pressed:
+				button_pressed()
+			if event.is_released():
+				button_released()
 
 
 func button_pressed():
+	button_is_pressed = true
 	time_when_button_was_pressed = Time.get_unix_time_from_system()
 
 
 func button_released():
+	button_is_pressed = false
 	
 	if currently_executing_command:
 		return

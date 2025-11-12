@@ -17,6 +17,7 @@ var currently_selected: Panel = null
 var currently_selected_idx: int = 0
 
 # variables
+var button_is_pressed: bool = false
 var currently_naming_score: bool = false
 var letters: Array = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 var letter_idx: Array = [0, 0, 0]
@@ -73,11 +74,13 @@ func _input(event: InputEvent) -> void:
 	if !currently_naming_score:
 		return
 	
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			button_pressed()
-		if event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
-			button_released()
+	if event is InputEventKey:
+		event = event as InputEventKey
+		if event.keycode == KEY_SPACE:
+			if event.is_pressed() and not button_is_pressed:
+				button_pressed()
+			if event.is_released():
+				button_released()
 
 
 func short_press_timer_timeout():
@@ -90,10 +93,12 @@ func long_press_timer_timeout():
 
 
 func button_pressed():
+	button_is_pressed = true
 	short_press_timer.start()
 
 
 func button_released():
+	button_is_pressed = false
 	if short_press_timer.time_left > 0.0:
 		short_press_input()
 	if long_press_timer.time_left > 0.0:
